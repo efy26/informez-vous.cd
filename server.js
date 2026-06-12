@@ -134,7 +134,7 @@ app.use((request, response, next) => {
         'Actualités fiables, rapides et diversifiées.';
 
     response.locals.image =
-        'https://informez-vous.cd/assets/newss.jpeg';
+        'https://informez-vous-cd.onrender.com/assets/logo.png';
 
     response.locals.url =
         `${request.protocol}://${request.get('host')}${request.originalUrl}`;
@@ -706,8 +706,8 @@ app.get('/', (request, response) => {
     response.render('home', {
         title: 'INFORMEZ-VOUS.CD - Actualités en temps réel',
         description: 'Découvrez les dernières actualités nationales et internationales sur INFORMEZ-VOUS.CD.',
-        image: 'https://informez-vous.cd/assets/newss.jpeg',
-        url: 'https://informez-vous.cd/',
+        image: 'https://informez-vous-cd.onrender.com/assets/logo.jpeg',
+        url: 'https://informez-vous-cd.onrender.com/',
         currentPage: '/'
 
     });
@@ -1207,8 +1207,8 @@ app.get('/actualite', (request, response) => {
         layout: 'main',
         title: 'Actualité',
         description: 'Les dernières nouvelles publiées sur INFORMEZ-VOUS.CD.',
-        image: 'https://informez-vous.cd/assets/newss.jpeg',
-        url: 'https://informez-vous.cd/actualite',
+        image: 'https://informez-vous-cd.onrender.com/assets/logo.jpeg',
+        url: 'https://informez-vous-cd.onrender.com/actualite',
         currentPage: 'actualite',
         styles: ['actualites.css'],
         scripts: ['global.js']
@@ -1220,8 +1220,8 @@ app.get('/categories', (request, response) => {
         layout: 'main',
         title: 'Categories',
         description: 'Parcourez toutes les catégories disponibles sur INFORMEZ-VOUS.CD.',
-        image: 'https://informez-vous.cd/assets/newss.jpeg',
-        url: 'https://informez-vous.cd/categories',
+        image: 'https://informez-vous-cd.onrender.com/assets/logo.jpeg',
+        url: 'https://informez-vous-cd.onrender.com/categories',
 
         currentPage: 'categories',
         styles: ['categories.css'],
@@ -1301,9 +1301,9 @@ app.get('/lire-article', async (request, response) => {
 
     description: article.summary,
 
-    image: `https://informez-vous.cd/assets/${article.image}`,
+    image: `https://informez-vous-cd.onrender.com/assets/${article.image}`,
 
-    url: `https://informez-vous.cd/lire-article?id=${article.id}`,
+    url: `https://informez-vous-cd.onrender.com/lire-article?id=${article.id}`,
 
             currentPage: 'lire-article',
             styles: ['global.css'],
