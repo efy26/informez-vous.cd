@@ -1,0 +1,37 @@
+<div class="apercu-article-container-amin">
+  <section class="apercu-article-content-admin">
+        <div class="apercu-article-content-categorie-admin">
+            <p><strong>{{ categoriecase  }} </strong>- {{ subCategorie.slug  }}</p>
+        </div>
+        <div class="apercu-article-content-titre-admin">
+            <h1>
+                {{ article.title}}
+            </h1>
+        </div>
+        <div class="apercu-article-content-img-auteur-date-admin">
+            <div class="apercu-article-content-auteur-date">
+                <div class="apercu-article-content-auteur">
+                    <p>Par <span>{{ auteur.first_name}} {{ auteur.last_name}}</span></p>
+                </div>
+                <i></i>
+                <div class="apercu-article-content-date">
+                    <p>{{ article.created_at }}</p>
+                </div>
+                <i></i>
+                <div class="apercu-article-content-role">
+                    <p>{{ auteur.role}}</p>
+                </div>
+            </div>
+            <div class="apercu-article-content-img">
+                <img src="/assets/{{ article.image}}" alt="Image d'un article">
+                
+            </div>
+        </div>
+        <div class="apercu-article-content-paragraphe-admin">
+            <p>
+                {{{ article.content }}}
+            </p>
+           
+        </div>
+  </section>
+</div>

@@ -1,0 +1,196 @@
+.article-container-planifier-redacteur {
+    padding: 1rem;
+}
+
+.article-header-planifier-redacteur {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1.2rem;
+}
+.article-header-planifier-redacteur p { 
+    width: 15rem;
+}
+/* Ordinateur*/
+@media screen and (min-width: 60rem) {
+    .article-container-planifier-redacteur {
+        padding-left: 32%;
+    }
+    
+}
+
+/* Tablette*/
+@media screen and (min-width: 50rem) and (max-width: 59.99rem) {
+    .article-container-planifier-redacteur {
+        padding-left: 32%;
+    }
+}
+
+/* =========================
+   SECTION TABLEAU
+========================= */
+
+.article-liste-planifier-redacteur {
+    width: 100%;
+
+    margin-top: 2rem;
+
+    background: #fff;
+
+    padding: 1.5rem;
+
+    border-radius: 16px;
+
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
+
+    overflow-x: auto;
+}
+
+/* =========================
+   TABLE
+========================= */
+
+.article-liste-planifier-redacteur table {
+    width: 100%;
+
+    border-collapse: collapse;
+
+    min-width: 900px;
+}
+
+/* =========================
+   HEAD
+========================= */
+
+.article-liste-planifier-redacteur thead {
+    background: #f3f4f6;
+}
+
+.article-liste-planifier-redacteur th {
+    padding: 1rem;
+
+    text-align: left;
+
+    font-size: 15px;
+
+    font-weight: 700;
+
+    color: #111827;
+
+    border-bottom: 1px solid #e5e7eb;
+}
+
+/* =========================
+   BODY
+========================= */
+
+.article-liste-planifier-redacteur td {
+    padding: 1rem;
+
+    font-size: 15px;
+
+    color: #374151;
+
+    border-bottom: 1px solid #f1f5f9;
+}
+
+/* =========================
+   ROW HOVER
+========================= */
+
+.article-liste-planifier-redacteur tbody tr {
+    transition: 0.3s;
+}
+
+.article-liste-planifier-redacteur tbody tr:hover {
+    background: #f9fafb;
+}
+
+/* =========================
+   ACTIONS
+========================= */
+
+.article-liste-planifier-redacteur td:last-child {
+    display: flex;
+
+    align-items: center;
+
+    gap: 10px;
+
+    flex-wrap: wrap;
+}
+
+/* =========================
+   BUTTONS
+========================= */
+
+.article-liste-planifier-redacteur button {
+    border: none;
+
+    padding: 10px 14px;
+
+    border-radius: 10px;
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 8px;
+
+    cursor: pointer;
+
+    font-size: 14px;
+
+    font-weight: 600;
+
+    transition: 0.3s;
+}
+
+/* =========================
+   VOIR
+========================= */
+
+.btn-voir-article-planifier-redacteur {
+    background: #dbeafe;
+
+    color: #1d4ed8;
+}
+
+.btn-voir-article-planifier-redacteur:hover {
+    background: #bfdbfe;
+}
+
+/* =========================
+   EDITER
+========================= */
+
+.btn-editer-article-planifier-redacteur {
+    background: #fef3c7;
+
+    color: #b45309;
+}
+
+.btn-editer-article-planifier-redacteur:hover {
+    background: #fde68a;
+}
+
+/* =========================
+   SUPPRIMER
+========================= */
+
+.btn-supprimer-article-planifier-redacteur {
+    background: #fee2e2;
+
+    color: #dc2626;
+}
+
+.btn-supprimer-article-planifier-redacteur:hover {
+    background: #fecaca;
+}
+/* =========================
+   ICONES
+========================= */
+
+.article-liste-planifier-redacteur ion-icon {
+    font-size: 18px;
+}

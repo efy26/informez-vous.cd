@@ -1,0 +1,101 @@
+<div class="dashboard-container-admin">
+  <section class="dashboard-header-admin">
+    <div class="article-content-admin">
+      <h2>Tableau de bord</h2>
+      <p>Vue d'ensemble de votre site</p>
+    </div>
+
+    <div class="dashbord-profil-admin">
+      <div class="dashboard-image-admin">
+        
+        {{ initial }}
+      </div>
+      <div class="dashboard-admin-info">
+
+        <h3>{{firstName}} {{lastName}}</h3>
+        <p>{{roles}}</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="dashboard-stats-admin">
+    <div class="dashbord-stats">
+      <i class="checkmark-done-outline"><ion-icon
+          name="checkmark-done-outline"
+        ></ion-icon></i>
+      <div class="dashboard-stats-content-admin">
+        <p>Les articles publiés</p>
+        <p><strong>{{ nombreArticle }}</strong></p>
+        <p class="publiés-stats">Au total.</p>
+      </div>
+    </div>
+    <div class="dashbord-stats">
+      <i class="hourglass-outline"><ion-icon
+          name="hourglass-outline"
+        ></ion-icon></i>
+      <div class="dashboard-stats-content-admin">
+        <p>Les articles en brouillon</p>
+        <p><strong>{{ nombreArticleBrouillon }}</strong></p>
+        <p class="brouillon-stats">En attente de publication...</p>
+      </div>
+    </div>
+    <div class="dashbord-stats">
+      <i class="checkmark-outline"><ion-icon
+          name="checkmark-outline"
+        ></ion-icon></i>
+      <div class="dashboard-stats-content-admin">
+        <p>Mes articles publiés</p>
+        <p ><strong>{{ nombreMesArticle }}</strong></p>
+        <p class="mes-articles-publiés-stats">Au total.</p>
+      </div>
+    </div>
+    <div class="dashbord-stats">
+      <i class="calendar-number-outline"><ion-icon
+          name="calendar-number-outline"
+        ></ion-icon></i>
+      <div class="dashboard-stats-content-admin">
+        <p>Mes articles planifiés</p>
+        <p><strong>{{ nombreArticlePlanifier }}</strong></p>
+        <p class="planifier-stats">En attente du jour de publication...</p>
+      </div>
+    </div>
+    <div class="dashbord-stats">
+      <i class="person-add-outline"><ion-icon
+          name="person-add-outline"
+        ></ion-icon></i>
+      <div class="dashboard-stats-content-admin">
+        <p>Rédacteurs</p>
+        <p ><strong>{{ nombreUser }}</strong></p>
+        <p class="user-stats">Au total.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="dashboard-graphique-admin">
+    <script>
+      window.dashboardData = {
+        publishedCount: {{ publishedCount }},
+        draftCount: {{ draftCount }},
+        categoryLabels: {{{ categoryLabelsJson }}},
+        categoryData: {{{ categoryDataJson }}}
+      };
+    </script>
+
+    <div class="dashboard">
+
+      <!-- Graphique ligne -->
+      <div class="card line-card">
+        <h2>Articles publiés / Brouillons</h2>
+        <canvas id="lineChart"></canvas>
+      </div>
+
+      <!-- Graphique donut -->
+      <div class="card donut-card">
+        <h2>Répartition par catégorie</h2>
+        <canvas id="donutChart"></canvas>
+      </div>
+
+    </div>
+
+  </section>
+</div>

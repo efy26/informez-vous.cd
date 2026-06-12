@@ -1,0 +1,673 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+    background-color: #f5f7fb;
+    color: #222;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+select {
+    -webkit-appearance: none;
+    appearance: none;
+}
+
+h1,
+h2,
+h3,
+h4,
+aside,
+.logo {
+    font-family: 'Poppins', sans-serif;
+}
+
+a {
+    color: black;
+    text-decoration: none;
+}
+
+img {
+    width: 100%;
+    max-width: 400px;
+    display: block;
+}
+
+/*header*/
+header {
+    position: sticky;
+    top: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    z-index: 10;
+    align-items: center;
+    justify-content: center;
+    padding: 1rem;
+    background-color: #fff;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.menu-outline {
+    position: absolute;
+    top: 1rem;
+    left: 1rem;
+    font-size: 2rem;
+    cursor: pointer;
+    transition: 0.3s ease;
+}
+
+.menu-outline:hover {
+    background-color: #dfdfdf;
+    border-radius: 10px;
+}
+
+header h1 {
+    text-align: center;
+}
+
+/*sidebar*/
+aside {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 80%;
+    padding: 2rem 1rem;
+    background-color: white;
+    box-shadow: 6px 0 10px rgba(0, 0, 0, 0.1);
+    border-radius: 0 10px 10px;
+    z-index: 1000;
+    transform: translateX(-100%);
+    transition: 0.7s ease-in-out;
+}
+
+aside.open-menu {
+    transform: translateX(0);
+}
+
+aside.close-menu {
+    transform: translateX(-100%);
+}
+
+.aside-container-logo-close-menu {
+    display: flex;
+    align-items: start;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    margin-bottom: 2rem;
+}
+
+.aside-container img {
+    width: 10rem;
+    height: 7rem;
+    object-fit: contain;
+}
+
+.aside-container h2 a {
+    display: flex;
+
+    align-items: center;
+
+    gap: 3px;
+}
+
+.aside-container h2 i {
+    color: red;
+}
+
+.close-outline {
+    font-size: 2rem;
+    cursor: pointer;
+    transition: 0.3s ease;
+}
+
+.close-outline:hover {
+    background-color: #7b7b7b;
+    border-radius: 10px;
+}
+
+.aside-menu {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+}
+
+.aside-menu a {
+    display: flex;
+    align-items: center;
+    padding: 0.4rem;
+    flex-shrink: 0;
+    transition: 0.3s ease-out;
+}
+
+.aside-menu a:hover {
+    background-color: rgb(250, 219, 219);
+    color: red;
+    border-radius: 10px;
+}
+
+.aside-menu a i {
+    margin-right: 0.7rem;
+}
+
+.activeLink {
+    background-color: rgb(250, 219, 219);
+    color: red;
+    border-radius: 10px;
+}
+
+.logout-button-container {
+    display: flex;
+    align-items: center;
+    padding: 0.4rem;
+}
+.logout-button-container button {
+    font-size: 1.2rem;
+}
+
+.logout-button {
+    display: flex;
+    align-items: center;
+    width: 50%;
+    cursor: pointer;
+    color: red;
+    background-color: white;
+    border: none;
+    padding: 0.4rem 0.4rem;
+    transition: 0.3s ease;
+}
+
+.logout-button:hover {
+    background-color: rgb(250, 219, 219);
+    border-radius: 10px;
+}
+
+.toast {
+    position: fixed;
+    top: 1rem;
+    left: 50%;
+    transform: translateX(-50%) translateY(-20px);
+    min-width: 260px;
+    max-width: 90%;
+    padding: 1rem 1.2rem;
+    border-radius: 12px;
+    color: #fff;
+    text-align: center;
+    font-weight: 700;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.25s ease, transform 0.25s ease;
+    z-index: 1200;
+}
+
+.toast.show {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
+    pointer-events: auto;
+}
+
+.toast.success {
+    background-color: #28a745;
+    box-shadow: 0 10px 25px rgba(40, 167, 69, 0.25);
+}
+
+.toast.error {
+    background-color: #dc3545;
+    box-shadow: 0 10px 25px rgba(220, 53, 69, 0.25);
+}
+
+.log-out-outline {
+    font-size: 1.2rem;
+    color: red;
+}
+
+footer {
+    display: flex;
+    justify-content: center !important;
+    margin-top: auto;
+    padding: 1rem;
+
+
+}
+
+/*Apercu d'un article*/
+.apercu-article-container-amin {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    padding: 1rem;
+}
+
+.apercu-article-container-amin .close-outline-apercu {
+    font-size: 2rem;
+    cursor: pointer;
+    border-radius: 7px;
+    transition: 0.3s ease-out;
+
+}
+
+.apercu-article-container-amin .close-outline-apercu:hover {
+    background-color: rgba(0, 0, 0, 0.091);
+}
+
+.apercu-article-content-categorie-admin {
+    display: inline-flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.apercu-article-content-categorie-admin p {
+    display: inline-block;
+    align-items: center;
+    align-content: center;
+    background-color: rgba(255, 0, 0, 0.172);
+    color: red;
+    padding: 0.3rem;
+    text-align: center;
+    border-radius: 7px;
+}
+
+.apercu-article-content-categorie-admin p strong {
+    font-size: 1.5rem;
+}
+
+.apercu-article-content-titre-admin,
+.apercu-article-content-img-auteur-date-admin {
+    padding-top: 2rem;
+}
+
+.apercu-article-content-auteur-date {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.apercu-article-content-auteur p span {
+    font-weight: bold;
+}
+
+.apercu-article-content-auteur-date i {
+    background-color: rgba(255, 0, 0, 0.518);
+    width: 0.4rem;
+    height: 0.4rem;
+    border-radius: 4rem;
+}
+
+.apercu-article-content-img {
+    padding-top: 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.apercu-article-content-img img {
+    max-width: 100%;
+    height: 400px;
+    object-fit: cover;
+    border-radius: 7px;
+}
+
+.apercu-article-content-medias {
+    display: flex;
+    justify-content: right;
+    gap: 0.5rem;
+
+}
+
+.apercu-article-content-medias ion-icon {
+    font-size: 2rem;
+}
+
+.apercu-article-content-paragraphe-admin {
+    padding-top: 2rem;
+}
+
+.apercu-article-content-paragraphe-admin p {
+    line-height: 1.6;
+    overflow-wrap: break-word;
+}
+
+.register-form {
+    background: none;
+    background-image: none;
+    background-color: #f5f7fb;
+}
+
+.register-form-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 2rem;
+
+}
+
+.register-form-img-background {
+    display: none !important;
+}
+
+.register-details-texte-header {
+    padding: 0.9rem;
+    border-radius: 10px;
+}
+
+.register-form-img-background h1,
+.register-details-texte-header p {
+    text-shadow: 0px 8px 10px rgb(0, 0, 0);
+    color: white;
+}
+
+.register-form-img-background i {
+    color: red;
+}
+
+.register-details-texte-body {
+    display: flex;
+    gap: 1rem;
+    padding-top: 1rem;
+}
+
+.actualite-descr {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+    border-radius: 10px;
+    padding: 1rem;
+    background-color: white;
+    box-shadow: 0px 0px 10px rgb(0, 0, 0);
+}
+
+.actualite-descr ion-icon {
+    font-size: 1.5rem;
+    color: red;
+}
+
+
+.container-login {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    padding: 0rem;
+    border-radius: 30px 30px 0 0;
+    z-index: 2;
+    width: 100% !important;
+    background-color: #f5f7fb;
+}
+
+.container-login h2 {
+    text-align: center;
+}
+
+#inscription-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+    width: 100%;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.35rem;
+    width: 80%;
+}
+
+.form-group.two-col {
+    display: flex;
+    gap: 1rem;
+}
+
+.form-group.full-width {
+    width: 80%;
+}
+
+#inscription-form label {
+    font-weight: bold;
+}
+
+#inscription-form input,
+select,
+button {
+    padding: 0.7rem;
+    border-radius: 7px;
+    border: 1px solid rgba(0, 0, 0, 0.2);
+    background-color: transparent;
+    width: 100%;
+}
+
+#inscription-form button {
+    border: none;
+    background-color: rgba(255, 0, 0, 0.161);
+    color: red;
+    cursor: pointer;
+    transition: 0.3s ease-out;
+}
+
+#inscription-form button:hover {
+    background-color: rgba(255, 0, 0, 0.288);
+}
+
+#inscription-form p.success {
+    color: green;
+}
+
+#inscription-form p.error {
+    color: red;
+}
+
+/* Ordinateur*/
+@media screen and (min-width: 60rem) {
+    body {
+        background-color: rgba(128, 128, 128, 0.11) !important;
+    }
+
+    header {
+        /* position: unset !important; */
+        top: 0;
+        box-shadow: none;
+    }
+
+    header span,
+    header h1 {
+        display: none;
+    }
+
+    aside {
+        transform: translateX(0) !important;
+        width: 30%;
+        top: 0rem;
+        bottom: 0rem;
+        border-radius: 0px;
+        box-shadow: none;
+    }
+    .aside-menu {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .close-outline {
+        display: none;
+    }
+
+    footer {
+        display: none !important;
+        padding-left: 32% !important;
+    }
+
+    .apercu-article-container-amin {
+        max-width: 66% !important;
+        top: 0rem;
+        bottom: 20rem !important;
+        left: 32%;
+        background-color: transparent;
+    }
+
+    .register-form {
+        padding: 0 0rem 0 32%;
+        min-height: calc(100vh - 80px) !important;
+    }
+
+    .register-form-img-background-details-texte {
+        position: sticky !important;
+        display: flex !important;
+        flex-direction: row !important;
+        gap: 20rem;
+        width: 20%;
+    }
+
+    .register-details-texte-body {
+        display: flex;
+
+
+    }
+
+    .actualite-descr {
+        display: flex;
+        flex-direction: row;
+        padding: 0;
+        background-color: rgba(0, 0, 0, 0.211);
+        color: white;
+        text-shadow: 0px 0px 10px black;
+    }
+
+    .actualite-descr ion-icon {
+        background-color: white;
+        padding: 1rem;
+        border-radius: 10px;
+    }
+
+    #inscription-form {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 1rem 2rem;
+    }
+
+    .form-group.full-width {
+        grid-column: 1 / 3;
+    }
+
+    .form-group.two-col {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 0.8rem;
+        align-items: start;
+    }
+
+    .form-group.two-col>div {
+        display: flex;
+        flex-direction: column;
+        flex: 1 1 0;
+        min-width: 0;
+    }
+
+    .form-group.two-col input,
+    .form-group.two-col select {
+        width: 100%;
+        box-sizing: border-box;
+    }
+     .form-group.two-col.colonne {
+        display: flex;
+        flex-direction: column;
+     }
+     .form-group.two-col.colonne input {
+       width: 100%;
+     }
+
+    #inscription-form .form-group button {
+        justify-self: center;
+        width: 14rem;
+    }
+
+    .register-form-container {
+        top: 0;
+        width: 97% !important;
+        gap: 0rem !important;
+    }
+
+    .container-login {
+        top: 0;
+        border-radius: 0;
+        width: 100% !important;
+        padding-right: 8rem !important;
+    }
+
+    .form-group {
+        display: flex;
+        flex-direction: column;
+        gap: 0.35rem;
+        width: unset;
+    }
+
+    .form-group.full-width {
+        width: 100%;
+    }
+
+    #inscription-form input,
+    select,
+    button {
+        width: unset;
+    }
+    #user {
+        width: 100%;
+        background-color: beige;
+    }
+
+}
+
+/* Tablette*/
+@media screen and (min-width: 50rem) and (max-width: 59.99rem) {
+    body {
+        background-color: rgba(128, 128, 128, 0.11);
+    }
+
+    header {
+        top: 0;
+        box-shadow: none;
+    }
+
+    header span,
+    header h1 {
+        display: none;
+    }
+
+    aside {
+        transform: translateX(0) !important;
+        width: 30%;
+        top: 2rem;
+        bottom: 0rem;
+        border-radius: 0px;
+        box-shadow: none;
+    }
+    .aside-menu {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .close-outline {
+        display: none;
+    }
+
+    footer {
+        padding-left: 32% !important;
+    }
+
+    .apercu-article-container-amin {
+        max-width: 65%;
+        top: 2rem;
+        left: 32%;
+        background-color: transparent;
+    }
+
+    .register-form {
+        padding-left: 30% !important;
+    }
+}

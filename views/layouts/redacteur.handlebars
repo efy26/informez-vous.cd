@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ title }}</title>
+    <script src="https://cdn.ckeditor.com/ckeditor5/41.4.2/classic/ckeditor.js"></script>
+    <link rel="stylesheet" href="/css/redacteur/global.css">
+    <link rel="icon" type="image/jpeg" href="/assets/logo.jpeg">
+    <script type="module" src="/js/redacteur/global.js" defer></script>
+    {{#each styles}}
+        <link rel="stylesheet" href="/css/{{ this }}">
+    {{/each}}
+    {{#each scripts}}
+        <script type="module" src="/js/{{ this }}" defer></script>
+    {{/each}}
+    
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+<script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+
+</head>
+<body class="redacteur-layout">
+
+    {{> redacteur/header }}
+
+    <div class="redacteur-content">
+        {{> redacteur/aside }}
+
+        <main>
+            {{{ body }}}
+        </main>
+    </div>
+
+    {{> redacteur/footer }}
+    
+</body>
+</html>

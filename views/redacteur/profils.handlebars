@@ -1,0 +1,61 @@
+<div class="profil-container-redacteur">
+    <section class="profil-header-redacteur">
+        <div class="profil-content-redacteur">
+            <h2>Profils</h2>
+            <p>Gérez votre profil utilisateur</p>
+        </div>
+
+    </section>
+    <section class="profil-liste-info-redacteur">
+        <div class="profil-liste-redacteur">
+            <ol>
+                <li>
+                    <div class="profil-info-redacteur">
+                        <div class="profil-image-redacteur">
+                            {{ initial }}
+                        </div>
+                        <div class="profil-details-redacteur">
+                            <p><strong>{{ firstName }} {{ lastName }}</strong></p>
+                            <div class="role-status">
+                                <p> {{roles}} </p>
+                                -
+                                <p> {{status}}</p>
+                                -
+                                <p> {{city}}  </p>
+                                -
+                                <p> {{pays}}</p>
+                            </div>
+                            <p>{{ email }}</p>
+                        </div>
+                    </div>
+                </li>
+            </ol>
+        </div>
+        <div class="profil-info-update-redacteur">
+            <div class="profil-info-liste-redacteur">
+                <h3>Informations personnelles</h3>
+                <ul>
+                    <form  data-user-id="{{userId}}">
+                        <li><label>Nom d'utilisateur :</label> <input type="text" value="{{username}}" disabled></li>
+                        <li><label>E-mail :</label> <input type="email" value="{{email}}" disabled></li>
+                        <li><label>Nouveau mot de passe :</label> <input type="password" disabled></li>
+                        <li><label>Rôle :</label> <input type="text" value="Rédacteur" disabled></li>
+                        <li><label>Statut :</label> <input type="text" value="Actif" disabled></li>
+                        <li><label>Prénom :</label> <input type="text" value="{{firstName}}" disabled></li>
+                        <li><label>Nom :</label> <input type="text" value="{{lastName}}" disabled></li>
+                        <li><label>Téléphone :</label> <input type="text" value="{{phone}}" disabled></li>
+                        <li><label>Adresse :</label> <input type="text" value="{{address_home}}" disabled></li>
+
+                        <div class="profil-btn-update-redacteur">
+                            <button type="submit">Valider le profil</button>
+                        </div>
+                        <div id="profil-btn-update-redacteur">
+                            <button >Modifier le profil</button>
+                        </div>
+                        <label class="messages"></label>
+                    </form>
+                </ul>
+            </div>
+        </div>
+    </section>
+</div>

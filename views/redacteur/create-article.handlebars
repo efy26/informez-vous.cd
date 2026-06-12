@@ -1,0 +1,77 @@
+<div class="article-container-redacteur">
+    <section class="article-header-redacteur">
+        <div class="article-content-redacteur">
+            <h2>Créer un article</h2>
+            <p>Vous pouvez créer un nouvel article et l'envoyer à l'administrateur pour la publication.</p>
+        </div>
+    </section>
+
+    <section class="article-formulaire-redacteur">
+        <form class="article-form-admin" action="/redacteur/articles" method="POST">
+            <div class="article-formulaire-container-redacteur">
+                <div class="form-group-titre">
+                    <label for="titre">Titre de l'article</label>
+                    <input type="text" id="titre" name="titre" placeholder="Saisissez un titre..." >
+                </div>
+                <div class="form-group-categorie-image">
+                    <div class="select-categorie">
+                        <label for="categorie">Catégorie</label>
+                        <select id="categorie" name="categorie" required>
+                            <option value="">Sélectionnez une catégorie</option>
+                           
+                        </select>
+                    </div>
+                    <div class="select-categorie">
+                        <label for="categorie">Sous-catégorie</label>
+                        <select id="categorie" name="categorie" required>
+                            <option value="">Sélectionnez une sous-catégorie</option>
+                            
+                        </select>
+                    </div>
+                    <div class="televerser-image">
+                        <label for="image">Téléverser une image (.png, .webp, .jpeg)</label>
+                        <input type="file" id="image" name="image" accept="image/*">
+                    </div>
+                </div>
+
+                <div class="contenue-article">
+
+                    <textarea
+                        id="contenu"
+                        name="contenu"
+                        rows="10"
+                        required>
+                    </textarea>
+                </div>
+            </div>
+
+            <div class="option-publication">
+                <h3>Options de publication</h3>
+                <div class="sommaire">
+                    <label for="sommaire">Sommaire de l'article</label>
+                    <textarea id="sommaire" name="sommaire" rows="10"></textarea>
+                </div>
+                <div class="status">
+                    <label for="status">Statut de l'article</label>
+                    <select id="status" name="status" required>
+                        <option value="">Sélectionnez un statut</option>
+                        
+                    </select>
+                </div>
+                <div class="planifier">
+                    <label for="planification">Planification de la publication</label>
+                    <input type="datetime-local" id="planification" name="planification" disabled required>
+                </div>
+                <div class="btn-article-envoyer-redacteur">
+                    <button type="submit">Soumettre l'article</button>
+                    <label for=""></label>
+                </div>
+                </div>
+                
+            </div>
+
+            
+        </form>
+    </section>
+
+</div>

@@ -1,0 +1,222 @@
+.dashboard-container-admin {
+    padding: 1rem;
+}
+
+.dashboard-header-admin {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.dashboard-stats-admin {
+    padding-top: 2rem;
+}
+
+.dashboard-image-admin {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: rgb(216, 216, 216);
+    width: 3rem;
+    height: 3rem;
+    border-radius: 50%;
+}
+
+.dashboard-admin-info:nth-child(1),
+.dashboard-admin-info:nth-child(2) {
+    font-size: 0.7rem;
+}
+
+.dashbord-profil-admin {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.dashboard-stats-admin {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    margin-top: 2rem;
+
+}
+
+.dashbord-stats {
+    display: flex;
+    align-items: start;
+    width: 100%;
+    padding: 1rem 2rem;
+    gap: 1rem;
+    box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+}
+
+.dashboard-stats-content-admin {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.dashboard-stats-content-admin:nth-child(2) strong {
+    font-size: 1.5rem;
+}
+
+.checkmark-done-outline {
+    padding: 0.5rem;
+    background-color: rgba(0, 128, 0, 0.108);
+    border-radius: 4rem;
+}
+.checkmark-outline {
+    padding: 0.5rem;
+    background-color: rgba(210, 180, 140, 0.228);
+    border-radius: 4rem;
+}
+.calendar-number-outline {
+    padding: 0.5rem;
+    background-color: rgba(95, 158, 160, 0.15);
+    border-radius: 4rem;
+}
+.hourglass-outline {
+    padding: 0.5rem;
+    background-color: rgba(255, 166, 0, 0.109);
+    border-radius: 4rem;
+}
+
+.person-add-outline {
+    padding: 0.5rem;
+    background-color: rgba(137, 43, 226, 0.096);
+    border-radius: 4rem;
+}
+
+.publiés-stats {
+    color: green;
+}
+
+.brouillon-stats {
+    color: orange;
+}
+.mes-articles-publiés-stats {
+    color: tan;
+}
+.planifier-stats {
+    color: cadetblue
+}
+.user-stats {
+    color: blueviolet
+}
+ .dashboard {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+    }
+/* Ordinateur*/
+@media screen and (min-width: 60rem) {
+    .dashboard-container-admin {
+        padding-left: 32%;
+    }
+
+    .dashboard-graphique-admin {
+        padding-top: 4rem;
+    }
+    .dashboard-header-admin {
+        flex-direction: row;
+        justify-content: space-between;
+    }
+
+    .dashboard-stats-admin {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        padding-top: 0rem;
+    }
+    .dashbord-stats {
+        width: 47%;
+    }
+
+    .dashboard {
+        display: flex;
+        flex-wrap: nowrap;
+        gap: 1rem;
+    }
+}
+
+/* Tablette*/
+@media screen and (min-width: 50rem) and (max-width: 59.99rem) {
+    .dashboard-container-admin {
+        padding-left: 32%;
+    }
+    .dashboard-header-admin {
+        flex-direction: row;
+        justify-content: space-between;
+    }
+
+    .dashboard-graphique-admin {
+        padding-top: 4rem;
+    }
+
+    .dashboard-stats-admin {
+        padding-top: 0rem;
+    }
+     .dashboard {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 1rem;
+    }
+    
+
+}
+
+
+
+
+/* Graphique style*/
+.dashboard-graphique-admin {
+    padding-top: 4rem;
+}
+/* =========================
+   CARD
+========================= */
+
+.card {
+    background: white;
+
+    border-radius: 15px;
+
+    padding: 20px;
+
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+}
+
+/* =========================
+   LINE CHART
+========================= */
+
+.line-card {
+    flex: 2 1 600px;
+}
+
+/* =========================
+   DONUT CHART
+========================= */
+
+.donut-card {
+    flex: 400px;
+}
+
+/* =========================
+   TITLES
+========================= */
+
+/* h2 {
+    margin-bottom: 20px;
+    font-size: 22px;
+} */
+
+/* =========================
+   CANVAS
+========================= */
+
+canvas {
+    width: 100% !important;
+    height: 350px !important;
+}

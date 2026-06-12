@@ -1,0 +1,51 @@
+<div class="article-container-admin">
+    <section class="article-header-admin">
+        <div class="article-content-admin">
+            <h2> </h2>
+            <p>Gérez tous vos articles du site.</p>
+        </div>
+
+        <a class="btn-creer-article-admin" href="/admin/create-article" aria-label="Aller à la page créer un article">
+
+                <span>Créer un article</span>
+        </a>
+
+    </section>
+    <section class="article-filtre-recherche-admin">
+        <div class="article-filtre-admin">
+
+            <select id="filtre-categorie" name="filtre-categorie" aria-label="Filtre par catégorie">
+                <option value="">Toutes les catégories</option>
+                
+            </select>
+
+            <select id="filtre-ordre" name="filtre-ordre" aria-label="Filtre par odre">
+                <option value="asc">Croissant</option>
+                <option value="desc">Décroissant</option>
+            </select>
+        </div>
+        <div class="article-recherche-admin">
+            <input type="text" id="recherche-article" name="recherche-article" placeholder="Entrez un article ou un auteur">
+        </div>
+    </section>
+    <section class="article-liste-admin">
+        <table>
+            <thead>
+                <tr>
+                    <th>Titre</th>
+                    <th>Auteur</th>
+                    <th>Catégorie</th>
+                    <th>Statut</th>
+                    <th>Date</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Les lignes de l'article seront ajoutées ici -->
+                
+                
+                
+            </tbody>
+        </table>
+    </section>
+</div>

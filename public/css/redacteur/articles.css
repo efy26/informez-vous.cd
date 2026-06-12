@@ -1,0 +1,244 @@
+.article-container-redacteur {
+    padding: 1rem;
+}
+
+.article-header-redacteur {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1.2rem;
+}
+.article-header-redacteur p { 
+    width: 15rem;
+}
+.btn-creer-article-redacteur {
+    display: flex;
+    align-items: center;
+    gap: 0.1rem;
+    background-color: rgba(255, 0, 0, 0.125);
+    color: rgb(255, 0, 0);
+    padding: 0.5rem 0.7rem;
+    border-radius: 10px;
+    transition: 0.3s ease-out;
+}
+
+.btn-creer-article-redacteur:hover {
+    background-color: rgba(255, 0, 0, 0.254);
+}
+
+.article-filtre-recherche-redacteur {
+    padding-top: 2rem;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+}
+
+select,
+input {
+    padding: 0.7rem;
+    border-radius: 5px;
+    outline: transparent;
+    background-color: transparent;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Ordinateur*/
+@media screen and (min-width: 60rem) {
+    .article-container-redacteur {
+        padding-left: 32%;
+    }
+    
+}
+
+/* Tablette*/
+@media screen and (min-width: 50rem) and (max-width: 59.99rem) {
+    .article-container-redacteur {
+        padding-left: 32%;
+    }
+}
+
+.publié {
+    background-color: rgba(0, 128, 0, 0.158);
+    color: green !important;
+    font-weight: 600;
+}
+.brouillon {
+    background-color: rgba(255, 166, 0, 0.223);
+    color: orange !important;
+}
+.planifié {
+    background-color: rgba(0, 128, 128, 0.109);
+    color: cadetblue !important;
+}
+
+
+/* =========================
+   SECTION TABLEAU
+========================= */
+
+.article-liste-redacteur {
+    width: 100%;
+
+    margin-top: 2rem;
+
+    background: #fff;
+
+    padding: 1.5rem;
+
+    border-radius: 16px;
+
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
+
+    overflow-x: auto;
+}
+
+/* =========================
+   TABLE
+========================= */
+
+.article-liste-redacteur table {
+    width: 100%;
+
+    border-collapse: collapse;
+
+    min-width: 900px;
+}
+
+/* =========================
+   HEAD
+========================= */
+
+.article-liste-redacteur thead {
+    background: #f3f4f6;
+}
+
+.article-liste-redacteur th {
+    padding: 1rem;
+
+    text-align: left;
+
+    font-size: 15px;
+
+    font-weight: 700;
+
+    color: #111827;
+
+    border-bottom: 1px solid #e5e7eb;
+}
+
+/* =========================
+   BODY
+========================= */
+
+.article-liste-redacteur td {
+    padding: 1rem;
+
+    font-size: 15px;
+
+    color: #374151;
+
+    border-bottom: 1px solid #f1f5f9;
+}
+
+/* =========================
+   ROW HOVER
+========================= */
+
+.article-liste-redacteur tbody tr {
+    transition: 0.3s;
+}
+
+.article-liste-redacteur tbody tr:hover {
+    background: #f9fafb;
+}
+
+/* =========================
+   ACTIONS
+========================= */
+
+.article-liste-redacteur td:last-child {
+    display: flex;
+
+    align-items: center;
+
+    gap: 10px;
+
+    flex-wrap: wrap;
+}
+
+/* =========================
+   BUTTONS
+========================= */
+
+.article-liste-redacteur button {
+    border: none;
+
+    padding: 10px 14px;
+
+    border-radius: 10px;
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 8px;
+
+    cursor: pointer;
+
+    font-size: 14px;
+
+    font-weight: 600;
+
+    transition: 0.3s;
+}
+
+/* =========================
+   VOIR
+========================= */
+
+.btn-voir-article-redacteur {
+    background: #dbeafe;
+
+    color: #1d4ed8;
+}
+
+.btn-voir-article-redacteur:hover {
+    background: #bfdbfe;
+}
+
+/* =========================
+   EDITER
+========================= */
+
+.btn-editer-article-redacteur {
+    background: #fef3c7;
+
+    color: #b45309;
+}
+
+.btn-editer-article-redacteur:hover {
+    background: #fde68a;
+}
+
+/* =========================
+   SUPPRIMER
+========================= */
+
+.btn-supprimer-article-redacteur {
+    background: #fee2e2;
+
+    color: #dc2626;
+}
+
+.btn-supprimer-article-redacteur:hover {
+    background: #fecaca;
+}
+/* =========================
+   ICONES
+========================= */
+
+.article-liste-redacteur ion-icon {
+    font-size: 18px;
+}

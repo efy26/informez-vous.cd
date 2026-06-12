@@ -1,0 +1,196 @@
+.article-container-brouillons-admin {
+    padding: 1rem;
+}
+
+.article-header-brouillons-admin {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1.2rem;
+}
+.article-header-planifier-admin p { 
+    width: 15rem;
+}
+/* Ordinateur*/
+@media screen and (min-width: 60rem) {
+    .article-container-brouillons-admin {
+        padding-left: 32%;
+    }
+    
+}
+
+/* Tablette*/
+@media screen and (min-width: 50rem) and (max-width: 59.99rem) {
+    .article-container-brouillons-admin {
+        padding-left: 32%;
+    }
+}
+
+/* =========================
+   SECTION TABLEAU
+========================= */
+
+.article-liste-brouillons-admin {
+    width: 100%;
+
+    margin-top: 2rem;
+
+    background: #fff;
+
+    padding: 1.5rem;
+
+    border-radius: 16px;
+
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
+
+    overflow-x: auto;
+}
+
+/* =========================
+   TABLE
+========================= */
+
+.article-liste-brouillons-admin table {
+    width: 100%;
+
+    border-collapse: collapse;
+
+    min-width: 900px;
+}
+
+/* =========================
+   HEAD
+========================= */
+
+.article-liste-brouillons-admin thead {
+    background: #f3f4f6;
+}
+
+.article-liste-brouillons-admin th {
+    padding: 1rem;
+
+    text-align: left;
+
+    font-size: 15px;
+
+    font-weight: 700;
+
+    color: #111827;
+
+    border-bottom: 1px solid #e5e7eb;
+}
+
+/* =========================
+   BODY
+========================= */
+
+.article-liste-brouillons-admin td {
+    padding: 1rem;
+
+    font-size: 15px;
+
+    color: #374151;
+
+    border-bottom: 1px solid #f1f5f9;
+}
+
+/* =========================
+   ROW HOVER
+========================= */
+
+.article-liste-brouillons-admin tbody tr {
+    transition: 0.3s;
+}
+
+.article-liste-brouillons-admin tbody tr:hover {
+    background: #f9fafb;
+}
+
+/* =========================
+   ACTIONS
+========================= */
+
+.article-liste-brouillons-admin td:last-child {
+    display: flex;
+
+    align-items: center;
+
+    gap: 10px;
+
+    flex-wrap: wrap;
+}
+
+/* =========================
+   BUTTONS
+========================= */
+
+.article-liste-brouillons-admin button {
+    border: none;
+
+    padding: 10px 14px;
+
+    border-radius: 10px;
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 8px;
+
+    cursor: pointer;
+
+    font-size: 14px;
+
+    font-weight: 600;
+
+    transition: 0.3s;
+}
+
+/* =========================
+   VOIR
+========================= */
+
+.btn-voir-article-brouillons-admin {
+    background: #dbeafe;
+
+    color: #1d4ed8;
+}
+
+.btn-voir-article-brouillons-admin:hover {
+    background: #bfdbfe;
+}
+
+/* =========================
+   EDITER
+========================= */
+
+.btn-editer-article-brouillons-admin {
+    background: #fef3c7;
+
+    color: #b45309;
+}
+
+.btn-editer-article-brouillons-admin:hover {
+    background: #fde68a;
+}
+
+/* =========================
+   SUPPRIMER
+========================= */
+
+.btn-supprimer-article-brouillons-admin {
+    background: #fee2e2;
+
+    color: #dc2626;
+}
+
+.btn-supprimer-article-brouillons-admin:hover {
+    background: #fecaca;
+}
+/* =========================
+   ICONES
+========================= */
+
+.article-liste-brouillons-admin ion-icon {
+    font-size: 18px;
+}

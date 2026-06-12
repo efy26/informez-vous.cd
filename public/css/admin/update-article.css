@@ -1,0 +1,101 @@
+.article-container-admin {
+    padding: 1rem;
+}
+.article-content-admin p {
+    width: 30rem;
+}
+.article-formulaire-admin {
+    padding-top: 5rem;
+}
+.article-formulaire-container-admin {
+    border-radius: 7px;
+    box-shadow: 0px 0px 14px rgba(0, 0, 0, 0.2);
+    padding: 1rem;
+}
+.article-formulaire-container-admin label, .contenue-article label, #contenu {
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+}
+.form-group-titre label {
+    padding-top: 0rem;
+}
+.form-group-titre, .form-group-categorie-image, .televerser-image, .select-categorie{
+    display: flex;
+    flex-direction: column;
+}
+.option-publication {
+    margin-top: 1rem;
+    padding: 1rem;
+    border-radius: 7px;
+    box-shadow: 0px 0px 14px rgba(0, 0, 0, 0.2);
+}
+.sommaire, .status, .planifier, .btn-article-update-admin {
+    padding-top: 1rem;
+}
+.btn-article-update-admin {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 1rem;
+}
+.sommaire textarea, .status select, .planifier input{
+    margin-top: 1rem;
+}
+
+.succes {
+    color: green;
+}
+.error {
+    color: red;
+}
+input[type="text"], input[type="datetime-local"], input[type="file"], input[type="submit"], select, textarea {
+    width: 100%;
+    padding: 0.7rem;
+    border-radius: 7px;
+    border: 1px solid rgba(0, 0, 0, 0.2);
+    background-color: transparent;
+    outline: none;
+}
+input[type="file"] {
+    margin-bottom: 1rem;
+    cursor: pointer;
+}
+.btn-article-update-admin button[type="submit"] {
+    padding: 0.7rem;
+    border-radius: 7px;
+    background-color: rgba(255, 0, 0, 0.097);
+    color: red;
+    cursor: pointer;
+    border: none;
+    transition: 0.3s ease-out;
+}
+.btn-article-update-admin button[type="submit"]:hover {
+    background-color: rgba(255, 0, 0, 0.237);
+}
+/* Ordinateur*/
+@media screen and (min-width: 60rem) {
+    
+    .article-container-admin {
+        padding-left: 32%;
+    }
+    .article-formulaire-container-admin {
+        width: 85%;
+    }
+    .article-formulaire-admin form{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 1rem;
+    }
+    .option-publication {
+        margin-top: 0;
+        width: 85%;
+    }
+}
+
+/* Tablette*/
+@media screen and (min-width: 50rem) and (max-width: 59.99rem) {
+    .article-container-admin {
+        padding-left: 32%;
+    }
+}

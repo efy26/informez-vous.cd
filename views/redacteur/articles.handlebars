@@ -1,0 +1,46 @@
+<div class="article-container-redacteur">
+    <section class="article-header-redacteur">
+        <div class="article-content-redacteur">
+            <h2>Mes articles</h2>
+            <p>Gérez vos articles publiés et en attente</p>
+        </div>
+
+        <a aria-label="Aller à la page créer un article" class="btn-creer-article-redacteur" href="/redacteur/create-article">
+                <i><ion-icon name="add-outline"></ion-icon></i>
+                <span>Créer un article</span>
+        </a>
+
+    </section>
+    <section class="article-filtre-recherche-redacteur">
+        <div class="article-filtre-redacteur">
+            <select id="filtre-categorie" name="filtre-categorie" aria-label="Filtre par catégorie">
+                <option value="">Toutes les catégories</option>
+                
+            </select>
+            <select id="filtre-ordre" name="filtre-ordre" aria-label="Filtre par ordre">
+                <option value="asc">Croissant</option>
+                <option value="desc">Décroissant</option>
+            </select>
+        </div>
+        <div class="article-recherche-redacteur">
+            <input type="text" id="recherche-article" name="recherche-article" placeholder="Rechercher un article...">
+        </div>
+    </section>
+    <section class="article-liste-redacteur">
+        <table>
+            <thead>
+                <tr>
+                    <th>Titre</th>
+                    <th>Catégorie</th>
+                    <th>Statut</th>
+                    <th>Date</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Les lignes de l'article seront ajoutées ici -->
+               
+            </tbody>
+        </table>
+    </section>
+</div>

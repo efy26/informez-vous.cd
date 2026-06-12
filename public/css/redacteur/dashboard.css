@@ -1,0 +1,252 @@
+.dashboard-container-redacteur {
+    padding: 1rem;
+}
+
+.dashboard-header-redacteur {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 1rem;
+    align-items: center;
+}
+
+.dashboard-stats-redacteur {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    margin-top: 2rem;
+    padding-top: 2rem;
+}
+
+.dashboard-image-redacteur {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: rgb(216, 216, 216);
+    width: 3rem;
+    height: 3rem;
+    border-radius: 50%;
+}
+
+.dashboard-redacteur-info:nth-child(1),
+.dashboard-redacteur-info:nth-child(2) {
+    font-size: 0.7rem;
+}
+
+.dashbord-profil-redacteur {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+
+.dashbord-stats {
+    display: flex;
+    align-items: start;
+    width: 100%;
+    padding: 1rem 2rem;
+    gap: 1rem;
+    box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+}
+
+.dashboard-stats-content-redacteur {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.dashboard-stats-content-redacteur:nth-child(2) strong {
+    font-size: 1.5rem;
+}
+
+.checkmark-done-outline {
+    padding: 0.5rem;
+    background-color: rgba(0, 128, 0, 0.108);
+    border-radius: 4rem;
+}
+
+.hourglass-outline {
+    padding: 0.5rem;
+    background-color: rgba(255, 166, 0, 0.109);
+    border-radius: 4rem;
+}
+
+.calendar-number-outline {
+    padding: 0.5rem;
+    background-color: rgba(95, 158, 160, 0.108);
+    border-radius: 4rem;
+}
+
+.swap-vertical-outline {
+    padding: 0.5rem;
+    background-color: rgba(255, 0, 0, 0.123);
+    border-radius: 4rem;
+}
+
+.publiés-stats {
+    color: green;
+}
+
+.brouillon-stats {
+    color: orange;
+}
+
+.planifier-stats {
+    color: cadetblue
+}
+
+.expire-stats {
+    color: red;
+}
+
+.dashboard {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+}
+
+
+/* Ordinateur*/
+@media screen and (min-width: 60rem) {
+    .dashboard-container-redacteur {
+        padding-left: 32%;
+    }
+
+    .dashboard-graphique-redacteur {
+        padding-top: 4rem;
+    }
+
+    .dashboard-stats-redacteur {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+    }
+
+    .dashbord-stats {
+        width: 45%;
+    }
+
+    .dashboard {
+        display: flex;
+        flex-wrap: nowrap;
+        gap: 1rem;
+    }
+}
+
+/* Tablette*/
+@media screen and (min-width: 50rem) and (max-width: 59.99rem) {
+    .dashboard-container-redacteur {
+        padding-left: 32%;
+    }
+
+    .dashboard-graphique-redacteur {
+        padding-top: 4rem;
+    }
+
+    .dashboard-stats-redacteur {
+        padding-top: 0rem;
+    }
+
+    .dashboard {
+        display: flex;
+        flex-wrap: nowrap;
+        gap: 1rem;
+    }
+
+
+}
+
+/* =========================
+   SECTION TABLEAU
+========================= */
+
+.article-liste-redacteur {
+    width: 100%;
+
+    margin-top: 2rem;
+
+    background: #fff;
+
+    padding: 1.5rem;
+
+    border-radius: 16px;
+
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
+
+    overflow-x: auto;
+}
+
+/* =========================
+   TABLE
+========================= */
+
+.article-liste-redacteur table {
+    width: 100%;
+
+    border-collapse: collapse;
+
+    min-width: 900px;
+}
+
+/* =========================
+   HEAD
+========================= */
+
+.article-liste-redacteur thead {
+    background: #f3f4f6;
+}
+
+.article-liste-redacteur th {
+    padding: 1rem;
+
+    text-align: left;
+
+    font-size: 15px;
+
+    font-weight: 700;
+
+    color: #111827;
+
+    border-bottom: 1px solid #e5e7eb;
+}
+
+/* =========================
+   BODY
+========================= */
+
+.article-liste-redacteur td {
+    padding: 1rem;
+
+    font-size: 15px;
+
+    color: #374151;
+
+    border-bottom: 1px solid #f1f5f9;
+}
+
+/* =========================
+   ROW HOVER
+========================= */
+
+.article-liste-redacteur tbody tr {
+    transition: 0.3s;
+}
+
+.article-liste-redacteur tbody tr:hover {
+    background: #f9fafb;
+}
+
+/* =========================
+   ACTIONS
+========================= */
+
+.article-liste-redacteur td:last-child {
+    display: flex;
+
+    align-items: center;
+
+    gap: 10px;
+
+    flex-wrap: wrap;
+}

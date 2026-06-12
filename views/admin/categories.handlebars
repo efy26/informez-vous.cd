@@ -1,0 +1,66 @@
+<div class="categorie-container-admin">
+    <section class="categorie-header-admin">
+        <div class="categorie-content-admin">
+            <h2>Catégories</h2>
+            <p>Gérez vos catégories</p>
+        </div>
+
+        <button class="btn-creer-categorie-admin" href="">
+
+                <span>Créer une catégorie</span>
+        </button>
+
+    </section>
+    
+    <section id="edite-block-admin" class="creer-sous-categorie-admin">
+        <h2>Modifier une catégorie</h2>
+        <form class="sous-categorie-form" method="post" novalidate="novalidate">
+            <input type="text" id="sous-categorie" name="sous-categorie" placeholder="Entrez les modifications"><br><br>
+
+            <button type="submit">Valider</button>
+            
+        </form>
+    </section>
+    <section id="create-categorie-block-admin" class=""><br>
+        <h2>Créer une catégorie</h2>
+        <form class="create-categorie-form" method="post" novalidate="novalidate">
+            <input type="text" id="sous-categorie" name="sous-categorie" placeholder="Entrez le nom de la catégorie"><br><br>
+
+            <button type="submit">Créer</button>
+            
+        </form>
+    </section>
+    <section class="creer-sous-categorie-admin">
+        <h2> Créer une sous-catégorie</h2>
+        <form id="sous-categorie-form" method="post" novalidate="novalidate">
+            <input type="text" id="sous-categorie" name="sous-categorie" placeholder="Nom de la sous-catégorie"><br><br>
+
+            <select id="categorie-parent" name="categorie-parent" aria-label="Sélectionnez une catégorie parente ">
+                <option value="">Sélectionnez une catégorie parente</option>
+                
+            </select> 
+
+            <button type="submit">Créer une sous-catégorie</button>
+            
+        </form>
+        <label for=""></label>
+    </section>
+
+    <section class="categories-liste-admin">
+        <table>
+            <thead>
+                <tr>
+                    <th>Nom de la catégorie</th>
+                    <th>Sous-catégorie(s) associée(s)</th>
+                    <th>Date de création</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Les lignes de la catégorie seront ajoutées ici -->
+                
+                
+            </tbody>
+        </table>
+    </section>
+</div>

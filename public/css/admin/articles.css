@@ -1,0 +1,251 @@
+.article-container-admin {
+    padding: 1rem;
+}
+
+.article-header-admin {
+    display: inline-flex;
+    flex-direction: column;
+    gap: 1.2rem;
+}
+
+.btn-creer-article-admin {
+    display: flex;
+    align-items: center;
+    gap: 0.1rem;
+    background-color: rgba(255, 0, 0, 0.125);
+    color: rgb(255, 0, 0);
+    padding: 0.5rem 0.7rem;
+    border-radius: 10px;
+    transition: 0.3s ease-out;
+}
+
+.btn-creer-article-admin:hover {
+    background-color: rgba(255, 0, 0, 0.254);
+}
+
+.article-filtre-recherche-admin {
+    padding-top: 2rem;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+}
+
+select,
+input {
+    padding: 0.7rem;
+    border-radius: 5px;
+    outline: transparent;
+    background-color: transparent;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Ordinateur*/
+@media screen and (min-width: 60rem) {
+    .article-container-admin {
+        padding-left: 32%;
+    }
+
+    .article-header-admin {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+
+    }
+
+}
+
+/* Tablette*/
+@media screen and (min-width: 50rem) and (max-width: 59.99rem) {
+    .article-container-admin {
+        padding-left: 32%;
+    }
+
+    .article-header-admin {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+
+    }
+}
+
+#deletebtn {
+    display: none !important;
+}
+
+.publié {
+    background-color: rgba(0, 128, 0, 0.158);
+    color: green !important;
+    font-weight: 600;
+}
+
+.brouillon {
+    background-color: rgba(255, 166, 0, 0.223);
+    color: orange !important;
+}
+
+.planifié {
+    background-color: rgba(0, 128, 128, 0.109);
+    color: cadetblue !important;
+}
+
+/* =========================
+   SECTION TABLEAU
+========================= */
+
+.article-liste-admin {
+    width: 100%;
+    margin-top: 2rem;
+    background: #fff;
+    padding: 1.5rem;
+    border-radius: 16px;
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
+    overflow-x: auto;
+}
+
+/* =========================
+   TABLE
+========================= */
+
+.article-liste-admin table {
+    width: 100%;
+    border-collapse: collapse;
+    min-width: 900px;
+}
+
+/* =========================
+   HEAD
+========================= */
+
+.article-liste-admin thead {
+    background: #f3f4f6;
+}
+
+.article-liste-admin th {
+    padding: 1rem;
+    text-align: left;
+    font-size: 15px;
+    font-weight: 700;
+    color: #111827;
+    border-bottom: 1px solid #e5e7eb;
+}
+
+/* =========================
+   BODY
+========================= */
+
+.article-liste-admin td {
+
+    padding: 1rem;
+    font-size: 15px;
+    color: #374151;
+    border-bottom: 1px solid #f1f5f9;
+}
+
+/* =========================
+   ROW HOVER
+========================= */
+
+.article-liste-admin tbody tr {
+    transition: 0.3s;
+}
+
+.article-liste-admin tbody tr:hover {
+    background: #f9fafb;
+}
+
+/* =========================
+   ACTIONS
+========================= */
+.actions-admin {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+
+    align-items: flex-end;
+    /* pousse les boutons à droite */
+}
+
+.actions-admin button {
+    min-width: 170px;
+}
+
+.article-liste-admin td:last-child {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+    gap: 10px;
+}
+
+/* =========================
+   BUTTONS
+========================= */
+
+.article-liste-admin button {
+    border: none;
+    padding: 10px 14px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 600;
+    transition: 0.3s;
+}
+
+/* =========================
+   VOIR
+========================= */
+
+.btn-voir-article-admin {
+    background: #dbeafe;
+    color: #1d4ed8;
+}
+
+.btn-voir-article-admin:hover {
+    background: #bfdbfe;
+}
+
+/* =========================
+   EDITER
+========================= */
+
+.btn-valider-article-admin {
+    background: rgba(0, 128, 0, 0.158);
+    color: green;
+}
+
+.btn-valider-article-admin:hover {
+    background: rgba(0, 128, 0, 0.278);
+}
+
+.btn-valider-article-admin:disabled,
+.article-liste-admin button:disabled {
+    background: rgba(209, 213, 219, 0.5);
+    color: #6b7280;
+    cursor: not-allowed;
+    opacity: 0.65;
+    pointer-events: none;
+}
+
+/* =========================
+   SUPPRIMER
+========================= */
+
+.btn-supprimer-article-admin {
+    background: #fee2e2;
+    color: #dc2626;
+}
+
+.btn-supprimer-article-admin:hover {
+    background: #fecaca;
+}
+
+/* =========================
+   ICONES
+========================= */
+
+.article-liste-admin ion-icon {
+    font-size: 18px;
+}

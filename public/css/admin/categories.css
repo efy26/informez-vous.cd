@@ -1,0 +1,287 @@
+.categorie-container-admin {
+    padding: 1rem;
+}
+
+.categorie-header-admin {
+    display: inline-flex;
+    flex-direction: column;
+    gap: 1.2rem;
+}
+
+.btn-creer-categorie-admin {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.1rem;
+    font-size: 1.2rem;
+    background-color: rgba(255, 0, 0, 0.125);
+    color: rgb(255, 0, 0);
+    padding: 0.5rem 0.7rem;
+    border-radius: 10px;
+    border: none;
+    cursor: pointer;
+    transition: 0.3s ease-out;
+}
+
+.btn-creer-categorie-admin:hover {
+    background-color: rgba(255, 0, 0, 0.254);
+}
+
+#create-categorie-block-admin {
+    display: none;
+}
+
+.creer-sous-categorie-admin {
+    padding-top: 2rem;
+}
+
+#sous-categorie-form,
+.sous-categorie-form,
+.create-categorie-form {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    padding-top: 1rem;
+}
+
+#sous-categorie-form input,
+.sous-categorie-form input,
+.create-categorie-form input,
+#sous-categorie-form select,
+#sous-categorie-form button,
+.sous-categorie-form button,
+.create-categorie-form button {
+    padding: 0.7rem;
+    outline: none;
+    background-color: transparent;
+    border: none;
+    border-radius: 7px;
+}
+
+#sous-categorie-form input,
+.sous-categorie-form input,
+.create-categorie-form input,
+#sous-categorie-form select {
+    border: 1px solid 0px 0px 10px rgba(0, 0, 0, 0.2);
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+}
+
+#sous-categorie-form button,
+.sous-categorie-form button,
+.create-categorie-form button {
+    background-color: rgba(255, 0, 0, 0.116);
+    color: red;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: 0.3s ease-out;
+}
+
+#sous-categorie-form button:hover,
+.sous-categorie-form button:hover,
+.create-categorie-form button:hover {
+    background-color: rgba(255, 0, 0, 0.241);
+}
+
+#sous-categorie-form label {
+    display: none;
+    text-align: center;
+}
+
+.creer-sous-categorie-admin label.success {
+    padding-top: 1rem;
+    color: green;
+}
+
+.creer-sous-categorie-admin label.error {
+    padding-top: 1rem;
+    color: red;
+}
+
+#edite-block-admin {
+    display: none;
+}
+
+/* Ordinateur*/
+@media screen and (min-width: 60rem) {
+    .categorie-container-admin {
+        padding-left: 32%;
+    }
+
+    .categorie-header-admin {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+    }
+
+}
+
+/* Tablette*/
+@media screen and (min-width: 50rem) and (max-width: 59.99rem) {
+    .categorie-container-admin {
+        padding-left: 32%;
+    }
+
+    .categorie-header-admin {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+    }
+}
+
+
+/* =========================
+   SECTION TABLEAU
+========================= */
+
+.categories-liste-admin {
+    width: 100%;
+
+    margin-top: 2rem;
+
+    background: #fff;
+
+    padding: 1.5rem;
+
+    border-radius: 16px;
+
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
+
+    overflow-x: auto;
+}
+
+/* =========================
+   TABLE
+========================= */
+
+.categories-liste-admin table {
+    width: 100%;
+
+    border-collapse: collapse;
+
+    min-width: 900px;
+}
+
+/* =========================
+   HEAD
+========================= */
+
+.categories-liste-admin thead {
+    background: #f3f4f6;
+}
+
+.categories-liste-admin th {
+    padding: 1rem;
+
+    text-align: left;
+
+    font-size: 15px;
+
+    font-weight: 700;
+
+    color: #111827;
+
+    border-bottom: 1px solid #e5e7eb;
+}
+
+/* =========================
+   BODY
+========================= */
+
+.categories-liste-admin td {
+    padding: 1rem;
+
+    font-size: 15px;
+
+    color: #374151;
+
+    border-bottom: 1px solid #f1f5f9;
+}
+
+/* =========================
+   ROW HOVER
+========================= */
+
+.categories-liste-admin tbody tr {
+    transition: 0.3s;
+}
+
+.categories-liste-admin tbody tr:hover {
+    background: #f9fafb;
+}
+
+/* =========================
+   ACTIONS
+========================= */
+
+.categories-liste-admin td:last-child {
+    display: flex;
+
+    align-items: center;
+
+    gap: 10px;
+
+    flex-wrap: wrap;
+}
+
+/* =========================
+   BUTTONS
+========================= */
+
+.categories-liste-admin button {
+    border: none;
+
+    padding: 10px 14px;
+
+    border-radius: 10px;
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 8px;
+
+    cursor: pointer;
+
+    font-size: 14px;
+
+    font-weight: 600;
+
+    transition: 0.3s;
+}
+
+
+/* =========================
+   EDITER
+========================= */
+
+.btn-editer-categorie-admin {
+    background: #fef3c7;
+
+    color: #b45309;
+}
+
+.btn-editer-categorie-admin:hover {
+    background: #fde68a;
+}
+
+/* =========================
+   SUPPRIMER
+========================= */
+
+.btn-supprimer-categorie-admin {
+    background: #fee2e2;
+
+    color: #dc2626;
+}
+
+.btn-supprimer-categorie-admin:hover {
+    background: #fecaca;
+}
+
+/* =========================
+   ICONES
+========================= */
+
+.categories-liste-admin ion-icon {
+    font-size: 18px;
+}
