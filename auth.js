@@ -1,8 +1,8 @@
- import bcrypt from 'bcrypt';
- import { compare } from "bcrypt";
- import passport from 'passport';
- import { Strategy } from 'passport-local';
- import {getUserById, getUserByEmail} from './model/user.model.js';
+import bcrypt from 'bcrypt';
+import { compare } from "bcrypt";
+import passport from 'passport';
+import { Strategy } from 'passport-local';
+import { getUserById, getUserByEmail } from './model/user.model.js';
 
 // Configuration générale de la stratégie.
 // On indique ici qu'on s'attend à ce que le client
@@ -30,17 +30,23 @@ passport.use(new Strategy(config, async (email, password, done) => {
             return done(null, false, { error: 'Utilisateur non trouvé' });
         }
 
+        if (!user.password) {
+            return done(null, false, { error: 'Mot de passe invalide en base' });
+        }
+
         // Si l'utilisateur a un status qui ne pas actif
 
         if (user.status !== 'actif') {
             return done(null, false, { error: 'Votre compte a été bloqué' });
         }
 
+
         // Si on a trouvé l'utilisateur, on compare
         // son mot de passe dans la base de données
         // avec celui envoyé au serveur.
         const validPassword = await bcrypt.compare(password, user.password);
-
+        console.log("EMAIL:", email);
+        console.log("USER:", user);
         // Si les mots de passe ne concordent pas, on
         // retourne que l'authentification a échoué
         // avec un code d'erreur.
@@ -49,12 +55,15 @@ passport.use(new Strategy(config, async (email, password, done) => {
             return done(null, false, { error: 'Mot de passe incorrect' });
         }
 
+
         // Si les mots de passe concordent, on retourne
         // les informations de l'utilisateur au serveur.
         return done(null, user);
 
 
-    }catch (error) {
+
+
+    } catch (error) {
         return done(error);
     }
 }));
@@ -69,7 +78,7 @@ passport.serializeUser((user, done) => {
 passport.deserializeUser(async (id, done) => {
     // S'il y a une erreur de base de données, on
     // retourne l'erreur au serveur.
-    try{
+    try {
         // Puisqu'on a juste l'identifiant dans la 
         // session, on doit être capable d'aller chercher 
         // l'utilisateur avec celui-ci dans la base de 
@@ -80,7 +89,7 @@ passport.deserializeUser(async (id, done) => {
         // informations au serveur.
         done(null, user);
     }
-    catch(error) {
+    catch (error) {
         done(error);
     }
 });

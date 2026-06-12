@@ -6,6 +6,8 @@ import bcrypt from 'bcrypt';
  * @param {object} userData 
  * @returns User crée
  */
+
+console.log(await bcrypt.hash("Michee2020", 10))
 export const createUser = async (userData) => {
     let passwordHash = await bcrypt.hash(userData.password, 10);
     userData.password = passwordHash;
