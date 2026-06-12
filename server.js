@@ -134,7 +134,7 @@ app.use((request, response, next) => {
         'Actualités fiables, rapides et diversifiées.';
 
     response.locals.image =
-        'https://informez-vous-cd.onrender.com/assets/logo.png';
+        'https://informez-vous-cd.onrender.com/assets/logo.jpeg';
 
     response.locals.url =
         `${request.protocol}://${request.get('host')}${request.originalUrl}`;

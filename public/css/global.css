@@ -140,6 +140,7 @@ img {
 .apercu-article-content-paragraphe-admin p {
     line-height: 1.6;
     overflow-wrap: break-word;
+    font-size: 1.4rem;
 }
 
 header {
