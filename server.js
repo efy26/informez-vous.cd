@@ -700,6 +700,7 @@ app.post('/api/deconnexion', (request, response, next) => {
  * 
  * 
  */
+console.log("DB URL:", process.env.DATABASE_URL);
 //========= DÉBUT ROUTES RENDU DES PAGES ========================
 app.get('/', (request, response) => {
     response.render('home', {
