@@ -53,6 +53,20 @@ CREATE TABLE IF NOT EXISTS articles (
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
+CREATE TABLE "session" (
+  "sid" varchar NOT NULL,
+  "sess" json NOT NULL,
+  "expire" timestamp(6) NOT NULL
+)
+WITH (OIDS=FALSE);
+
+ALTER TABLE "session"
+ADD CONSTRAINT "session_pkey"
+PRIMARY KEY ("sid");
+
+CREATE INDEX "IDX_session_expire"
+ON "session" ("expire");
+
 ALTER TABLE articles
 ALTER COLUMN planifier_date
 TYPE TIMESTAMP WITH TIME ZONE;

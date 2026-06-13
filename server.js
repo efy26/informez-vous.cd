@@ -6,7 +6,9 @@ import cors from 'cors';
 import helmet from 'helmet';
 import compression from 'compression';
 import session from 'express-session';
-import memoryStore from 'memorystore';
+// import memoryStore from 'memorystore';
+import pgSession from "connect-pg-simple";
+import { pool } from "./db.js";
 import passport from 'passport';
 import multer from 'multer';
 import path from 'path';
@@ -40,7 +42,8 @@ const app = express();
 dotenv.config();
 
 // Configuration de la session
-const MemoryStore = memoryStore(session);
+// const MemoryStore = memoryStore(session);
+const PgSession = pgSession(session);
 
 // Référence : configuration de Multer pour téléverser les images des articles.
 const storage = multer.diskStorage({
@@ -109,8 +112,10 @@ app.use('/assets', express.static('assets'));
 app.use(session({
     cookie: { maxAge: 1000 * 60 * 60 },
     name: process.env.npm_package_name,
-    store: new MemoryStore({
-        checkPeriod: 1000 * 60 * 60
+    store: new PgSession({
+        pool: pool,
+        tableName: "session",
+        createTableIfMissing: true
     }),
     resave: false,
     saveUninitialized: false,
