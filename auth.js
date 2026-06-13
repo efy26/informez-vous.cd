@@ -73,7 +73,6 @@ passport.use(new Strategy(config, async (email, password, done) => {
 // });
 
 passport.serializeUser((user, done) => {
-    console.log("SERIALIZE:", user);
 
     if (!user) {
         return done(new Error("User est undefined"));

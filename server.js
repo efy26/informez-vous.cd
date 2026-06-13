@@ -6,9 +6,10 @@ import cors from 'cors';
 import helmet from 'helmet';
 import compression from 'compression';
 import session from 'express-session';
-// import memoryStore from 'memorystore';
 import pgSession from "connect-pg-simple";
 import { pool } from "./db.js";
+import cloudinary from "./cloudinary.js";
+import { CloudinaryStorage } from "multer-storage-cloudinary";
 import passport from 'passport';
 import multer from 'multer';
 import path from 'path';
@@ -42,20 +43,14 @@ const app = express();
 dotenv.config();
 
 // Configuration de la session
-// const MemoryStore = memoryStore(session);
 const PgSession = pgSession(session);
 
 // Référence : configuration de Multer pour téléverser les images des articles.
-const storage = multer.diskStorage({
-    destination: (request, file, callback) => {
-        callback(null, 'public/assets');
-    },
-
-    filename: (request, file, callback) => {
-        callback(
-            null,
-            Date.now() + path.extname(file.originalname)
-        );
+const storage = new CloudinaryStorage({
+    cloudinary,
+    params: {
+        folder: "informez-vous",
+        allowed_formats: ["jpg", "jpeg", "png", "webp"]
     }
 });
 
@@ -430,7 +425,9 @@ app.post('/api/articles', assets.single('image'), async (request, response) => {
         const author_id = request.user.id
         const { title, summary, content, status, categorie_id, subcategorie_id, planifier_date } = request.body;
 
-        const image = request.file.filename;
+        const image = request.file.path;
+
+        
 
         if (title === '' || summary === '' || content === '' || image === '' || categorie_id === '' || subcategorie_id === '') {
             return response.status(400).json({
@@ -538,7 +535,7 @@ app.patch('/api/articles/:id', assets.single('image'), async (request, response)
         let image = articleActuel.image;
 
         if (request.file) {
-            image = request.file.filename;
+            image = request.file.path;
         }
 
 

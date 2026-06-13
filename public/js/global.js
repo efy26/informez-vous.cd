@@ -131,7 +131,7 @@ const dernieresActualites = async () => {
                 const resultCat = await responseCat.json();
 
                 div.innerHTML = `
-                    <img src="/assets/${article.image}" alt="" />
+                    <img src="${article.image}" alt="" />
                     <a href="/lire-article?id=${article.id}" aria-label="Lire l'article">
                         <h3>${responseCat ? resultCat.categorie.name : 'Aucune catégorie'}</h3>
                     </a>
@@ -168,7 +168,7 @@ const actualitesALaUne = async () => {
 
         div.classList.add('a-la-une-details');
 
-        img.src = `/assets/${articleALaUne.image}`;
+        img.src = `${articleALaUne.image}`;
 
         div.innerHTML = `
             <p class="a-la-une-titre">À LA UNE</p>
@@ -206,7 +206,7 @@ const voirToutesActualites = async () => {
 
             a.dataset.cat = catName;
             a.innerHTML = `
-                <img src="/assets/${article.image}" alt="" srcset="">
+                <img src="${article.image}" alt="" srcset="">
                 <div class="actualite-description">
                     <h3><strong>${article.title}</strong></h3>
                     <div class="actualite-cate">
