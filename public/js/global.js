@@ -5,6 +5,25 @@ if (yearElement) {
     yearElement.textContent = currentYear;
 }
 
+// Bouton partager article
+// function shareArticle() {
+//     const url = window.location.href;
+//     const title = document.title;
+
+//     if (navigator.share) {
+//         navigator.share({
+//             title: title,
+//             url: url
+//         })
+//         .catch(err => console.log("Erreur partage :", err));
+//     } else {
+//         // fallback
+//         navigator.clipboard.writeText(url)
+//             .then(() => alert("Lien copié !"))
+//             .catch(() => alert("Impossible de copier le lien"));
+//     }
+// }
+
 // Référence : contrôle l'ouverture et la fermeture du menu mobile.
 const openMenu = document.querySelector('.menu-outline');
 const closeMenu = document.querySelector('.close-outline');
@@ -36,11 +55,12 @@ const afficherCategorieFooterAndHome = async () => {
         if (!footerCategories) return;
 
         result.categories.forEach(categorie => {
-            const p = document.createElement('p');
+            const a = document.createElement('a');
             const div = document.createElement('div');
 
-            p.innerHTML = categorie.name;
-            footerCategories.appendChild(p);
+            a.innerHTML = categorie.name;
+            a.href = '/categories'
+            footerCategories.appendChild(a);
 
             if (listeCategorieContainer) {
                 div.innerHTML = `

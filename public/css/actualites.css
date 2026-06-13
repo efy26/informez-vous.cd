@@ -39,6 +39,7 @@
     transition: 0.3s ease-out;
 }
 .actualite-contenu a:hover {
+    padding: 0.5rem;
     background-color: rgba(62, 25, 25, 0.037);
 }
 

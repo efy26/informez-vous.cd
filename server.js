@@ -1264,12 +1264,35 @@ app.get('/mention-legale', (request, response) => {
 app.get('/lire-article', async (request, response) => {
     const articleId = request.query.id;
 
+
+
     if (!articleId) {
         return response.redirect('/categories');
     }
 
     try {
         const articleRecuperer = await getArticleById(articleId);
+        const recuperationArticles = await getArticles();
+
+        const articlesMelanges = [...recuperationArticles];
+
+        for (let i = articlesMelanges.length - 1; i > 0; i--) {
+            const j = Math.floor(Math.random() * (i + 1));
+            [articlesMelanges[i], articlesMelanges[j]] =
+                [articlesMelanges[j], articlesMelanges[i]];
+        }
+
+        const articlesAleatoires = articlesMelanges
+            .filter(article => article.id !== Number(articleId))
+            .slice(0, 10)
+            .map(article => ({
+        ...article,
+        created_at: new Date(article.created_at).toLocaleString('fr-CA', {
+            year: 'numeric',
+            month: '2-digit',
+            day: '2-digit',
+        })
+    }));
 
 
         const article =
@@ -1289,8 +1312,8 @@ app.get('/lire-article', async (request, response) => {
             return response.status(404).send('Article non trouvé');
         }
 
-        console.log(article.image, article.id);
-        
+        // console.log(article.image, article.id);
+
 
         const auteur = await getUserById(article.author_id);
         const categorie = await getCategorieById(article.categorie_id);
@@ -1313,7 +1336,9 @@ app.get('/lire-article', async (request, response) => {
             article,
             auteur,
             categoriecase: categorie?.name,
-            subCategorie
+            subCategorie,
+            suggestions: articlesAleatoires
+
         });
     } catch (error) {
         console.error(error);
