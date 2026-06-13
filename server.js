@@ -87,7 +87,7 @@ app.use(helmet({
                 "http:",
                 "https://unpkg.com", "https://cdn.jsdelivr.net", "https://cdn.ckeditor.com"],
             styleSrc: ["'self'", "'unsafe-inline'", "https://unpkg.com", "https://cdn.jsdelivr.net", "https://cdn.ckeditor.com"],
-            imgSrc: ["'self'", "data:"],
+            imgSrc: ["'self'", "data:", "https:"],
             connectSrc: ["'self'", "https:",
                 "http:",
                 "https://unpkg.com", "https://cdn.jsdelivr.net", "https://cdn.ckeditor.com"],
