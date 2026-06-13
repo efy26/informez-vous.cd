@@ -23,7 +23,7 @@ passport.use(new Strategy(config, async (email, password, done) => {
         // de données avec son adresse e-mail.
         console.log("Tentative connexion :", email);
         const user = await getUserByEmail(email);
-console.log("Utilisateur trouvé :", user);
+// console.log("Utilisateur trouvé :", user);
         // Si on ne trouve pas l'utilisateur, on
         // retourne que l'authentification a échoué
         // avec un code d'erreur.
@@ -46,7 +46,7 @@ console.log("Utilisateur trouvé :", user);
         // son mot de passe dans la base de données
         // avec celui envoyé au serveur.
         const validPassword = await bcrypt.compare(password, user.password);
-        console.log("Password valide :", validPassword);
+        // console.log("Password valide :", validPassword);
         // Si les mots de passe ne concordent pas, on
         // retourne que l'authentification a échoué
         // avec un code d'erreur.

@@ -788,6 +788,10 @@ footer section {
 .container-login h2 {
     text-align: center;
 }
+.container-login h1 i{
+    font-size: 0.7rem;
+    color: red;
+}
 
 #connection-form {
     display: flex;
