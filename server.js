@@ -1291,7 +1291,7 @@ app.get('/lire-article', async (request, response) => {
         }
 
         const articlesAleatoires = articlesMelanges
-            .filter(article => article.id !== Number(articleId))
+            .filter(article => article.id !== Number(articleId) && article.status === 'publié')
             .slice(0, 10)
             .map(article => ({
         ...article,

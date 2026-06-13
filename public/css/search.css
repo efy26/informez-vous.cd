@@ -1,3 +1,9 @@
+input,
+textarea,
+select {
+    font-size: 16px;
+}
+
 .actualite-container {
     padding: 1rem;
 }

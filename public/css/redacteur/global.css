@@ -12,6 +12,11 @@ body {
     display:flex;
     flex-direction:column;
 }
+input,
+textarea,
+select {
+    font-size: 16px;
+}
 select {
     -webkit-appearance: none;
     appearance: none;
