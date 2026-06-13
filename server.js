@@ -66,7 +66,7 @@ app.engine('handlebars', engine(
                 return a === b
             },
             or: function (a, b) {
-                return a || b 
+                return a || b
             }
         }
     }
@@ -79,21 +79,21 @@ app.set('views', './views');
 // Middlewares pour la sécurité, la compression et le CORS
 app.use(express.urlencoded({ extended: true }));
 app.use(helmet({
-    contentSecurityPolicy: 
-     {
-         directives: {
-             defaultSrc: ["'self'"],
-             scriptSrc: ["'self'", "'unsafe-inline'", "https:",
-   "http:",
-  "https://unpkg.com", "https://cdn.jsdelivr.net", "https://cdn.ckeditor.com"],
-             styleSrc: ["'self'", "'unsafe-inline'", "https://unpkg.com", "https://cdn.jsdelivr.net", "https://cdn.ckeditor.com"],
-             imgSrc: ["'self'", "data:"],
-             connectSrc: ["'self'", "https:",
-   "http:",
- "https://unpkg.com", "https://cdn.jsdelivr.net", "https://cdn.ckeditor.com"],
-         }
-     }
- }));
+    contentSecurityPolicy:
+    {
+        directives: {
+            defaultSrc: ["'self'"],
+            scriptSrc: ["'self'", "'unsafe-inline'", "https:",
+                "http:",
+                "https://unpkg.com", "https://cdn.jsdelivr.net", "https://cdn.ckeditor.com"],
+            styleSrc: ["'self'", "'unsafe-inline'", "https://unpkg.com", "https://cdn.jsdelivr.net", "https://cdn.ckeditor.com"],
+            imgSrc: ["'self'", "data:"],
+            connectSrc: ["'self'", "https:",
+                "http:",
+                "https://unpkg.com", "https://cdn.jsdelivr.net", "https://cdn.ckeditor.com"],
+        }
+    }
+}));
 
 app.use(compression());
 app.use(cors({
@@ -133,8 +133,7 @@ app.use((request, response, next) => {
     response.locals.description =
         'Actualités fiables, rapides et diversifiées.';
 
-    response.locals.image =
-        'https://informez-vous-cd.onrender.com/assets/logo.jpeg';
+    response.locals.image = "https://informez-vous-cd.onrender.com/assets/logo.jpeg";
 
     response.locals.url =
         `${request.protocol}://${request.get('host')}${request.originalUrl}`;
@@ -596,7 +595,7 @@ app.delete('/api/articles/:id', async (request, response) => {
 /**
  * Route pour l'inscription des utilisateurs
  */
-app.post('/api/inscription', 
+app.post('/api/inscription',
     usernameValidationMiddleware,
     emailValidationMiddleware,
     passwordValidationMiddleware,
@@ -700,13 +699,13 @@ app.post('/api/deconnexion', (request, response, next) => {
  * 
  * 
  */
-console.log("DB URL:", process.env.DATABASE_URL);
+
 //========= DÉBUT ROUTES RENDU DES PAGES ========================
 app.get('/', (request, response) => {
     response.render('home', {
         title: 'INFORMEZ-VOUS.CD - Actualités en temps réel',
         description: 'Découvrez les dernières actualités nationales et internationales sur INFORMEZ-VOUS.CD.',
-        image: 'https://informez-vous-cd.onrender.com/assets/logo.jpeg',
+        image: "https://informez-vous-cd.onrender.com/assets/logo.jpeg",
         url: 'https://informez-vous-cd.onrender.com/',
         currentPage: '/'
 
@@ -728,12 +727,12 @@ app.get('/admin/dashboard', isAuthenticated, isAdmin, async (request, response) 
     const nombreMesArticle = articles.filter(article => article.status === 'publié' && article.author_id === request.user.id).length
     const nombreArticleBrouillon = articles.filter(article =>
 
+    (
+        article.status === 'brouillon' ||
         (
-            article.status === 'brouillon' ||
-            (
-                article.status === 'planifié' && new Date(article.planifier_date) < datePlanification
-            )
+            article.status === 'planifié' && new Date(article.planifier_date) < datePlanification
         )
+    )
     ).length
 
 
@@ -931,7 +930,7 @@ app.get('/admin/categories', isAuthenticated, isAdmin, async (request, response)
     })
 })
 
-app.get('/admin/profils',  isAuthenticated, isAdmin, (request, response) => {
+app.get('/admin/profils', isAuthenticated, isAdmin, (request, response) => {
     response.render('admin/profils', {
         layout: 'admin',
         title: 'Profils',
@@ -1207,8 +1206,8 @@ app.get('/actualite', (request, response) => {
         layout: 'main',
         title: 'Actualité',
         description: 'Les dernières nouvelles publiées sur INFORMEZ-VOUS.CD.',
-        image: 'https://informez-vous-cd.onrender.com/assets/logo.jpeg',
-        url: 'https://informez-vous-cd.onrender.com/actualite',
+        image: "https://informez-vous-cd.onrender.com/assets/logo.jpeg",
+        url: "https://informez-vous-cd.onrender.com/actualite",
         currentPage: 'actualite',
         styles: ['actualites.css'],
         scripts: ['global.js']
@@ -1220,8 +1219,8 @@ app.get('/categories', (request, response) => {
         layout: 'main',
         title: 'Categories',
         description: 'Parcourez toutes les catégories disponibles sur INFORMEZ-VOUS.CD.',
-        image: 'https://informez-vous-cd.onrender.com/assets/logo.jpeg',
-        url: 'https://informez-vous-cd.onrender.com/categories',
+        image: "https://informez-vous-cd.onrender.com/assets/logo.jpeg",
+        url: "https://informez-vous-cd.onrender.com/categories",
 
         currentPage: 'categories',
         styles: ['categories.css'],
@@ -1271,20 +1270,20 @@ app.get('/lire-article', async (request, response) => {
     try {
         const articleRecuperer = await getArticleById(articleId);
 
-        
-        const article = 
-             {
-                ...articleRecuperer,
-                created_at: new Date(articleRecuperer.created_at).toLocaleDateString(
-                    'fr-CA',
-                    {
-                        year: 'numeric',
-                        month: '2-digit',
-                        day: '2-digit'
-                    }
-                )
-            }
-        
+
+        const article =
+        {
+            ...articleRecuperer,
+            created_at: new Date(articleRecuperer.created_at).toLocaleDateString(
+                'fr-CA',
+                {
+                    year: 'numeric',
+                    month: '2-digit',
+                    day: '2-digit'
+                }
+            )
+        }
+
         if (!article) {
             return response.status(404).send('Article non trouvé');
         }
@@ -1299,11 +1298,11 @@ app.get('/lire-article', async (request, response) => {
             layout: 'main',
             title: article.title,
 
-    description: article.summary,
+            description: article.summary,
 
-    image: `https://informez-vous-cd.onrender.com/assets/${article.image}`,
+            image: `https://informez-vous-cd.onrender.com/assets/${article.image}`,
 
-    url: `https://informez-vous-cd.onrender.com/lire-article?id=${article.id}`,
+            url: `https://informez-vous-cd.onrender.com/lire-article?id=${article.id}`,
 
             currentPage: 'lire-article',
             styles: ['global.css'],

@@ -45,8 +45,6 @@ passport.use(new Strategy(config, async (email, password, done) => {
         // son mot de passe dans la base de données
         // avec celui envoyé au serveur.
         const validPassword = await bcrypt.compare(password, user.password);
-        console.log("EMAIL:", email);
-        console.log("USER:", user);
         // Si les mots de passe ne concordent pas, on
         // retourne que l'authentification a échoué
         // avec un code d'erreur.
