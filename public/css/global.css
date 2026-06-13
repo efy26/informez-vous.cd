@@ -776,6 +776,7 @@ footer section {
 .container-login {
     display: flex;
     flex-direction: column;
+    align-items: center;
     gap: 1rem;
     width: 100%;
     padding: 2rem;

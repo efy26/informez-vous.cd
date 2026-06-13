@@ -67,8 +67,22 @@ passport.use(new Strategy(config, async (email, password, done) => {
 }));
 
 // Sérialisation de l'utilisateur dans la session.
+// passport.serializeUser((user, done) => {
+//     // On met uniquement l'identifiant dans la session.
+//     done(null, user.id);
+// });
+
 passport.serializeUser((user, done) => {
-    // On met uniquement l'identifiant dans la session.
+    console.log("SERIALIZE:", user);
+
+    if (!user) {
+        return done(new Error("User est undefined"));
+    }
+
+    if (!user.id) {
+        return done(new Error("User.id est undefined"));
+    }
+
     done(null, user.id);
 });
 
