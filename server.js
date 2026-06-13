@@ -105,7 +105,7 @@ app.use(cors({
 }));
 app.use(json());
 app.use(express.static('public'));
-app.use('/assets', express.static('assets'));
+// app.use('/assets', express.static('assets'));
 app.use(session({
     cookie: { maxAge: 1000 * 60 * 60 },
     name: process.env.npm_package_name,
@@ -1289,6 +1289,9 @@ app.get('/lire-article', async (request, response) => {
             return response.status(404).send('Article non trouvé');
         }
 
+        console.log(article.image, article.id);
+        
+
         const auteur = await getUserById(article.author_id);
         const categorie = await getCategorieById(article.categorie_id);
         const subCategorie = article.subcategorie_id ? await getSubCategorieById(article.subcategorie_id) : null;
@@ -1301,7 +1304,7 @@ app.get('/lire-article', async (request, response) => {
 
             description: article.summary,
 
-            image: `${article.image}`,
+            image: article.image || 'logo.jpeg',
 
             url: `https://informez-vous-cd.onrender.com/lire-article?id=${article.id}`,
 
