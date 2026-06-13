@@ -117,9 +117,7 @@ const store = new PgSession({
 });
 app.use(session({
     cookie: { 
-        maxAge: 1000 * 60 * 60,
-        secure: true,
-        sameSite: 'none'
+        maxAge: 1000 * 60 * 60
 
      },
     name: process.env.npm_package_name,
