@@ -134,7 +134,7 @@ app.use((request, response, next) => {
     response.locals.description =
         'Actualités fiables, rapides et diversifiées.';
 
-    response.locals.image = "https://informez-vous-cd.onrender.com/assets/logo.jpeg";
+    response.locals.image = "logo.jpeg";
 
     response.locals.url =
         `${request.protocol}://${request.get('host')}${request.originalUrl}`;
@@ -706,7 +706,7 @@ app.get('/', (request, response) => {
     response.render('home', {
         title: 'INFORMEZ-VOUS.CD - Actualités en temps réel',
         description: 'Découvrez les dernières actualités nationales et internationales sur INFORMEZ-VOUS.CD.',
-        image: "https://informez-vous-cd.onrender.com/assets/logo.jpeg",
+        image: "logo.jpeg",
         url: 'https://informez-vous-cd.onrender.com/',
         currentPage: '/'
 
@@ -1207,7 +1207,7 @@ app.get('/actualite', (request, response) => {
         layout: 'main',
         title: 'Actualité',
         description: 'Les dernières nouvelles publiées sur INFORMEZ-VOUS.CD.',
-        image: "https://informez-vous-cd.onrender.com/assets/logo.jpeg",
+        image: "logo.jpeg",
         url: "https://informez-vous-cd.onrender.com/actualite",
         currentPage: 'actualite',
         styles: ['actualites.css'],
@@ -1220,7 +1220,7 @@ app.get('/categories', (request, response) => {
         layout: 'main',
         title: 'Categories',
         description: 'Parcourez toutes les catégories disponibles sur INFORMEZ-VOUS.CD.',
-        image: "https://informez-vous-cd.onrender.com/assets/logo.jpeg",
+        image: "logo.jpeg",
         url: "https://informez-vous-cd.onrender.com/categories",
 
         currentPage: 'categories',
@@ -1301,7 +1301,7 @@ app.get('/lire-article', async (request, response) => {
 
             description: article.summary,
 
-            image: `https://informez-vous-cd.onrender.com/assets/${article.image}`,
+            image: `${article.image}`,
 
             url: `https://informez-vous-cd.onrender.com/lire-article?id=${article.id}`,
 
