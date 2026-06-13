@@ -105,6 +105,7 @@ app.use(cors({
 }));
 app.use(json());
 app.use(express.static('public'));
+app.use('/assets', express.static('assets'));
 app.use(session({
     cookie: { maxAge: 1000 * 60 * 60 },
     name: process.env.npm_package_name,
@@ -1306,7 +1307,6 @@ app.get('/lire-article', async (request, response) => {
 
             currentPage: 'lire-article',
             styles: ['global.css'],
-            scripts: ['lire-article.js'],
             article,
             auteur,
             categoriecase: categorie?.name,
