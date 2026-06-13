@@ -98,7 +98,8 @@ app.use(compression());
 app.use(cors({
     origin: [
         "http://localhost:5000",
-        "http://192.168.2.175:5000"
+        "http://192.168.2.175:5000",
+        "https://informez-vous-cd.onrender.com"
     ],
     credentials: true
 }));
