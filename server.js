@@ -90,10 +90,11 @@ app.use(helmet({
                 "http:",
                 "https://unpkg.com", "https://cdn.jsdelivr.net", "https://cdn.ckeditor.com"],
             styleSrc: ["'self'", "'unsafe-inline'", "https://unpkg.com", "https://cdn.jsdelivr.net", "https://cdn.ckeditor.com"],
-            imgSrc: ["'self'", "data:", "https:"],
+            imgSrc: ["'self'", "data:", "https:", "http:"],
             connectSrc: ["'self'", "https:",
                 "http:",
                 "https://unpkg.com", "https://cdn.jsdelivr.net", "https://cdn.ckeditor.com"],
+            faviconSrc: ["'self'", "data:"]
         }
     }
 }));
@@ -109,14 +110,20 @@ app.use(cors({
 app.use(json());
 app.use(express.static('public'));
 app.use('/assets', express.static('assets'));
+const store = new PgSession({
+    pool: pool,
+    tableName: "session",
+    createTableIfMissing: true
+});
 app.use(session({
-    cookie: { maxAge: 1000 * 60 * 60 },
+    cookie: { 
+        maxAge: 1000 * 60 * 60,
+        secure: true,
+        sameSite: 'none'
+
+     },
     name: process.env.npm_package_name,
-    store: new PgSession({
-        pool: pool,
-        tableName: "session",
-        createTableIfMissing: true
-    }),
+    store:store,
     resave: false,
     saveUninitialized: false,
     rolling: true,
