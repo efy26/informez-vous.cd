@@ -31,7 +31,7 @@ const afficherCategorie = async () => {
             option.value = categorie.id
             option.innerHTML = categorie.name
 
-            const responseSubCat = await fetch(`/api/sub-categories/`, {
+            const responseSubCat = await fetch('/api/sub-categories', {
                 method: 'GET'
             })
 
@@ -39,9 +39,11 @@ const afficherCategorie = async () => {
             const resultSubCat = await responseSubCat.json();
 
 
-            const count = resultSubCat.subCategories.filter(
-                sc => sc.categorie_id === categorie.id
-            ).length;
+            const count = responseSubCat.ok
+                ? resultSubCat.subCategories.filter(
+                    sc => sc.categorie_id === categorie.id
+                ).length
+                : 0;
 
 
             tr.innerHTML = `
@@ -167,7 +169,7 @@ const createSubCategorie = async (event) => {
     if (responseCreateSubCat.ok) {
         tbody.innerHTML = ''
         await afficherCategorie();
-        
+
 
         sousCategorieInput.value = ''
         sousCategorieSelect.value = ''

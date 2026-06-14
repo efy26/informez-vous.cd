@@ -44,23 +44,38 @@ const afficherArticlesPlanifier = async () => {
 
         for (const article of result.article) {
             let tr = document.createElement('tr')
-
-            const responseCat = await fetch(`/api/categories/${article.categorie_id}`, {
-                method: 'GET'
-            })
-            const responseSubCat = await fetch(`/api/categories/${article.subcategorie_id}`, {
-                method: 'GET'
-            })
-
-            const resultCat = await responseCat.json();
-            const resultSubCat = await responseSubCat.json();
-
+            let resultCat = { categorie: { name: "Inconnu" } }
+            let resultSubCat = null
             const dateFormatee = formatIsoDate(article.planifier_date, true);
+
+            if (article.categorie_id) {
+                const responseCat = await fetch(`/api/categories/${article.categorie_id}`, {
+                    method: 'GET'
+                })
+
+                if (responseCat.ok) {
+                    resultCat = await responseCat.json();
+                }
+
+            }
+
+
+            if (article.subcategorie_id) {
+                const responseSubCat = await fetch(`/api/sub-categories/${article.subcategorie_id}`, {
+                    method: 'GET'
+                })
+
+                if (responseSubCat.ok) {
+                    resultSubCat = await responseSubCat.json();
+                }
+
+            }
+
 
             tr.innerHTML = `
             <td>${article.title}</td>
                      
-                     <td>${responseCat ? resultCat.categorie.name : ''}</td>
+                     <td>${resultCat.categorie.name}</td>
                      <td>${dateFormatee}</td>
                      <td>
                          <button class="btn-voir-article-planifier-admin">
@@ -130,17 +145,34 @@ const afficherArticlesBrouillon = async () => {
         for (const article of result.article) {
             let tr = document.createElement('tr')
 
-            const responseCat = await fetch(`/api/categories/${article.categorie_id}`, {
-                method: 'GET'
-            })
-            const responseSubCat = await fetch(`/api/categories/${article.subcategorie_id}`, {
-                method: 'GET'
-            })
-
-            const resultCat = await responseCat.json();
-            const resultSubCat = await responseSubCat.json();
-
+            let resultCat = { categorie: { name: "Inconnu" } };
+            let resultSubCat = null
             const dateFormatee = formatIsoDate(article.created_at);
+
+            if (article.categorie_id) {
+
+                const responseCat = await fetch(`/api/categories/${article.categorie_id}`, {
+                    method: 'GET'
+                })
+
+                if (responseCat.ok) {
+                    resultCat = await responseCat.json();
+
+                }
+
+            }
+
+
+            if (article.subcategorie_id) {
+                const responseSubCat = await fetch(`/api/sub-categories/${article.subcategorie_id}`, {
+                    method: 'GET'
+                })
+
+                if (responseSubCat.ok) {
+                    resultSubCat = await responseSubCat.json();
+                }
+
+            }
 
             tr.innerHTML = `
 
@@ -161,10 +193,14 @@ const afficherArticlesBrouillon = async () => {
                             <span>Supprimer</span>
                         </button>
                     </td>
-
-
-            `
+                    `
             tbodyBrouillons.appendChild(tr)
+
+
+
+
+
+
             const btnUpdate = tr.querySelector('.btn-editer-article-brouillons-admin')
             const btnVoiroir = tr.querySelector('.btn-voir-article-brouillons-admin')
             const btnDelete = tr.querySelector('.btn-supprimer-article-brouillons-admin')
@@ -203,31 +239,31 @@ const afficherArticlesBrouillon = async () => {
 }
 
 if (btnCopierLien) {
-                btnCopierLien.addEventListener('click', async (e) => {
+    btnCopierLien.addEventListener('click', async (e) => {
 
-                    if (navigator.share) {
-                        try {
-                            await navigator.share({
-                                title: document.title,
-                                text: "Regarde cet article intéressant",
-                                url: afficherLienPartage.innerHTML
-                            });
-                        } catch (err) {
-                            console.log("Partage annulé", err);
-                        }
-                    } else {
-                        // fallback
-                        navigator.clipboard.writeText(afficherLienPartage.innerHTML);
-
-                    }
-                    urlCopierContainer.style.color = 'green'
-                    urlCopierContainer.innerHTML = "Lien copié !"
-
-                    console.log(afficherLienPartage.innerHTML);
-                    
-
-                })
+        if (navigator.share) {
+            try {
+                await navigator.share({
+                    title: document.title,
+                    text: "Regarde cet article intéressant",
+                    url: afficherLienPartage.innerHTML
+                });
+            } catch (err) {
+                console.log("Partage annulé", err);
             }
+        } else {
+            // fallback
+            navigator.clipboard.writeText(afficherLienPartage.innerHTML);
+
+        }
+        urlCopierContainer.style.color = 'green'
+        urlCopierContainer.innerHTML = "Lien copié !"
+
+        console.log(afficherLienPartage.innerHTML);
+
+
+    })
+}
 
 // Afficher articles planifier dans article
 const afficherArticlesInArticle = async () => {
@@ -236,21 +272,11 @@ const afficherArticlesInArticle = async () => {
         method: 'GET'
     })
 
-    const responseCat = await fetch(`/api/categories/`, {
-        method: 'GET'
-    })
+
     const result = await response.json();
-    const resultCat = await responseCat.json();
 
-    if (responseCat.ok) {
-        for (const categorie of resultCat.categories) {
-            let option = document.createElement('option')
-            option.value = categorie.name
-            option.innerHTML = categorie.name
 
-            filtreCategorie.appendChild(option)
-        }
-    }
+
 
     if (response.ok) {
 
@@ -259,19 +285,43 @@ const afficherArticlesInArticle = async () => {
         for (const article of result.articles) {
             let tr = document.createElement('tr')
 
-            const responseCat = await fetch(`/api/categories/${article.categorie_id}`, {
-                method: 'GET'
-            })
-            const responseSubCat = await fetch(`/api/categories/${article.subcategorie_id}`, {
-                method: 'GET'
-            })
+            let resultCat = { categorie: { name: "Inconnu" } };
+
+            if (article.categorie_id) {
+                const responseCat = await fetch(`/api/categories/${article.categorie_id}`);
+
+                if (responseCat.ok) {
+                    resultCat = await responseCat.json();
+                    for (const categorie of resultCat.categories) {
+                        let option = document.createElement('option')
+                        option.value = categorie.name
+                        option.innerHTML = categorie.name
+
+                        filtreCategorie.appendChild(option)
+                    }
+                }
+            }
+
+
+            let resultSubCat = null
+
+            if (article.subcategorie_id) {
+                const responseSubCat = await fetch(`/api/sub-categories/${article.subcategorie_id}`, {
+                    method: 'GET'
+                })
+
+                if (responseSubCat.ok) {
+                    resultSubCat = await responseSubCat.json();
+                }
+            }
+
 
             const responseAuteur = await fetch(`/api/users/${article.author_id}`, {
                 method: 'GET'
             })
 
-            const resultCat = await responseCat.json();
-            const resultSubCat = await responseSubCat.json();
+
+
             const resultAuteur = await responseAuteur.json();
 
             const dateFormatee = formatIsoDate(article.created_at);
@@ -405,8 +455,8 @@ const afficherArticlesInArticle = async () => {
                 }
             });
 
-            
-            
+
+
 
             btnVoiroir.addEventListener('click', (e) => {
                 e.preventDefault();
