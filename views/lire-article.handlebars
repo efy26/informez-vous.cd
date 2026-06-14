@@ -2,12 +2,12 @@
   <section class="apercu-article-content-admin">
     <div class="apercu-article-content-categorie-admin">
       <p><strong>{{#if categoriecase}}
-    {{categorie.name}}
+    {{categoriecase}}
 {{else}}
     Catégorie supprimée
 {{/if}}  
-</strong>- {{#if subCategorie.slug}}
-    {{categorie.name}}
+</strong>- {{#if subCategorie}}
+    {{subCategorie.slug}}
 {{else}}
     Sous-catégorie supprimée
 {{/if}}  </p>

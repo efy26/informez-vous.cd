@@ -138,16 +138,28 @@ const dernieresActualites = async () => {
     if (response.ok) {
         result.articles.sort((a, b) => new Date(b.created_at) - new Date(a.created_at))
             .slice(0, 4).forEach(async (article) => {
+
+
+                    
+
                 const div = document.createElement('div');
                 const date = new Date(article.created_at).toLocaleDateString('fr-FR');
+                let resultCat = { categorie: { name: "Inconnu" } };
 
-                const responseCat = await fetch(`/api/categories/${article.categorie_id}`);
-                const resultCat = await responseCat.json();
+
+                if (article.categorie_id) {
+                    const responseCat = await fetch(`/api/categories/${article.categorie_id}`);
+                    if (responseCat.ok) {
+                        resultCat = await responseCat.json();
+                    }
+
+                }
+                
 
                 div.innerHTML = `
                     <img src="${article.image}" alt="" />
                     <a href="/lire-article?id=${article.id}" aria-label="Lire l'article">
-                        <h3>${responseCat ? resultCat.categorie.name : 'Aucune catégorie'}</h3>
+                        <h3>${resultCat.categorie.name}</h3>
                     </a>
                     <p><strong>${article.summary}</strong></p>
                     <p>${date}</p>
@@ -156,6 +168,7 @@ const dernieresActualites = async () => {
                 if (article.status === 'publié') {
                     document.querySelector('.dernieres-actualites-container').appendChild(div);
                 }
+
             });
     } else {
         console.log(result.error);

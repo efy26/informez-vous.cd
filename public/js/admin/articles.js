@@ -292,10 +292,10 @@ const afficherArticlesInArticle = async () => {
 
                 if (responseCat.ok) {
                     resultCat = await responseCat.json();
-                    for (const categorie of resultCat.categories) {
+                    if (resultCat.categories) {
                         let option = document.createElement('option')
-                        option.value = categorie.name
-                        option.innerHTML = categorie.name
+                        option.value = resultCat.categorie.name
+                        option.innerHTML = resultCat.categorie.name
 
                         filtreCategorie.appendChild(option)
                     }

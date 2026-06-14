@@ -21,7 +21,7 @@ passport.use(new Strategy(config, async (email, password, done) => {
     try {
         // On récupère l'utilisateur dans la base
         // de données avec son adresse e-mail.
-        console.log("Tentative connexion :", email);
+        // console.log("Tentative connexion :", email);
         const user = await getUserByEmail(email);
 // console.log("Utilisateur trouvé :", user);
         // Si on ne trouve pas l'utilisateur, on

@@ -1,7 +1,7 @@
 <div class="apercu-article-container-amin">
   <section class="apercu-article-content-admin">
         <div class="apercu-article-content-categorie-admin">
-            <p><strong>{{ categoriecase  }} </strong>- {{ subCategorie.slug  }}</p>
+            <p><strong>{{#if categoriecase  }} {{ categoriecase  }}{{else}}Catégorie supprimée {{/if}} </strong>- {{#if subCategorie}}{{ subCategorie.slug  }}{{else}}Sous-catégorie supprimée{{/if}}</p>
         </div>
         <div class="apercu-article-content-titre-admin">
             <h1>

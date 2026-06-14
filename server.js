@@ -263,10 +263,11 @@ app.post('/api/categories', async (request, response) => {
 app.get('/api/categories', async (request, response) => {
     const categories = await getCategories();
     if (categories == null || categories.length === 0) {
-        return response.status(404).json({ error: 'Aucune catégorie trouvée' });
+        return response.status(200).json({ categories: [] });
     }
 
-    response.status(200).json({ message: 'Catégories récupérées avec succès', categories });
+    return response.status(200).json({ message: 'Catégories récupérées avec succès', categories });
+    
 });
 
 app.get('/api/categories/:id', async (request, response) => {
@@ -829,9 +830,19 @@ app.get('/admin/apercu-article/:id', isAuthenticated, isAdmin, async (request, r
     const auteuId = article.author_id
     const auteur = await getUserById(auteuId)
     const categorie = await getCategorieById(categorieId)
-    const subCategorie = await getSubCategorieById(subCategorieId)
 
-    const categoriecase = categorie.slug.toUpperCase()
+
+    let categoriecase , subCategorie = null
+    if (categorie && categorie.slug) {
+        categoriecase = categorie.slug.toUpperCase()
+    }
+
+    if (subCategorieId) {
+        subCategorie = await getSubCategorieById(subCategorieId)
+    }
+
+
+
 
 
     if (!article) {
@@ -995,7 +1006,7 @@ app.get('/redacteur/dashboard', isAuthenticated, isRedacteur, async (request, re
 
             return {
                 ...article,
-                categorie: categorie.name,
+                categorie: categorie?.name ?? 'Catégorie supprimée',
                 dateOriginale: new Date(article.created_at),
                 created_at: new Date(article.created_at).toLocaleDateString(
                     'fr-CA',
@@ -1076,10 +1087,17 @@ app.get('/redacteur/apercu-article/:id', isAuthenticated, isRedacteur, async (re
     const auteuId = article.author_id
     const auteur = await getUserById(auteuId)
     const categorie = await getCategorieById(categorieId)
-    const subCategorie = await getSubCategorieById(subCategorieId)
 
+    let categoriecase, subCategorie = null
 
-    const categoriecase = categorie.slug.toUpperCase()
+    if (categorie && categorie.slug) {
+        categoriecase = categorie.slug.toUpperCase()
+    }
+
+    if (subCategorieId) {
+        subCategorie = await getSubCategorieById(subCategorieId)
+    }
+
 
 
     if (!article) {

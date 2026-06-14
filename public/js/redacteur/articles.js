@@ -40,18 +40,35 @@ const afficherArticlesBrouillon = async () => {
         const n = 0
         for (const article of result.article) {
             let tr = document.createElement('tr')
-
-            const responseCat = await fetch(`/api/categories/${article.categorie_id}`, {
-                method: 'GET'
-            })
-            const responseSubCat = await fetch(`/api/categories/${article.subcategorie_id}`, {
-                method: 'GET'
-            })
-
-            const resultCat = await responseCat.json();
-            const resultSubCat = await responseSubCat.json();
-
+            let resultCat = { categorie: { name: "Inconnu" } }
+            let resultSubCat = null
             const dateFormatee = formatIsoDate(article.created_at);
+
+
+            if (article.categorie_id) {
+                const responseCat = await fetch(`/api/categories/${article.categorie_id}`, {
+                    method: 'GET'
+                })
+                if (responseCat.ok) {
+                    resultCat = await responseCat.json();
+                }
+            }
+
+            if (article.subcategorie_id) {
+                const responseSubCat = await fetch(`/api/sub-categories/${article.subcategorie_id}`, {
+                    method: 'GET'
+                })
+
+
+                if (responseSubCat.ok) {
+                    resultSubCat = await responseSubCat.json();
+                }
+            }
+
+
+
+
+
 
             tr.innerHTML = `
 
@@ -126,23 +143,40 @@ const afficherArticlesPlanifier = async () => {
 
         for (const article of result.article) {
             let tr = document.createElement('tr')
-
-            const responseCat = await fetch(`/api/categories/${article.categorie_id}`, {
-                method: 'GET'
-            })
-            const responseSubCat = await fetch(`/api/categories/${article.subcategorie_id}`, {
-                method: 'GET'
-            })
-
-            const resultCat = await responseCat.json();
-            const resultSubCat = await responseSubCat.json();
-
+            let resultCat = { categorie: { name: "Inconnu" } }
+            let resultSubCat = null
             const dateFormatee = formatIsoDate(article.planifier_date, true);
+
+            if (article.categorie_id) {
+                const responseCat = await fetch(`/api/categories/${article.categorie_id}`, {
+                    method: 'GET'
+                })
+                if (responseCat.ok) {
+                    resultCat = await responseCat.json();
+                }
+            }
+
+            if (article.subcategorie_id) {
+                const responseSubCat = await fetch(`/api/sub-categories/${article.subcategorie_id}`, {
+                    method: 'GET'
+                })
+
+
+                if (responseSubCat.ok) {
+                    resultSubCat = await responseSubCat.json();
+                }
+            }
+
+
+
+
+
+
 
             tr.innerHTML = `
             <td>${article.title}</td>
                      
-                     <td>${responseCat ? resultCat.categorie.name : ''}</td>
+                     <td>${resultCat.categorie.name }</td>
                      <td>${dateFormatee}</td>
                      <td>
                          <button class="btn-voir-article-planifier-redacteur">
@@ -204,11 +238,12 @@ const afficherArticlesInArticle = async () => {
     const response = await fetch(`/api/articles-redacteur`, {
         method: 'GET'
     })
+    const result = await response.json();
 
     const responseCat = await fetch(`/api/categories/`, {
         method: 'GET'
     })
-    const result = await response.json();
+
     const resultCat = await responseCat.json();
 
     if (responseCat.ok) {
@@ -227,22 +262,41 @@ const afficherArticlesInArticle = async () => {
 
         for (const article of result.articles) {
             let tr = document.createElement('tr')
-
-            const responseCat = await fetch(`/api/categories/${article.categorie_id}`, {
-                method: 'GET'
-            })
-            const responseSubCat = await fetch(`/api/categories/${article.subcategorie_id}`, {
-                method: 'GET'
-            })
-
-
-            const resultCat = await responseCat.json();
-            const resultSubCat = await responseSubCat.json();
-
+            let resultCat = { categorie: { name: "Inconnu" } }
+            let resultSubCat = null
             const dateFormatee = formatIsoDate(article.created_at);
             const dateFormateePlanifier = formatIsoDate(article.planifier_date, true);
             const datePlanification = new Date(article.planifier_date);
             const maintenant = new Date();
+
+            if (article.categorie_id) {
+                const responseCat = await fetch(`/api/categories/${article.categorie_id}`, {
+                    method: 'GET'
+                })
+                if (responseCat.ok) {
+                    resultCat = await responseCat.json();
+                }
+
+            }
+
+            if (article.subcategorie_id) {
+                const responseSubCat = await fetch(`/api/sub-categories/${article.subcategorie_id}`, {
+                    method: 'GET'
+                })
+                if (responseSubCat.ok) {
+                    resultSubCat = await responseSubCat.json();
+                }
+
+
+
+
+            }
+
+
+
+
+
+
 
             const estExpire = article.status === 'planifié' && datePlanification < maintenant;
             const statutAffiche = estExpire ? 'brouillon' : article.status;
@@ -252,7 +306,7 @@ const afficherArticlesInArticle = async () => {
                     <td>${article.title}</td>
                     <td>${resultCat.categorie.name}</td>
                     <td class="${statutAffiche === 'brouillon' ? 'brouillon' : article.status}">${statutAffiche}</td>
-                    <td>${dateFormatee} </br></br> ${article.status === 'planifié' && !estExpire? `Planifié pour : ${dateFormateePlanifier}` : ''
+                    <td>${dateFormatee} </br></br> ${article.status === 'planifié' && !estExpire ? `Planifié pour : ${dateFormateePlanifier}` : ''
                 }</td>
 
                     <td>
@@ -303,7 +357,7 @@ const afficherArticlesInArticle = async () => {
                 }
             })
 
-           
+
             btnVoiroir.addEventListener('click', (e) => {
                 e.preventDefault();
                 window.location.href = `/redacteur/apercu-article/${article.id}`
