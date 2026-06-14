@@ -9,10 +9,20 @@
     
   </div>
   <div class="header-link">
-    <a class="{{#if (eq currentPage '/' )}}active{{/if}}" href="/" aria-label="Aller à la page d'accueil">Accueil</a>
-    <a class="{{#if (or (eq currentPage 'actualite') (eq currentPage 'lire-article'))}}active{{/if}}" aria-label="Aller à la page actualité" href="/actualite">Voir toutes les actualités</a>
-    <a class="{{#if (eq currentPage 'categories')}}active{{/if}}" aria-label="Aller à la page catégories" href="/categories">Actualités par catégories</a>
-    <a class="{{#if (or (or (eq currentPage 'apropos') (eq currentPage 'mention-legale')) (eq currentPage 'confidentialite'))}}active{{/if}}" aria-label="Aller à la page à propos" href="/apropos">À propos de nous</a>
+    <a class="{{#if (eq currentPage '/' )}}active{{/if}}" href="/" aria-label="Aller à la page d'accueil">
+      <i><ion-icon name="home-outline"></ion-icon></i>Accueil
+    </a>
+    <a class="{{#if (or (eq currentPage 'actualite') (eq currentPage 'lire-article'))}}active{{/if}}" aria-label="Aller à la page actualité" href="/actualite">
+      <i><ion-icon n-icon name="folder-outline"></ion-icon></i>Les actualités
+    </a>
+    <a class="{{#if (eq currentPage 'categories')}}active{{/if}}" aria-label="Aller à la page catégories" href="/categories">
+      <i><ion-icon
+            name="newspaper-outline"
+          ></ion-icon></i>Actualités par catégories
+    </a>
+    <a class="{{#if (or (or (eq currentPage 'apropos') (eq currentPage 'mention-legale')) (eq currentPage 'confidentialite'))}}active{{/if}}" aria-label="Aller à la page à propos" href="/apropos">
+      <i><ion-icon name="document-outline"></ion-icon></i> À propos
+    </a>
   </div>
   <div class="search-connexion">
     <div class="search">

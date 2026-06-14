@@ -69,6 +69,24 @@ img {
 
 
 /*Apercu d'un article*/
+#btn-share {
+    margin-top: 1rem;
+    cursor: pointer;
+    display: block;
+    padding: 0.5rem 1rem;
+    border: none;
+    border-radius: 10px;
+    background-color: rgba(255, 0, 0, 0.131);
+    color: red;
+    transition: 0.3s linear;
+}
+#btn-share:hover {
+    background-color: rgba(255, 0, 0, 0.243);
+}
+.copierLien {
+    color: green !important;  
+    background-color: rgba(0, 128, 0, 0.134) !important;
+}
 .apercu-article-container-amin {
     position: relative;
     display: flex;
@@ -273,11 +291,15 @@ header {
 .header-link {
     display: flex;
     flex-wrap: wrap;
-    gap: 1rem;
+    gap: 0.3rem;
 }
 
 .header-link a {
-    padding: 0.7rem;
+    display: flex;
+    align-content: center;
+    align-items: center;
+    gap: 0.3rem;
+    padding: 0.5rem;
     border-radius: 10px;
     transition: 0.3s ease-out;
 }

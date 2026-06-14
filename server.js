@@ -19,7 +19,7 @@ import { engine } from 'express-handlebars';
 // Importation des routes
 import { createUser, getusers, updateUser, deleteUser, getUserById } from './model/user.model.js';
 import { createArticle, getArticles, getArticleById, updateArticle, deleteArticle, getArticleStatusCounts, getArticleCountByCategory, getArticleByStatus, getArticleByStatusBrouillons, getArticlesForRedacteur } from './model/article.model.js';
-import { createCategorie, getCategories, getCategorieById, updateCategorie } from './model/categorie.model.js';
+import { createCategorie, getCategories, getCategorieById, updateCategorie, deleteCategorie } from './model/categorie.model.js';
 import { createSubCategorie, getSubCategories, getSubCategorieById, updateSubCategorie, getSubCategoriesByCategoryId } from './model/sub.categorie.model.js';
 import {
     usernameValidationMiddleware,
@@ -310,6 +310,13 @@ app.patch('/api/categories/:id', async (request, response) => {
         });
     }
 });
+app.delete('/api/categories/:id', async (request, response) => {
+    const { id } = request.params
+
+    const result = await deleteCategorie(id)
+
+    response.status(200).json({message: "catégorie supprimée"})
+})
 
 //========= FIN ROUTES CATEGORIES ========================
 /**
@@ -367,7 +374,10 @@ app.get('/api/sub-categories/:id', async (request, response) => {
 
     if (!subCategorie) {
         return response.status(404).json({ error: 'Sous-catégorie non trouvée' });
+        return
     }
+
+    
 
     response.status(200).json({ message: 'Sous-catégorie récupérée avec succès', subCategorie });
 });

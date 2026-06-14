@@ -31,23 +31,31 @@ const afficherCategorie = async () => {
             option.value = categorie.id
             option.innerHTML = categorie.name
 
-            const responseSubCat = await fetch(`/api/sub-categories/categories/${categorie.id}`, {
+            const responseSubCat = await fetch(`/api/sub-categories/`, {
                 method: 'GET'
             })
+
+
             const resultSubCat = await responseSubCat.json();
 
 
-
+            const count = resultSubCat.subCategories.filter(
+                sc => sc.categorie_id === categorie.id
+            ).length;
 
 
             tr.innerHTML = `
                 <td>${categorie.name}</td>
-                    <td>${responseSubCat.ok ? resultSubCat.subCategories.length : 0}</td>
-                    <td>${categorie.created_at.split('T')[0]}</td>
+                    <td>${responseSubCat.ok ? count : 0}</td>
+                    <td class="count">${categorie.created_at.split('T')[0]}</td>
                     <td>
                         <button class="btn-editer-categorie-admin">
                             <i><ion-icon name="create-outline"></ion-icon></i>
                             <span>Éditer</span>
+                        </button>
+                        <button class="btn-supprimer-categorie-admin">
+                            <i><ion-icon name="trash-outline"></ion-icon></i>
+                            <span>Supprimer</span>
                         </button>
                         
                     </td>
@@ -57,6 +65,7 @@ const afficherCategorie = async () => {
             sousCategorieSelect.appendChild(option)
 
             const btnUpdateCategorie = tr.querySelector('.btn-editer-categorie-admin')
+            const btnSupprimerCategorie = tr.querySelector('.btn-supprimer-categorie-admin')
 
 
 
@@ -104,8 +113,26 @@ const afficherCategorie = async () => {
 
             }
 
+            const deleteBtn = async (event) => {
+                event.preventDefault();
+
+                const response = await fetch(`/api/categories/${categorie.id}`, {
+                    method: 'DELETE'
+                })
+
+                const result = await response.json()
+
+                if (response.ok) {
+                    tbody.removeChild(tr)
+                } else {
+                    return
+
+                }
+            }
+
 
             btnUpdateCategorie.addEventListener('click', editeBtn)
+            btnSupprimerCategorie.addEventListener('click', deleteBtn)
 
 
         };
@@ -138,6 +165,10 @@ const createSubCategorie = async (event) => {
     const resultCreateSubCat = await responseCreateSubCat.json();
 
     if (responseCreateSubCat.ok) {
+        tbody.innerHTML = ''
+        await afficherCategorie();
+        
+
         sousCategorieInput.value = ''
         sousCategorieSelect.value = ''
         sousCategorieLabel.style = 'display: block;'
@@ -184,7 +215,45 @@ const btnCreateCat = async (e) => {
         sousCategorieLabel.classList.add('success')
         sousCategorieLabel.innerHTML = result.message
 
-        createCategorieInput.value = ''
+
+
+        const responseGet = await fetch('/api/categories', {
+            method: 'GET'
+        })
+
+        const resultGET = await responseGet.json();
+
+        if (responseGet.ok) {
+
+            const tr = document.createElement('tr')
+
+
+            const lastCategory = resultGET.categories[resultGET.categories.length - 1];
+            tr.innerHTML = `
+                <td>${createCategorieInput.value}</td>
+                    <td>0</td>
+                    <td>${lastCategory.created_at.split('T')[0]}</td>
+                    <td>
+                        <button class="btn-editer-categorie-admin">
+                            <i><ion-icon name="create-outline"></ion-icon></i>
+                            <span>Éditer</span>
+                        </button>
+                        <button class="btn-supprimer-categorie-admin">
+                            <i><ion-icon name="trash-outline"></ion-icon></i>
+                            <span>Supprimer</span>
+                        </button>
+                        
+                    </td>
+            
+            `
+            tbody.appendChild(tr)
+            createCategorieInput.value = ''
+
+        }
+
+
+
+
     } else {
         createCategorieBlock.style = 'display: block;'
         sousCategorieLabel.style = 'display: block;'
@@ -193,9 +262,18 @@ const btnCreateCat = async (e) => {
         sousCategorieLabel.innerHTML = result.error
     }
 }
-createCategorieForm.addEventListener('submit', btnCreateCat)
-btnCreateCategorie.addEventListener('click', createCategorie)
+
+if (createCategorieForm) {
+    createCategorieForm.addEventListener('submit', btnCreateCat)
+}
+if (btnCreateCategorie) {
+    btnCreateCategorie.addEventListener('click', createCategorie)
+}
+if (sousCategorieForm) {
+
+    sousCategorieForm.addEventListener('submit', createSubCategorie)
+}
 
 
 
-sousCategorieForm.addEventListener('submit', createSubCategorie)
+

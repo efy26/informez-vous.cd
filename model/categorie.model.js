@@ -59,3 +59,15 @@ export const updateCategorie = async (id, categorieData) => {
     );
     return result.rows[0];
 }
+
+export const deleteCategorie = async (id) => {
+    const result = await pool.query(
+        `
+            DELETE FROM categories WHERE id=$1
+            RETURNING *
+        `, 
+        [id]
+    );
+
+    return result.rows[0]
+}

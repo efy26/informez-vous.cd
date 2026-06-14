@@ -1,3 +1,4 @@
+// import e = require("express")
 
 const tbody = document.querySelector('.article-liste-planifier-admin tbody')
 const tbodyBrouillons = document.querySelector('.article-liste-brouillons-admin tbody')
@@ -5,6 +6,9 @@ const tbodyArticle = document.querySelector('.article-liste-admin tbody')
 const searchInput = document.querySelector('.article-recherche-admin input')
 const filtreCategorie = document.getElementById('filtre-categorie')
 const filtreOrdre = document.getElementById('filtre-ordre')
+const afficherLienPartage = document.querySelector('.afficher-lien-partage')
+const urlCopierContainer = document.querySelector('.afficher-lien-partage-container')
+const btnCopierLien = document.querySelector('.afficher-lien-partage-container ion-icon')
 
 
 
@@ -198,6 +202,32 @@ const afficherArticlesBrouillon = async () => {
     }
 }
 
+if (btnCopierLien) {
+                btnCopierLien.addEventListener('click', async (e) => {
+
+                    if (navigator.share) {
+                        try {
+                            await navigator.share({
+                                title: document.title,
+                                text: "Regarde cet article intéressant",
+                                url: afficherLienPartage.innerHTML
+                            });
+                        } catch (err) {
+                            console.log("Partage annulé", err);
+                        }
+                    } else {
+                        // fallback
+                        navigator.clipboard.writeText(afficherLienPartage.innerHTML);
+
+                    }
+                    urlCopierContainer.style.color = 'green'
+                    urlCopierContainer.innerHTML = "Lien copié !"
+
+                    console.log(afficherLienPartage.innerHTML);
+                    
+
+                })
+            }
 
 // Afficher articles planifier dans article
 const afficherArticlesInArticle = async () => {
@@ -272,8 +302,10 @@ const afficherArticlesInArticle = async () => {
                             <span>Voir</span>
                         </button>
                         <button ${estPlanifieNonExpire ? 'disabled' : ''}  id="${article.status === 'publié' ? 'deletebtn' : ''}" class="btn-valider-article-admin">
-                            <i><ion-icon name="thumbs-up-outline"></ion-icon></i>
-                            <span>Approuver</span>
+                            <i>${article.status !== 'publié' ? '<ion-icon name="thumbs-up-outline"></ion-icon>' :
+                    '<ion-icon name="return-up-back-outline"></ion-icon>'
+                }</i>
+                            <span>${article.status === 'publié' ? 'Retirer' : 'Approuver'}</span>
                         </button>
                         <button class="btn-supprimer-article-admin">
                             <i><ion-icon name="trash-outline"></ion-icon></i>
@@ -321,39 +353,67 @@ const afficherArticlesInArticle = async () => {
                 }
             })
 
+
             btnValider.addEventListener('click', async (e) => {
                 e.preventDefault();
 
-                const formData = new FormData();
+                const nouveauStatus =
+                    article.status === 'publié'
+                        ? 'brouillon'
+                        : 'publié';
 
-                formData.append('status', 'publié');
-                const button = e.currentTarget;
+                const formData = new FormData();
+                formData.append('status', nouveauStatus);
 
                 const response = await fetch(`/api/articles/${article.id}`, {
                     method: 'PATCH',
                     body: formData
-                })
+                });
 
                 const result = await response.json();
 
                 if (response.ok) {
-                    tr.querySelector('td:nth-child(4)').textContent = 'publié';
-                    tr.querySelector('td:nth-child(4)').classList.remove('brouillon');
-                    tr.querySelector('td:nth-child(4)').classList.remove('planifié');
-                    tr.querySelector('td:nth-child(4)').classList.add('publié');
 
+                    article.status = nouveauStatus;
 
-                    button.style.display = 'none';
+                    tr.querySelector('td:nth-child(4)').textContent = nouveauStatus;
+
+                    tr.querySelector('td:nth-child(4)').classList.remove(
+                        'publié',
+                        'planifié',
+                        'brouillon'
+                    );
+
+                    tr.querySelector('td:nth-child(4)').classList.add(nouveauStatus);
+
+                    const icon = btnValider.querySelector('ion-icon');
+                    const span = btnValider.querySelector('span');
+
+                    if (nouveauStatus === 'publié') {
+                        urlCopierContainer.style.display = 'flex'
+                        icon.setAttribute('name', 'return-up-back-outline');
+                        span.textContent = 'Retirer';
+                        afficherLienPartage.innerHTML = `
+                            https://informez-vous-cd.onrender.com/lire-article?id=${result.articleUpdated.id}
+                        `
+                    } else {
+                        icon.setAttribute('name', 'thumbs-up-outline');
+                        span.textContent = 'Approuver';
+                    }
                 } else {
                     console.log(result.error);
                 }
+            });
 
-            })
+            
+            
+
             btnVoiroir.addEventListener('click', (e) => {
                 e.preventDefault();
                 window.location.href = `/admin/apercu-article/${article.id}`
 
             })
+
             btnDelete.addEventListener('click', async (e) => {
                 e.preventDefault();
 

@@ -5,30 +5,44 @@ if (yearElement) {
     yearElement.textContent = currentYear;
 }
 
-// Bouton partager article
-// function shareArticle() {
-//     const url = window.location.href;
-//     const title = document.title;
 
-//     if (navigator.share) {
-//         navigator.share({
-//             title: title,
-//             url: url
-//         })
-//         .catch(err => console.log("Erreur partage :", err));
-//     } else {
-//         // fallback
-//         navigator.clipboard.writeText(url)
-//             .then(() => alert("Lien copié !"))
-//             .catch(() => alert("Impossible de copier le lien"));
-//     }
-// }
 
 // Référence : contrôle l'ouverture et la fermeture du menu mobile.
 const openMenu = document.querySelector('.menu-outline');
 const closeMenu = document.querySelector('.close-outline');
 const menu = document.querySelector('header');
 const searchInput = document.getElementById('searchInput');
+const shareArticle = document.getElementById('btn-share')
+const toast = document.getElementById('toast');
+
+if (shareArticle) {
+    shareArticle.addEventListener('click', async (e) => {
+
+        if (navigator.share) {
+            try {
+                await navigator.share({
+                    title: document.title,
+                    text: "Regarde cet article intéressant",
+                    url: window.location.href
+                });
+            } catch (err) {
+                console.log("Partage annulé", err);
+            }
+        } else {
+            // fallback
+            navigator.clipboard.writeText(window.location.href);
+            e.currentTarget.innerHTML = "Lien copié !"
+            e.currentTarget.classList.add('copierLien')
+            setTimeout(() => {
+                shareArticle.innerHTML = "Partager l'article"
+                shareArticle.classList.remove('copierLien')
+
+        }, 2000);
+
+        }
+
+    });
+}
 
 const menuOpen = (event) => {
     event.preventDefault();
@@ -179,7 +193,7 @@ const actualitesALaUne = async () => {
 
         document.querySelector('.a-la-une').appendChild(img);
         document.querySelector('.a-la-une').appendChild(div);
-        
+
     } else {
         console.log(result.error);
     }
