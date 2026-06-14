@@ -10,6 +10,7 @@ const createCategorieBlock = document.querySelector('#create-categorie-block-adm
 const createCategorieForm = document.querySelector('.create-categorie-form')
 const createCategorieInput = document.querySelector('.create-categorie-form input')
 const btnCreateCategorie = document.querySelector('.btn-creer-categorie-admin')
+ const containerCatParente = document.querySelector('#categorie-parent')
 
 
 
@@ -226,8 +227,9 @@ const btnCreateCat = async (e) => {
         const resultGET = await responseGet.json();
 
         if (responseGet.ok) {
-
+           
             const tr = document.createElement('tr')
+            const option = document.createElement('option')
 
 
             const lastCategory = resultGET.categories[resultGET.categories.length - 1];
@@ -248,7 +250,10 @@ const btnCreateCat = async (e) => {
                     </td>
             
             `
+            option.innerHTML = lastCategory.name
+            option.value = lastCategory.id
             tbody.appendChild(tr)
+            containerCatParente.appendChild(option)
             createCategorieInput.value = ''
 
         }

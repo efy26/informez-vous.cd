@@ -1271,7 +1271,6 @@ app.get('/apropos', (request, response) => {
         title: 'À propos',
         currentPage: 'apropos',
         styles: ['global.css'],
-        scripts: ['apropos.js']
     })
 })
 
@@ -1291,7 +1290,6 @@ app.get('/mention-legale', (request, response) => {
         title: 'Mentions légales',
         currentPage: 'mention-legale',
         styles: ['global.css'],
-        scripts: []
     })
 })
 

@@ -37,7 +37,7 @@ if (shareArticle) {
                 shareArticle.innerHTML = "Partager l'article"
                 shareArticle.classList.remove('copierLien')
 
-        }, 2000);
+            }, 2000);
 
         }
 
@@ -140,7 +140,7 @@ const dernieresActualites = async () => {
             .slice(0, 4).forEach(async (article) => {
 
 
-                    
+
 
                 const div = document.createElement('div');
                 const date = new Date(article.created_at).toLocaleDateString('fr-FR');
@@ -154,7 +154,7 @@ const dernieresActualites = async () => {
                     }
 
                 }
-                
+
 
                 div.innerHTML = `
                     <img src="${article.image}" alt="" />
@@ -222,14 +222,25 @@ const voirToutesActualites = async () => {
 
     if (response.ok) {
         result.articles.forEach(async (article) => {
+            if (article.status !== 'publié') return;
+
             const a = document.createElement('a');
+
             a.setAttribute('href', `/lire-article?id=${article.id}`);
 
             const date = new Date(article.created_at).toLocaleDateString('fr-FR');
 
-            const responseCat = await fetch(`/api/categories/${article.categorie_id}`);
-            const resultCat = await responseCat.json();
-            const catName = resultCat.categorie.name;
+            let catName = "Inconnu"
+
+            if (article.categorie_id) {
+                const responseCat = await fetch(`/api/categories/${article.categorie_id}`);
+
+                if (responseCat.ok) {
+                    const resultCat = await responseCat.json();
+                    catName = resultCat.categorie?.name ?? "Inconnu";
+                }
+            }
+
 
             a.dataset.cat = catName;
             a.innerHTML = `
@@ -237,16 +248,16 @@ const voirToutesActualites = async () => {
                 <div class="actualite-description">
                     <h3><strong>${article.title}</strong></h3>
                     <div class="actualite-cate">
-                        <p class="cat">${responseCat.ok ? resultCat.categorie.name : ''}</p>
+                        <p class="cat">${catName}</p>
                         <p>${date}</p>
                     </div>
                     <p>${article.summary}</p>
                 </div>
             `;
 
-            if (article.status === 'publié') {
-                document.querySelector('.actualite-contenu').appendChild(a);
-            }
+
+            document.querySelector('.actualite-contenu').appendChild(a);
+
         });
 
         const input = document.querySelector('#filtre-by-categorie');
