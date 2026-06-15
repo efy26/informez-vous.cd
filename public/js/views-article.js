@@ -1,23 +1,48 @@
-//Views article
-        let viewSent = false;
-
+let viewSent = false;
 
 const articleId = new URLSearchParams(window.location.search).get('id');
-
 const content = document.querySelector('.apercu-article-content-paragraphe-admin');
+const viewsElement = document.getElementById('views-count');
 
-window.addEventListener('scroll', async () => {
+const handleScroll = async () => {
     if (viewSent || !content || !articleId) return;
 
-    const contentBottom = content.getBoundingClientRect().bottom;
+    const bottom = content.getBoundingClientRect().bottom;
     const windowHeight = window.innerHeight;
 
-    // si le bas du contenu est visible
-    if (contentBottom <= windowHeight) {
+    if (bottom <= windowHeight) {
         viewSent = true;
 
-        await fetch(`/api/articles/${articleId}/view`, {
+        const response = await fetch(`/api/articles/${articleId}/view`, {
             method: 'POST'
         });
+
+        // const data = await response.json();
+
+        const responseArticleViews = await fetch(`/api/article-views/${articleId}`, {
+            method: 'GET'
+        })
+
+        const resultArticleViews = await responseArticleViews.json()
+
+        // ✔ si vraiment nouvelle vue → update UI
+        if (response.ok) {
+
+            if (responseArticleViews.ok) {
+                // const current = parseInt(viewsElement.textContent || "0");
+                viewsElement.textContent = resultArticleViews.articleViews.views;
+
+                console.log(resultArticleViews.articleViews.views);
+                
+            }else {
+                console.log(responseArticleViews.errore);
+                
+            }
+
+        }
+
+        window.removeEventListener('scroll', handleScroll);
     }
-});
+};
+
+window.addEventListener('scroll', handleScroll);

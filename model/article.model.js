@@ -140,7 +140,7 @@ export const incrementArticleViews = async (articleId, ip) => {
     );
 
     if (check.rows.length > 0) {
-        return; // déjà compté
+        return { alreadyViewed: true };// déjà compté
     }
 
     // 2. enregistrer la vue
@@ -156,3 +156,16 @@ export const incrementArticleViews = async (articleId, ip) => {
         [articleId]
     );
 };
+
+export const getAticleViewsByIdArticle = async (id) => {
+    const result = await pool.query(
+        `
+        SELECT COUNT(*) AS views
+        FROM article_views
+        WHERE article_id = $1
+        `,
+        [id]
+    );
+
+    return result.rows[0];
+}

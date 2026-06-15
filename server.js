@@ -18,7 +18,7 @@ import { engine } from 'express-handlebars';
 // =================================
 // Importation des routes
 import { createUser, getusers, updateUser, deleteUser, getUserById } from './model/user.model.js';
-import { createArticle, getArticles, getArticleById, updateArticle, deleteArticle, getArticleStatusCounts, getArticleCountByCategory, getArticleByStatus, getArticleByStatusBrouillons, getArticlesForRedacteur, incrementArticleViews } from './model/article.model.js';
+import { createArticle, getArticles, getArticleById, updateArticle, deleteArticle, getArticleStatusCounts, getArticleCountByCategory, getArticleByStatus, getArticleByStatusBrouillons, getArticlesForRedacteur, incrementArticleViews, getAticleViewsByIdArticle } from './model/article.model.js';
 import { createCategorie, getCategories, getCategorieById, updateCategorie, deleteCategorie } from './model/categorie.model.js';
 import { createSubCategorie, getSubCategories, getSubCategorieById, updateSubCategorie, getSubCategoriesByCategoryId } from './model/sub.categorie.model.js';
 import {
@@ -35,6 +35,7 @@ import { isAuthenticated, isAdmin, isRedacteur } from './middlewares/validation.
 import './auth.js';
 import { request } from 'http';
 import { title } from 'process';
+import { error } from 'console';
 
 // Création d'un serveur Express.
 const app = express();
@@ -1313,6 +1314,23 @@ app.post('/api/articles/:id/view', async (req, res) => {
         res.status(500).json({ error: 'Erreur serveur' });
     }
 });
+app.get('/api/article-views/:id', async (request, response) => {
+    const { id } = request.params
+
+     try {
+        const articleViews = await getAticleViewsByIdArticle(id);
+
+        return response.status(200).json({
+            message: "Article trouvé",
+            articleViews
+        });
+
+    } catch (error) {
+        console.error(error);
+        return response.status(500).json({ error: "Erreur serveur" });
+    }
+})
+
 app.get('/lire-article', async (request, response) => {
     const articleId = request.query.id;
 
