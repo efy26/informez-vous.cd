@@ -112,12 +112,12 @@ const store = new PgSession({
     createTableIfMissing: true
 });
 app.use(session({
-    cookie: { 
+    cookie: {
         maxAge: 1000 * 60 * 60
 
-     },
+    },
     name: process.env.npm_package_name,
-    store:store,
+    store: store,
     resave: false,
     saveUninitialized: false,
     rolling: true,
@@ -267,7 +267,7 @@ app.get('/api/categories', async (request, response) => {
     }
 
     return response.status(200).json({ message: 'Catégories récupérées avec succès', categories });
-    
+
 });
 
 app.get('/api/categories/:id', async (request, response) => {
@@ -316,7 +316,7 @@ app.delete('/api/categories/:id', async (request, response) => {
 
     const result = await deleteCategorie(id)
 
-    response.status(200).json({message: "catégorie supprimée"})
+    response.status(200).json({ message: "catégorie supprimée" })
 })
 
 //========= FIN ROUTES CATEGORIES ========================
@@ -378,7 +378,7 @@ app.get('/api/sub-categories/:id', async (request, response) => {
         return
     }
 
-    
+
 
     response.status(200).json({ message: 'Sous-catégorie récupérée avec succès', subCategorie });
 });
@@ -439,7 +439,7 @@ app.post('/api/articles', assets.single('image'), async (request, response) => {
 
         const image = request.file.path;
 
-        
+
 
         if (title === '' || summary === '' || content === '' || image === '' || categorie_id === '' || subcategorie_id === '') {
             return response.status(400).json({
@@ -832,7 +832,7 @@ app.get('/admin/apercu-article/:id', isAuthenticated, isAdmin, async (request, r
     const categorie = await getCategorieById(categorieId)
 
 
-    let categoriecase , subCategorie = null
+    let categoriecase, subCategorie = null
     if (categorie && categorie.slug) {
         categoriecase = categorie.slug.toUpperCase()
     }
@@ -1306,6 +1306,14 @@ app.get('/lire-article', async (request, response) => {
 
     try {
         const articleRecuperer = await getArticleById(articleId);
+        if (!articleRecuperer) {
+            return response.status(404).send('Article non trouvé');
+        }
+
+        if (articleRecuperer.status !== 'publié') {
+            return response.status(404).send('Article non trouvé');
+        }
+        
         const recuperationArticles = await getArticles();
 
         const articlesMelanges = [...recuperationArticles];
@@ -1320,13 +1328,13 @@ app.get('/lire-article', async (request, response) => {
             .filter(article => article.id !== Number(articleId) && article.status === 'publié')
             .slice(0, 10)
             .map(article => ({
-        ...article,
-        created_at: new Date(article.created_at).toLocaleString('fr-CA', {
-            year: 'numeric',
-            month: '2-digit',
-            day: '2-digit',
-        })
-    }));
+                ...article,
+                created_at: new Date(article.created_at).toLocaleString('fr-CA', {
+                    year: 'numeric',
+                    month: '2-digit',
+                    day: '2-digit',
+                })
+            }));
 
 
         const article =
