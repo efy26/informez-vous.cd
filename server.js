@@ -18,7 +18,7 @@ import { engine } from 'express-handlebars';
 // =================================
 // Importation des routes
 import { createUser, getusers, updateUser, deleteUser, getUserById } from './model/user.model.js';
-import { createArticle, getArticles, getArticleById, updateArticle, deleteArticle, getArticleStatusCounts, getArticleCountByCategory, getArticleByStatus, getArticleByStatusBrouillons, getArticlesForRedacteur } from './model/article.model.js';
+import { createArticle, getArticles, getArticleById, updateArticle, deleteArticle, getArticleStatusCounts, getArticleCountByCategory, getArticleByStatus, getArticleByStatusBrouillons, getArticlesForRedacteur, incrementArticleViews } from './model/article.model.js';
 import { createCategorie, getCategories, getCategorieById, updateCategorie, deleteCategorie } from './model/categorie.model.js';
 import { createSubCategorie, getSubCategories, getSubCategorieById, updateSubCategorie, getSubCategoriesByCategoryId } from './model/sub.categorie.model.js';
 import {
@@ -1294,7 +1294,25 @@ app.get('/mention-legale', (request, response) => {
 })
 
 
+const getClientIp = (req) => {
+    return req.headers['x-forwarded-for']?.split(',')[0]
+        || req.socket.remoteAddress;
+};
 
+app.post('/api/articles/:id/view', async (req, res) => {
+    const { id } = req.params;
+    const ip = getClientIp(req);
+
+    try {
+        await incrementArticleViews(id, ip);
+
+        res.json({ message: 'Vue enregistrée' });
+
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ error: 'Erreur serveur' });
+    }
+});
 app.get('/lire-article', async (request, response) => {
     const articleId = request.query.id;
 
@@ -1313,7 +1331,7 @@ app.get('/lire-article', async (request, response) => {
         if (articleRecuperer.status !== 'publié') {
             return response.status(404).send('Article non trouvé');
         }
-        
+
         const recuperationArticles = await getArticles();
 
         const articlesMelanges = [...recuperationArticles];
@@ -1336,6 +1354,12 @@ app.get('/lire-article', async (request, response) => {
                 })
             }));
 
+        const formatViews = (views) => {
+            if (views >= 1000) {
+                return (views / 1000).toFixed(1).replace('.0', '') + 'K';
+            }
+            return views;
+        };
 
         const article =
         {
@@ -1347,21 +1371,20 @@ app.get('/lire-article', async (request, response) => {
                     month: '2-digit',
                     day: '2-digit'
                 }
-            )
+            ),
+            views: formatViews(articleRecuperer.views)
         }
 
         if (!article) {
             return response.status(404).send('Article non trouvé');
         }
 
-        // console.log(article.image, article.id);
+
 
 
         const auteur = await getUserById(article.author_id);
         const categorie = await getCategorieById(article.categorie_id);
         const subCategorie = article.subcategorie_id ? await getSubCategorieById(article.subcategorie_id) : null;
-
-
 
         response.render('lire-article', {
             layout: 'main',
@@ -1379,7 +1402,9 @@ app.get('/lire-article', async (request, response) => {
             auteur,
             categoriecase: categorie?.name,
             subCategorie,
-            suggestions: articlesAleatoires
+            suggestions: articlesAleatoires,
+            scripts: ['views-article.js']
+
 
         });
     } catch (error) {
@@ -1387,6 +1412,7 @@ app.get('/lire-article', async (request, response) => {
         response.status(500).send('Erreur serveur');
     }
 })
+
 
 app.get('/search', (request, response) => {
     response.render('search', {

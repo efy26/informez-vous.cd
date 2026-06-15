@@ -36,7 +36,14 @@
         <img src="{{article.image}}" alt="Image d'un article" />
 
       </div>
-      <button id="btn-share">Partager l'article</button>
+      <div class="share-views">
+          <button id="btn-share">Partager l'article</button>
+          <p>
+            <ion-icon name="eye-outline"></ion-icon>
+            {{ article.views}}
+          </p>
+      </div>
+      
 
 
     </div>

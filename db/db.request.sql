@@ -52,6 +52,13 @@ CREATE TABLE IF NOT EXISTS articles (
     planifier_date DATE,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
+CREATE TABLE IF NOT EXISTS article_views (
+    id SERIAL PRIMARY KEY,
+    article_id INT NOT NULL,
+    ip_address TEXT NOT NULL,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
 
 CREATE TABLE "session" (
   "sid" varchar NOT NULL,
@@ -70,3 +77,6 @@ ON "session" ("expire");
 ALTER TABLE articles
 ALTER COLUMN planifier_date
 TYPE TIMESTAMP WITH TIME ZONE;
+
+ALTER TABLE articles
+ADD COLUMN views INT DEFAULT 0;

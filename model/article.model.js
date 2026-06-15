@@ -129,3 +129,30 @@ export const deleteArticle = async (id) => {
     );
     return result.rows[0];
 }
+
+export const incrementArticleViews = async (articleId, ip) => {
+
+    // 1. vérifier si déjà vu
+    const check = await pool.query(
+        `SELECT 1 FROM article_views
+         WHERE article_id = $1 AND ip_address = $2`,
+        [articleId, ip]
+    );
+
+    if (check.rows.length > 0) {
+        return; // déjà compté
+    }
+
+    // 2. enregistrer la vue
+    await pool.query(
+        `INSERT INTO article_views (article_id, ip_address)
+         VALUES ($1, $2)`,
+        [articleId, ip]
+    );
+
+    // 3. incrémenter article
+    await pool.query(
+        `UPDATE articles SET views = views + 1 WHERE id = $1`,
+        [articleId]
+    );
+};

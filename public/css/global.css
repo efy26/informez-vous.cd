@@ -2,6 +2,7 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+
 }
 input,
 textarea,
@@ -17,14 +18,21 @@ body {
     display: flex;
     flex-direction: column;
 }
+/* @view-transition {
+    navigation: auto;
+}
+::view-transition-old(root),
+::view-transition-new(root) {
+    animation-duration: 0.4s;
+} */
 /* Pour partager l'article */
-.share-buttons {
+/* .share-buttons {
     margin-top: 20px;
     display: flex;
     gap: 10px;
-}
+} */
 
-.btn-share {
+/* .btn-share {
     padding: 10px 15px;
     border: none;
     background: #1e88e5;
@@ -35,7 +43,7 @@ body {
 
 .btn-share:hover {
     background: #1565c0;
-}
+} */
 
 main {
     flex: 1;
@@ -70,7 +78,6 @@ img {
 
 /*Apercu d'un article*/
 #btn-share {
-    margin-top: 1rem;
     cursor: pointer;
     display: block;
     padding: 0.5rem 1rem;
@@ -93,6 +100,26 @@ img {
     flex-direction: column;
     padding: 1rem;
     padding-top: 7rem;
+}
+.share-views {
+    padding-top: 1rem;
+    display: flex;
+    align-items: center;
+    align-content: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 0.3rem;
+    
+}
+.share-views p{
+    display: flex;
+    line-break: anywhere;
+    flex-wrap: wrap;
+    gap: 1rem;
+    padding: 0.3rem;
+    border-radius: 10px;
+    box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.108);
+    
 }
 
 .apercu-article-container-amin .close-outline-apercu {
@@ -343,6 +370,7 @@ header {
     padding: 1rem;
 }
 
+
 .a-la-une {
     position: relative;
     width: 100%;
@@ -456,6 +484,7 @@ header {
     flex-wrap: wrap;
     gap: 1rem;
     padding-top: 1rem;
+
 }
 
 .liste-categorie-container div {
@@ -466,6 +495,7 @@ header {
     gap: 1rem;
     padding: 1rem;
     border-radius: 10px;
+    
 }
 
 .liste-categorie-container div:nth-child(6n+1) {

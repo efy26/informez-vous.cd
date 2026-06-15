@@ -7,6 +7,8 @@ if (yearElement) {
 
 
 
+
+
 // Référence : contrôle l'ouverture et la fermeture du menu mobile.
 const openMenu = document.querySelector('.menu-outline');
 const closeMenu = document.querySelector('.close-outline');
