@@ -77,23 +77,23 @@ app.set('views', './views');
 
 // Middlewares pour la sécurité, la compression et le CORS
 app.use(express.urlencoded({ extended: true }));
-app.use(helmet({
-    contentSecurityPolicy:
-    {
-        directives: {
-            defaultSrc: ["'self'"],
-            scriptSrc: ["'self'", "'unsafe-inline'", "https:",
-                "http:",
-                "https://unpkg.com", "https://cdn.jsdelivr.net", "https://cdn.ckeditor.com"],
-            styleSrc: ["'self'", "'unsafe-inline'", "https://unpkg.com", "https://cdn.jsdelivr.net", "https://cdn.ckeditor.com"],
-            imgSrc: ["'self'", "data:", "https:", "http:"],
-            connectSrc: ["'self'", "https:",
-                "http:",
-                "https://unpkg.com", "https://cdn.jsdelivr.net", "https://cdn.ckeditor.com"],
-            faviconSrc: ["'self'", "data:"]
-        }
-    }
-}));
+// app.use(helmet({
+//     contentSecurityPolicy:
+//     {
+//         directives: {
+//             defaultSrc: ["'self'"],
+//             scriptSrc: ["'self'", "'unsafe-inline'", "https:",
+//                 "http:",
+//                 "https://unpkg.com", "https://cdn.jsdelivr.net", "https://cdn.ckeditor.com"],
+//             styleSrc: ["'self'", "'unsafe-inline'", "https://unpkg.com", "https://cdn.jsdelivr.net", "https://cdn.ckeditor.com"],
+//             imgSrc: ["'self'", "data:", "https:", "http:"],
+//             connectSrc: ["'self'", "https:",
+//                 "http:",
+//                 "https://unpkg.com", "https://cdn.jsdelivr.net", "https://cdn.ckeditor.com"],
+//             faviconSrc: ["'self'", "data:"]
+//         }
+//     }
+// }));
 
 app.use(compression());
 app.use(cors({
@@ -1303,6 +1303,9 @@ const getClientIp = (req) => {
 app.post('/api/articles/:id/view', async (req, res) => {
     const { id } = req.params;
     const ip = getClientIp(req);
+
+    console.log("IP DETECTED:", ip);
+    console.log("ARTICLE ID:", id);
 
     try {
         await incrementArticleViews(id, ip);
