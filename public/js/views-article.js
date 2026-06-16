@@ -19,7 +19,7 @@ const handleScroll = async () => {
 
         // const data = await response.json();
 
-        const responseArticleViews = await fetch(`/api/article-views/${articleId}`, {
+        const responseArticleViews = await fetch(`/api/articles/${articleId}`, {
             method: 'GET'
         })
 
@@ -30,12 +30,12 @@ const handleScroll = async () => {
 
             if (responseArticleViews.ok) {
                 // const current = parseInt(viewsElement.textContent || "0");
-                viewsElement.textContent = resultArticleViews.articleViews.views;
+                viewsElement.textContent = resultArticleViews.article.views;
 
-                console.log(resultArticleViews.articleViews.views);
+                // console.log(resultArticleViews.article.views);
                 
             }else {
-                console.log(responseArticleViews.errore);
+                console.log(responseArticleViews.error);
                 
             }
 
