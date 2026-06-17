@@ -37,6 +37,9 @@ import { request } from 'http';
 import { title } from 'process';
 import { error } from 'console';
 
+// Configuration de l'environnement
+dotenv.config();
+
 // Création d'un serveur Express.
 const app = express();
 
@@ -59,8 +62,7 @@ app.use((req, res, next) => {
     next();
 });
 
-// Configuration de l'environnement
-dotenv.config();
+
 
 // Configuration de la session
 const PgSession = pgSession(session);

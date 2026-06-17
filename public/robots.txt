@@ -1,8 +1,16 @@
+app.get('/robots.txt', (req,res)=>{
+    res.type('text/plain');
+
+    res.send(`
 User-agent: *
 Allow: /
 
-User-agent: facebookexternalhit
+User-agent: facebookexternalhit/1.1
 Allow: /
 
 User-agent: Facebot
 Allow: /
+
+Crawl-delay: 1
+`);
+});
