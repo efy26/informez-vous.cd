@@ -1359,6 +1359,20 @@ app.get('/api/article-views/:id', async (request, response) => {
     }
 })
 
+app.get('/robots.txt', (req,res)=>{
+    res.type('text/plain');
+    res.send(`
+User-agent: *
+Allow: /
+
+User-agent: facebookexternalhit
+Allow: /
+
+User-agent: Facebot
+Allow: /
+    `);
+});
+
 app.get('/lire-article', async (request, response) => {
     const articleId = request.query.id;
 
