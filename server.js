@@ -45,6 +45,19 @@ app.use((req, res, next) => {
     console.log('URL:', req.originalUrl);
     next();
 });
+app.use((req,res,next)=>{
+
+    const ua = req.headers['user-agent'] || '';
+
+    if (
+        ua.includes('facebookexternalhit') ||
+        ua.includes('Facebot')
+    ) {
+        console.log("Facebook bot autorisé");
+    }
+
+    next();
+});
 
 // Configuration de l'environnement
 dotenv.config();
