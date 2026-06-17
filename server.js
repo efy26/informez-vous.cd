@@ -166,7 +166,8 @@ app.use((request, response, next) => {
     response.locals.description =
         'Actualités fiables, rapides et diversifiées.';
 
-    response.locals.image = "logo.jpeg";
+    response.locals.image =
+"https://informez-vous-cd.onrender.com/assets/logo.jpeg";
 
     response.locals.url =
         `${request.protocol}://${request.get('host')}${request.originalUrl}`;
@@ -1371,6 +1372,26 @@ Allow: /
 User-agent: Facebot
 Allow: /
     `);
+});
+
+app.use((req,res,next)=>{
+
+    const ua = req.headers['user-agent'] || '';
+
+    if(
+        ua.includes('facebookexternalhit') ||
+        ua.includes('Facebot')
+    ){
+
+        res.setHeader(
+            "Cache-Control",
+            "public, max-age=3600"
+        );
+
+    }
+
+    next();
+
 });
 
 app.get('/lire-article', async (request, response) => {
