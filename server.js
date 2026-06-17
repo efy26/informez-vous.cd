@@ -40,6 +40,12 @@ import { error } from 'console';
 // Création d'un serveur Express.
 const app = express();
 
+app.use((req, res, next) => {
+    console.log('UA:', req.headers['user-agent']);
+    console.log('URL:', req.originalUrl);
+    next();
+});
+
 // Configuration de l'environnement
 dotenv.config();
 
@@ -66,6 +72,12 @@ app.engine('handlebars', engine(
             },
             or: function (a, b) {
                 return a || b
+            },
+            sup: function (a, b) {
+                return  Number(a) > Number(b)
+            },
+            eqs: function (a, b) {
+                return Number(a) === Number(b)
             }
         }
     }
@@ -77,23 +89,23 @@ app.set('views', './views');
 
 // Middlewares pour la sécurité, la compression et le CORS
 app.use(express.urlencoded({ extended: true }));
-// app.use(helmet({
-//     contentSecurityPolicy:
-//     {
-//         directives: {
-//             defaultSrc: ["'self'"],
-//             scriptSrc: ["'self'", "'unsafe-inline'", "https:",
-//                 "http:",
-//                 "https://unpkg.com", "https://cdn.jsdelivr.net", "https://cdn.ckeditor.com"],
-//             styleSrc: ["'self'", "'unsafe-inline'", "https://unpkg.com", "https://cdn.jsdelivr.net", "https://cdn.ckeditor.com"],
-//             imgSrc: ["'self'", "data:", "https:", "http:"],
-//             connectSrc: ["'self'", "https:",
-//                 "http:",
-//                 "https://unpkg.com", "https://cdn.jsdelivr.net", "https://cdn.ckeditor.com"],
-//             faviconSrc: ["'self'", "data:"]
-//         }
-//     }
-// }));
+app.use(helmet({
+    contentSecurityPolicy:
+    {
+        directives: {
+            defaultSrc: ["'self'"],
+            scriptSrc: ["'self'", "'unsafe-inline'", "https:",
+                "http:",
+                "https://unpkg.com", "https://cdn.jsdelivr.net", "https://cdn.ckeditor.com"],
+            styleSrc: ["'self'", "'unsafe-inline'", "https://unpkg.com", "https://cdn.jsdelivr.net", "https://cdn.ckeditor.com"],
+            imgSrc: ["'self'", "data:", "https:", "http:"],
+            connectSrc: ["'self'", "https:",
+                "http:",
+                "https://unpkg.com", "https://cdn.jsdelivr.net", "https://cdn.ckeditor.com"],
+            faviconSrc: ["'self'", "data:"]
+        }
+    }
+}));
 
 app.use(compression());
 app.use(cors({

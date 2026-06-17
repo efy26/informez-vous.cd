@@ -17,15 +17,18 @@ const searchInput = document.getElementById('searchInput');
 const shareArticle = document.getElementById('btn-share')
 const toast = document.getElementById('toast');
 
+// Partager article
 if (shareArticle) {
     shareArticle.addEventListener('click', async (e) => {
-
+        console.log('eeeee');
+        
         if (navigator.share) {
             try {
                 await navigator.share({
                     title: document.title,
                     text: "Regarde cet article intéressant",
-                    url: window.location.href
+                    url: window.location.href,
+                    // image: document.image
                 });
             } catch (err) {
                 console.log("Partage annulé", err);
