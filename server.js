@@ -41,20 +41,20 @@ import { error } from 'console';
 const app = express();
 
 app.use((req, res, next) => {
-    console.log('UA:', req.headers['user-agent']);
-    console.log('URL:', req.originalUrl);
-    next();
-});
-app.use((req,res,next)=>{
 
     const ua = req.headers['user-agent'] || '';
+
+    console.log("UA:", ua);
+    console.log("URL:", req.originalUrl);
+
 
     if (
         ua.includes('facebookexternalhit') ||
         ua.includes('Facebot')
     ) {
-        console.log("Facebook bot autorisé");
+        console.log("FACEBOOK BOT DETECTE");
     }
+
 
     next();
 });
