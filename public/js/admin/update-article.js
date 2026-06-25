@@ -33,11 +33,11 @@ articleSelect[2].addEventListener('change', (event) => {
 const updateArticle = async (event) => {
     event.preventDefault();
 
-   if (articleSommaire.value.length > 282 || articleInput[0].value.length > 103) {
+   if (articleSommaire.value.length > 282 || articleInput[0].value.length > 150) {
         messages.classList.add('error')
         messages.innerHTML = articleSommaire.value.length > 282
             ? 'Maximum 282 caractères autorisés pour le sommaire.'
-            : 'Maximum 103 caractères autorisés pour le titre.';
+            : 'Maximum 150 caractères autorisés pour le titre.';
     }else {
 
         const formData = new FormData();

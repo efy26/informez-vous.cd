@@ -113,9 +113,9 @@ img {
     display: flex;
     align-items: center;
     align-content: center;
-    justify-content: space-between;
+    /* justify-content: space-between; */
     flex-wrap: wrap;
-    gap: 0.3rem;
+    gap: 2rem;
     max-width: 23rem;
 
 }
@@ -389,7 +389,7 @@ header {
 .a-la-une {
     position: relative;
     width: 100%;
-    height: 70vh;
+    height: 80vh;
 }
 
 .a-la-une-details {
@@ -439,7 +439,7 @@ header {
 
 .a-la-une img {
     width: 100%;
-    height: 70vh;
+    height: 80vh;
     display: block;
     border-radius: 10px;
 }
@@ -460,7 +460,7 @@ header {
     display: flex;
     flex-wrap: wrap;
     align-items: center;
-    justify-content: center;
+    justify-content: left;
     gap: 1rem;
     padding-top: 1rem;
 
@@ -989,7 +989,9 @@ footer section {
 
 
     .dernieres-actualites-container {
-        justify-content: center;
+        justify-content: left;
+        /* width: 90%; */
+        /* background-color: rgba(102, 51, 153, 0.106); */
     }
 
     .dernieres-actualites-container div {
@@ -1009,12 +1011,13 @@ footer section {
 
     .liste-categorie-container {
 
-        justify-content: center;
+        justify-content: left;
+        width: 60%;
     }
 
     .liste-categorie-container div {
 
-        padding: 3rem;
+        /* padding: 3rem; */
         font-size: 1rem;
     }
 
@@ -1222,7 +1225,7 @@ footer section {
     }
 
     .dernieres-actualites-container {
-        justify-content: center;
+        justify-content: left;
     }
 
     .dernieres-actualites-container div {
@@ -1259,5 +1262,8 @@ footer section {
     .share-views {
         max-width: 44rem;
 
+    }
+    .liste-categorie-container {
+        width: 90%;
     }
 }

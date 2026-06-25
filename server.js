@@ -47,8 +47,7 @@ app.use((req, res, next) => {
 
     const ua = req.headers['user-agent'] || '';
 
-    console.log("UA:", ua);
-    console.log("URL:", req.originalUrl);
+
 
 
     if (

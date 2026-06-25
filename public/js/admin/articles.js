@@ -282,7 +282,7 @@ const afficherArticlesInArticle = async () => {
 
         document.querySelector('.article-content-admin h2').textContent = `${result.articles.length} article(s)`
 
-        for (const article of result.articles) {
+        for (const article of result.articles.sort((a, b) => new Date(b.created_at) - new Date(a.created_at))) {
             let tr = document.createElement('tr')
 
             let resultCat = { categorie: { name: "Inconnu" } };
@@ -336,7 +336,9 @@ const afficherArticlesInArticle = async () => {
                 datePlanification > maintenant;
 
 
-            tr.innerHTML = `
+            tr.innerHTML = 
+            
+            `
 
                     <td>${article.title}</td>
                     <td>${resultAuteur.users.first_name}</td>

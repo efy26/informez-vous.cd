@@ -142,7 +142,7 @@ const dernieresActualites = async () => {
 
     if (response.ok) {
         result.articles.sort((a, b) => new Date(b.created_at) - new Date(a.created_at))
-            .slice(0, 4).forEach(async (article) => {
+            .slice(0, 5).forEach(async (article) => {
 
 
 
