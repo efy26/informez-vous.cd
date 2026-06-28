@@ -1,16 +1,21 @@
 <div class="apercu-article-container-amin">
   <section class="apercu-article-content-admin">
+    <div class="img-logo-lire-article">
+
+    </div>
     <div class="apercu-article-content-categorie-admin">
       <p><strong>{{#if categoriecase}}
-    {{categoriecase}}
-{{else}}
-    Catégorie supprimée
-{{/if}}  
-</strong>- {{#if subCategorie}}
-    {{subCategorie.slug}}
-{{else}}
-    Sous-catégorie supprimée
-{{/if}}  </p>
+            {{categoriecase}}
+          {{else}}
+            Catégorie supprimée
+          {{/if}}
+        </strong>-
+        {{#if subCategorie}}
+          {{subCategorie.slug}}
+        {{else}}
+          Sous-catégorie supprimée
+        {{/if}}
+      </p>
     </div>
     <div class="apercu-article-content-titre-admin">
       <h1>
@@ -27,7 +32,7 @@
         <div class="apercu-article-content-date">
           <p>{{article.created_at}}</p>
         </div>
-        {{!-- <i></i> --}}
+        {{! <i></i> }}
         {{!-- <div class="apercu-article-content-role">
           <p>{{auteur.role}}</p>
         </div> --}}
@@ -37,22 +42,20 @@
 
       </div>
       <div class="share-views">
-          
-          <p>
-            <ion-icon name="eye-outline"></ion-icon>
-            <span id="views-count">{{article.views}}</span>
 
-            {{!-- {{#if ( eqs article.views  1)  }}
+        <p>
+          <ion-icon name="eye-outline"></ion-icon>
+          <span id="views-count">{{article.views}}</span>
+
+          {{!-- {{#if ( eqs article.views  1)  }}
                 personne
                 {{else}}
                 personnes
 
             {{/if}} --}}
-          </p>
-          <button id="btn-share">Partager l'article</button>
+        </p>
+        <button id="btn-share">Partager l'article</button>
       </div>
-      
-
 
     </div>
     <div class="apercu-article-content-paragraphe-admin">
@@ -67,17 +70,17 @@
   <section class="article-simulaire">
     <h2>Poursuivez votre lecture :</h2>
     <div class="sugestion-article">
-        {{#each suggestions}}
+      {{#each suggestions}}
         <a href="/lire-article?id={{id}}">
-            <img src="{{image}}" alt="Image d'un article">
-            <div class="sugestion-article-details">
-                <h3>{{title}}</h3>
-                <p>{{summary}}</p>
-                <p>{{created_at}}</p>
-            </div>
-        
+          <img src="{{image}}" alt="Image d'un article" />
+          <div class="sugestion-article-details">
+            <h3>{{title}}</h3>
+            <p>{{summary}}</p>
+            <p>{{created_at}}</p>
+          </div>
+
         </a>
-        {{/each}}
+      {{/each}}
     </div>
   </section>
 </div>

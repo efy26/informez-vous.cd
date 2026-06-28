@@ -1331,8 +1331,6 @@ app.post('/api/articles/:id/view', async (req, res) => {
     const { id } = req.params;
     const ip = getClientIp(req);
 
-    console.log("IP DETECTED:", ip);
-    console.log("ARTICLE ID:", id);
 
     try {
         await incrementArticleViews(id, ip);
