@@ -78,6 +78,41 @@ img {
 }
 
 
+/* Début Publicités */
+.apercu-article-container-publicite h1{
+    display: inline-flex;
+    font-size: 1rem;
+    color: gray;
+    border-bottom: 1px solid red;
+    padding-bottom: 0.5rem;
+}
+.pub-container {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+.pub-container p {
+    line-height: 1.5;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+.pub-container p a {
+    color: gray;
+    text-decoration: underline;
+}
+.lien-vers-site-pub {
+    color: red;
+    text-decoration: underline;
+}
+.pub-un {
+    background-image: url(/assets/publicites/caisse.jpeg);
+    background-repeat: no-repeat;
+    width: 100%;
+    height: 10rem;
+    /* border: 2px solid red; */
+    background-size: contain;
+}
+/* Fin Publicités */
+
 
 /*Apercu d'un article*/
 .img-logo-lire-article {
@@ -98,13 +133,16 @@ img {
     padding: 0.5rem 1rem;
     border: none;
     border-radius: 10px;
-    background-color: rgba(255, 0, 0, 0.131);
+    background-color: transparent;
+    box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.174);
     color: red;
+    font-weight: bold;
     transition: 0.3s linear;
 }
 
 #btn-share:hover {
-    background-color: rgba(255, 0, 0, 0.243);
+    background-color: rgba(255, 0, 0, 0.099);
+    transform: scale(1.05);
 }
 
 .copierLien {
@@ -131,7 +169,6 @@ img {
     max-width: 23rem;
 
 }
-
 .share-views p {
     display: flex;
     line-break: anywhere;
@@ -139,8 +176,9 @@ img {
     gap: 0.3rem;
     padding: 0.3rem;
     border-radius: 10px;
-    box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.108);
-
+    box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.174);
+    font-weight: bold;
+    color: red;
 }
 
 .apercu-article-container-amin .close-outline-apercu {
@@ -167,10 +205,11 @@ img {
     align-items: center;
     align-content: center;
     background-color: rgba(255, 0, 0, 0.172);
+    /* box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.472); */
     color: red;
     padding: 0.3rem;
     text-align: center;
-    border-radius: 7px;
+    border-radius: 10px;
 }
 
 .apercu-article-content-categorie-admin p strong {
@@ -357,15 +396,22 @@ header {
     padding: 0.5rem;
     border-radius: 10px;
     transition: 0.3s ease-out;
+    
 }
 
 .header-link a:hover {
-    background-color: rgba(255, 0, 0, 0.177);
-    color: red;
+    /* background-color: rgba(255, 0, 0, 0.177);
+    color: red; */
+
+  box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.29);
+    transform: scale(1.05);
+     
 }
 
 .active {
-    background-color: rgba(255, 0, 0, 0.177);
+    /* background-color: rgba(255, 0, 0, 0.177);
+    color: red; */
+    box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.29);
     color: red;
 }
 
@@ -980,7 +1026,7 @@ footer section {
 
     .header-link {
         flex-direction: row;
-        gap: 0.3rem;
+        gap: 0.8rem;
     }
 
     .menu-outline,
@@ -1025,8 +1071,12 @@ footer section {
     .apercu-article-container-amin {
         padding-top: 13rem;
     }
+    /* Publicité */
+    .pub-container p {
+        width: 70%;
+    }
     .apercu-article-content-categorie-admin {
-        padding-top: 0;
+        padding-top: 2rem;
     }
 
     .liste-categorie-container {
@@ -1200,7 +1250,7 @@ footer section {
 
     .header-link {
         flex-direction: row;
-        gap: 0.3rem;
+        gap: 0.7rem;
     }
 
     .search-connexion {
@@ -1222,7 +1272,7 @@ footer section {
         padding-top: 12rem;
     }
     .apercu-article-content-categorie-admin {
-        padding-top: 0;
+        padding-top: 0.5rem;
     }
 
     footer {
