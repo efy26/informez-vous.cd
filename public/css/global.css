@@ -87,11 +87,12 @@ img {
     padding-bottom: 0.5rem;
 }
 .pub-container {
-    display: flex;
+    display: inline-block;
     flex-direction: column;
-    gap: 0.5rem;
 }
 .pub-container p {
+    padding-top: 0.5rem;
+     padding-bottom: 0.5rem;
     line-height: 1.5;
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
 }
