@@ -85,9 +85,13 @@ img {
     gap: 1rem;
 } */
 
+#deux-pub, #un-pub {
+    display: none;
+}
+
 .apercu-article-container-publicite h1{
     display: inline-block;
-    width: auto O;
+    width: auto;
     font-size: 1rem;
     color: gray;
     border-bottom: 1px solid red;

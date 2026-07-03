@@ -55,9 +55,10 @@ const titrePubFooter = document.querySelector('#pub-footer p')
 const lienPubFooter = document.querySelector('#lien-site-footer')
 
 let dernierePubId = -1;
+let dernierePubIdFooter = -1;
 
 const afficherPub = async () => {
-    
+
 
     const header = 'header'
     const footer = 'footer'
@@ -71,22 +72,28 @@ const afficherPub = async () => {
         const result = await response.json()
 
         if (response.ok) {
-        
-                const pub = result.pub[0]
 
-                if (!pub) {
-                    document.querySelector('#un-pub').style.display = 'none'
-                }else {
+            const pub = result.pub[0]
+
+            if (!pub) {
+                return;
+            } else {
                 dernierePubId = pub.id
                 
+
                 divImagePubHeader.style = `background-image: url(${pub.image_url}); background-repeat: no-repeat; width: 100%;
                 height: 10rem;   background-size: contain;`
                 titrePubHeader.innerHTML = pub.titre
-                lienPubHeader.href ="#"
-                lienPubHeader.setAttribute( 'data-id', `${pub.id}`)
-                lienPubHeader.setAttribute( 'data-clicks', `${pub.clicks}`)}
+                lienPubHeader.href = "#"
+                lienPubHeader.setAttribute('data-id', `${pub.id}`)
+                lienPubHeader.setAttribute('data-clicks', `${pub.clicks}`)
+                document.querySelector('#un-pub').style.display = 'unset'
 
-            
+                setTimeout(afficherPubHeader, 10000);
+                
+            }
+
+
         } else {
             console.log(result.error);
 
@@ -95,29 +102,34 @@ const afficherPub = async () => {
 
     const afficherPubFooter = async () => {
 
-        const response = await fetch(`/api/pub/${footer}?last=${dernierePubId ?? ""}`, {
+        const response = await fetch(`/api/pub/${footer}?last=${dernierePubIdFooter ?? ""}`, {
             method: 'GET'
         })
 
         const result = await response.json()
 
         if (response.ok) {
-        
-                const pub = result.pub[0]
 
-                if (!pub) {
-                    document.querySelector('#deux-pub').style.display = 'none'
-                }else {
-                dernierePubId = pub.id
-                
+            const pub = result.pub[0]
+
+            if (!pub) {
+                return;
+            } else {
+                dernierePubIdFooter = pub.id
+
                 divImagePubFooter.style = `background-image: url(${pub.image_url}); background-repeat: no-repeat; width: 100%;
                 height: 10rem;   background-size: contain;`
                 titrePubFooter.innerHTML = pub.titre
                 lienPubFooter.href = pub.lien_url
-                lienPubFooter.setAttribute( 'data-id', `${pub.id}`)
-                lienPubFooter.setAttribute( 'data-clicks', `${pub.clicks}`)}
+                lienPubFooter.setAttribute('data-id', `${pub.id}`)
+                lienPubFooter.setAttribute('data-clicks', `${pub.clicks}`)
 
-            
+                document.querySelector('#deux-pub').style.display = 'unset'
+
+                setTimeout(afficherPubFooter, 10000);
+            }
+
+
         } else {
             console.log(result.error);
             document.querySelector('#deux-pub').style.display = 'none'
@@ -125,11 +137,11 @@ const afficherPub = async () => {
         }
     }
 
-    await afficherPubFooter()
-    setInterval(afficherPubFooter, 10000);
+    await Promise.all([
+        afficherPubHeader(),
+        afficherPubFooter()
+    ]);
 
-    await afficherPubHeader()
-    setInterval(afficherPubHeader, 10000);
 
 
 
@@ -138,44 +150,44 @@ afficherPub()
 
 lienPubFooter.addEventListener('click', async (event) => {
     const id = event.currentTarget.dataset.id
-    const clicks =  Number(event.currentTarget.dataset.clicks || 0);
+    const clicks = Number(event.currentTarget.dataset.clicks || 0);
 
     const response = await fetch(`/api/pub/${id}`, {
         method: 'PATCH',
-        headers: {'Content-Type': 'application/json'},
-        body: JSON.stringify({clicks: clicks + 1})
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ clicks: clicks + 1 })
     })
 
     const result = await response.json()
 
     if (response.ok) {
         console.log(result.pubUpdated);
-    }else {
+    } else {
         console.log(result.error);
-        
+
     }
 
-    
-    
+
+
 })
 
 lienPubHeader.addEventListener('click', async (event) => {
-     const id = event.currentTarget.dataset.id
-    const clicks =  Number(event.currentTarget.dataset.clicks || 0);
+    const id = event.currentTarget.dataset.id
+    const clicks = Number(event.currentTarget.dataset.clicks || 0);
 
     const response = await fetch(`/api/pub/${id}`, {
         method: 'PATCH',
-        headers: {'Content-Type': 'application/json'},
-        body: JSON.stringify({clicks: clicks + 1})
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ clicks: clicks + 1 })
     })
 
     const result = await response.json()
 
     if (response.ok) {
         console.log(result.pubUpdated);
-    }else {
+    } else {
         console.log(result.error);
-        
+
     }
 })
 
