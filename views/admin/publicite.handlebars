@@ -1,0 +1,124 @@
+<div class="publicite-container-admin">
+  <section class="publicite-header-admin">
+    <div class="publicite-content-admin">
+      <h2></h2>
+      <p>Gérez vos publicités</p>
+    </div>
+
+    <button class="btn-creer-publicite-admin">
+
+      Créer une publicité
+    </button>
+
+  </section>
+    <br><br>
+  <section id="create-publicite-block-admin" class="edit-publicite-admin">
+    <h2>Modifier une publicité</h2>
+    
+    <form class="create-publicite-form" id="update-publicite-form" method="post" novalidate="novalidate">
+      <textarea name="titre publicite" id="" rows="10"  placeholder="Entrez la description de la publicité"></textarea>
+      {{!-- <input
+        type="text"
+        name="update publicite"
+        placeholder="Entrez le titre"
+      /> --}}
+      <div class="container-bloc">
+        <label for="image">Selectionnez une image : </label>
+        <input type="file" placeholder="Selectionnez une image" name="image" />
+      </div>
+      <input
+        type="text"
+        name=" lien site"
+        placeholder="Entrez le lien du site"
+      />
+      <select name="position" id="">
+        <option value="">Selectionnez une position</option>
+        <option value="header">Header</option>
+        <option value="footer">Footer</option>
+      </select>
+      <div class="container-bloc">
+        <label for="actif">Activer ou Desactiver la publicité : </label>
+        <input type="checkbox" name="actif" id="" />
+      </div>
+      <div class="container-bloc">
+        <label for="date debut">Date de début : </label>
+        <input type="date" name="date debut" />
+      </div>
+      <div class="container-bloc">
+        <label for="date debut">Date de fin : </label>
+        <input type="date" name="date debut" />
+      </div>
+
+      <button type="submit">Valider</button>
+
+    </form>
+  </section>
+
+  <section id="create-publicite-block-admin" class="creer-publicite-admin"><br />
+    <h2>Créer une publicité</h2>
+    
+    <form class="create-publicite-form" id="create-publicite-form" method="post" novalidate="novalidate">
+      <textarea name="titre publicite" id="" rows="10"  placeholder="Entrez la description de la publicité"></textarea>
+      {{!-- <input
+        type="text"
+        name="titre publicite"
+        placeholder="Entrez le titre"
+      /> --}}
+      <div class="container-bloc">
+        <label for="image">Selectionnez une image : </label>
+        <input type="file" placeholder="Selectionnez une image" name="image" />
+      </div>
+      <input
+        type="text"
+        name=" lien site"
+        placeholder="Entrez le lien du site"
+      />
+      <select name="position" id="">
+        <option value="">Selectionnez une position</option>
+        <option value="header">Header</option>
+        <option value="footer">Footer</option>
+      </select>
+      <div class="container-bloc">
+        <label for="actif">Activer ou Desactiver la publicité : </label>
+        <input type="checkbox" name="actif" id="" />
+      </div>
+      <div class="container-bloc">
+        <label for="date debut">Date de début : </label>
+        <input type="date" name="date debut" />
+      </div>
+      <div class="container-bloc">
+        <label for="date debut">Date de fin : </label>
+        <input type="date" name="date debut" />
+      </div>
+
+      <button type="submit">Créer</button>
+
+    </form>
+  </section>
+
+  <section class="categories-liste-admin">
+    <div class="message">
+
+    </div>
+    <br>
+        <table>
+            <thead>
+                <tr>
+
+                    <th>Lien site</th>
+                    <th>Positionnement</th>
+                    <th>Actif</th>
+                    <th>Début</th>
+                    <th>Fin</th>
+                    <th>Nombre de visite</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Les lignes de la catégorie seront ajoutées ici -->
+                
+                
+            </tbody>
+        </table>
+    </section>
+</div>

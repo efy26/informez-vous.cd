@@ -18,6 +18,7 @@ import { engine } from 'express-handlebars';
 // =================================
 // Importation des routes
 import { createUser, getusers, updateUser, deleteUser, getUserById } from './model/user.model.js';
+import { createPub, getPubByPosition, updatePub, deletePub, getPubById, getPub } from './model/pub.model.js';
 import { createArticle, getArticles, getArticleById, updateArticle, deleteArticle, getArticleStatusCounts, getArticleCountByCategory, getArticleByStatus, getArticleByStatusBrouillons, getArticlesForRedacteur, incrementArticleViews, getAticleViewsByIdArticle } from './model/article.model.js';
 import { createCategorie, getCategories, getCategorieById, updateCategorie, deleteCategorie } from './model/categorie.model.js';
 import { createSubCategorie, getSubCategories, getSubCategorieById, updateSubCategorie, getSubCategoriesByCategoryId } from './model/sub.categorie.model.js';
@@ -88,7 +89,7 @@ app.engine('handlebars', engine(
                 return a || b
             },
             sup: function (a, b) {
-                return  Number(a) > Number(b)
+                return Number(a) > Number(b)
             },
             eqs: function (a, b) {
                 return Number(a) === Number(b)
@@ -168,7 +169,7 @@ app.use((request, response, next) => {
         'Actualités fiables, rapides et diversifiées.';
 
     response.locals.image =
-"https://informez-vous-cd.onrender.com/assets/logo.jpeg";
+        "https://informez-vous-cd.onrender.com/assets/logo.jpeg";
 
     response.locals.url =
         `${request.protocol}://${request.get('host')}${request.originalUrl}`;
@@ -552,18 +553,17 @@ app.get('/api/articles-status/:status', async (request, response) => {
     response.status(200).json({ message: 'Article récupéré avec succès', article });
 });
 
-app.
-    get('/api/articles-status-brouillon/:status', async (request, response) => {
-        const { status } = request.params;
-        const authorId = request.user.id;
-        const article = await getArticleByStatusBrouillons(status, authorId);
+app.get('/api/articles-status-brouillon/:status', async (request, response) => {
+    const { status } = request.params;
+    const authorId = request.user.id;
+    const article = await getArticleByStatusBrouillons(status, authorId);
 
-        if (!article) {
-            return response.status(404).json({ error: 'Article non trouvé' });
-        }
+    if (!article) {
+        return response.status(404).json({ error: 'Article non trouvé' });
+    }
 
-        response.status(200).json({ message: 'Article récupéré avec succès', article });
-    });
+    response.status(200).json({ message: 'Article récupéré avec succès', article });
+});
 
 app.patch('/api/articles/:id', assets.single('image'), async (request, response) => {
     try {
@@ -634,6 +634,117 @@ app.delete('/api/articles/:id', async (request, response) => {
 });
 
 //========= FIN ROUTES ARTICLES ========================
+/**
+ * 
+ * 
+ * 
+ */
+//========= DÉBUT ROUTES PUB ========================
+app.get('/api/pub', async (request, response) => {
+    const pub = await getPub()
+
+    if (!pub) {
+        return response.status(404).json({ error: "Publicités non trouvées" })
+    }
+
+    return response.status(200).json({ message: "Publicités trouvées", pub })
+})
+app.get('/api/pub/:position', async (request, response) => {
+    const { position } = request.params;
+
+    const last = request.query.last
+    ? Number(request.query.last)
+    : null;
+
+
+    const pub = await getPubByPosition(position, last);
+
+    if (!pub) {
+        return response.status(404).json({ error: "Publicités non trouvées" })
+    }
+
+    return response.status(200).json({ message: "Publicités trouvées", pub })
+})
+app.post('/api/pub', assets.single('image_url'), async (request, response) => {
+    try {
+
+        const { titre, lien_url, position, actif, date_debut, date_fin } = request.body;
+
+                if (!request.file) {
+            return response.status(400).json({ error: "Image obligatoire" });
+        }
+
+        const image_url = request.file.path;
+
+        if (titre === '' || image_url === '' || lien_url === '' || position === '' || date_debut === ''  || date_fin ==='') {
+            return response.status(400).json({
+                error: 'Tous les champs sont requis'
+            });
+        }
+
+        const pubData = { titre, image_url, lien_url, position, actif, date_debut, date_fin }
+
+        const pubCreated = await createPub(pubData)
+
+        if (!pubCreated) {
+            return response.status(400).json({ error: "Erreur lors de la création de la publicité" })
+        }
+
+        return response.status(201).json({ message: "Publicité créee avec succèss", pubCreated })
+
+    } catch (error) {
+        console.log(error);
+
+        return response.status(500).json({ error: 'Erreur lors de la création de la publicité' });
+    }
+})
+app.patch('/api/pub/:id', assets.single('image_url'), async (request, response) => {
+    const { id } = request.params;
+    const { titre, lien_url, position, actif, clicks, date_debut, date_fin } = request.body;
+
+    const pubActuelle = await getPubById(id)
+
+    let image_url = pubActuelle.image_url
+    if (request.file) {
+        image_url = request.file.path
+    }
+
+
+//         if (
+//     titre === undefined ||
+//     lien_url === undefined ||
+//     position === undefined ||
+//     date_debut === undefined ||
+//     date_fin === undefined
+// ) {
+//     return response.status(400).json({
+//         error: 'Tous les champs sont requis'
+//     });
+// }
+
+    const pubData = { titre, image_url, lien_url, position, actif, clicks, date_debut, date_fin }
+    const pubUpdated = await updatePub(id, pubData)
+
+    if(!pubUpdated) {
+        return response.status(400).json({ error: "Erreur lors de la modification de la publicité" })
+    }
+
+    return response.status(201).json({ message: "Publicité modifiée avec succèss", pubUpdated })
+})
+app.delete('/api/pub/:id', async (request, response) => {
+    const { id } = request.params;
+
+    const pubDelected = await deletePub(id)
+
+    if (!pubDelected) {
+        return response.status(400).json({ error: "Erreur lors de la suppression de la publicité" })
+    }
+
+    return response.status(201).json({ message: "Publicité supprimée avec succèss", pubDelected })
+
+})
+
+//========= FIN ROUTES PUB ========================
 /**
  * 
  * 
@@ -803,11 +914,16 @@ app.get('/admin/dashboard', isAuthenticated, isAdmin, async (request, response) 
     const categoryLabels = categoryCounts.map(item => item.category || 'Non classé');
     const categoryData = categoryCounts.map(item => item.count);
 
+    const pubs = await getPub()
+
+    const nombrePubActif = pubs.filter(pub => pub.actif === true).length
+
     response.render('admin/dashboard', {
         layout: 'admin',
         title: 'Dashboard',
         menuTitles: 'Tableau de bord',
         currentPage: 'dashboard',
+        nombrePubActif,
         firstName,
         lastName,
         roles,
@@ -998,7 +1114,18 @@ app.get('/admin/profils', isAuthenticated, isAdmin, (request, response) => {
         scripts: ['admin/profils.js']
     })
 })
-
+app.get('/admin/publicite', isAuthenticated, isAdmin, async (request, response) => {
+    
+    
+    response.render('admin/publicite', {
+        layout: 'admin',
+        title: 'Publicité',
+        menuTitles: 'Gestion des publicités',
+        currentPage: 'publicite',
+        styles: ['admin/publicite.css'],
+        scripts: ['admin/publicite.js']
+    })
+})
 app.get('/register', isAuthenticated, isAdmin, (request, response) => {
     response.render('auth/register', {
         layout: 'admin',
@@ -1345,7 +1472,7 @@ app.post('/api/articles/:id/view', async (req, res) => {
 app.get('/api/article-views/:id', async (request, response) => {
     const { id } = request.params
 
-     try {
+    try {
         const articleViews = await getAticleViewsByIdArticle(id);
 
         return response.status(200).json({
@@ -1359,7 +1486,7 @@ app.get('/api/article-views/:id', async (request, response) => {
     }
 })
 
-app.get('/robots.txt', (req,res)=>{
+app.get('/robots.txt', (req, res) => {
     res.type('text/plain');
     res.send(`
 User-agent: *
@@ -1373,14 +1500,14 @@ Allow: /
     `);
 });
 
-app.use((req,res,next)=>{
+app.use((req, res, next) => {
 
     const ua = req.headers['user-agent'] || '';
 
-    if(
+    if (
         ua.includes('facebookexternalhit') ||
         ua.includes('Facebot')
-    ){
+    ) {
 
         res.setHeader(
             "Cache-Control",

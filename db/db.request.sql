@@ -59,6 +59,23 @@ CREATE TABLE IF NOT EXISTS article_views (
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
+CREATE TABLE IF NOT EXISTS publicites (
+    id SERIAL PRIMARY KEY,
+    titre TEXT DEFAULT NULL,
+    image_url TEXT NOT NULL,
+    lien_url TEXT,
+    position VARCHAR(100) NOT NULL,
+    actif BOOLEAN DEFAULT TRUE,
+    clicks INT DEFAULT 0,
+    date_debut TIMESTAMP,
+    date_fin TIMESTAMP,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+-- ALTER TABLE publicites
+-- ADD COLUMN date_debut TIMESTAMP,
+-- ADD COLUMN date_fin TIMESTAMP;
+
 
 CREATE TABLE "session" (
   "sid" varchar NOT NULL,
