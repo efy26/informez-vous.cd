@@ -36,14 +36,14 @@ if (shareArticle) {
         } else {
             // fallback
             navigator.clipboard.writeText(window.location.href);
-            e.currentTarget.innerHTML = "Lien copié !"
-            e.currentTarget.classList.add('copierLien')
-            setTimeout(() => {
-                shareArticle.innerHTML = "Partager l'article"
-                shareArticle.classList.remove('copierLien')
 
-            }, 2000);
-
+            // e.currentTarget.classList.add('copierLien')
+//             setTimeout(() => {
+//                 e.currentTarget.classList.remove('copierLien')
+//  e.currentTarget.classList.add('btn-share')
+                
+//             }, 2000);
+//             e.currentTarget.classList.add('btn-share')
         }
 
     });
