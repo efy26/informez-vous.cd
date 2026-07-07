@@ -5,8 +5,8 @@ const urls = [
     "/manifest.json",
     "/css/global.css",
     "/js/global.js",
-    "/assets/logo-192.jpeg",
-    "/assets/logo-512.jpeg"
+    "/assets/logo-192.png",
+    "/assets/logo-512.png"
 ];
 
 self.addEventListener("install", event => {

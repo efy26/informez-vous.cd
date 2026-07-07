@@ -117,7 +117,7 @@ app.use(helmet({
             connectSrc: ["'self'", "https:",
                 "http:",
                 "https://unpkg.com", "https://cdn.jsdelivr.net", "https://cdn.ckeditor.com"],
-            faviconSrc: ["'self'", "data:"]
+            // faviconSrc: ["'self'", "data:"]
         }
     }
 }));
