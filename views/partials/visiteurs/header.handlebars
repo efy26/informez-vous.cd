@@ -13,12 +13,12 @@
       <i><ion-icon name="home-outline"></ion-icon></i>Accueil
     </a>
     <a class="{{#if (or (eq currentPage 'actualite') (eq currentPage 'lire-article'))}}active{{/if}}" aria-label="Aller à la page actualité" href="/actualite">
-      <i><ion-icon n-icon name="folder-outline"></ion-icon></i>Les actualités
+      <i><ion-icon n-icon name="folder-outline"></ion-icon></i>Actualités
     </a>
     <a class="{{#if (eq currentPage 'categories')}}active{{/if}}" aria-label="Aller à la page catégories" href="/categories">
       <i><ion-icon
             name="newspaper-outline"
-          ></ion-icon></i>Par catégories
+          ></ion-icon></i>Catégories
     </a>
     <a class="{{#if (or (or (eq currentPage 'apropos') (eq currentPage 'mention-legale')) (eq currentPage 'confidentialite'))}}active{{/if}}" aria-label="Aller à la page à propos" href="/apropos">
       <i><ion-icon name="document-outline"></ion-icon></i> À propos
@@ -28,7 +28,6 @@
     <div class="search">
         <a aria-label="Aller à la page search" class="{{#if (eq currentPage 'search')}}active{{/if}}" href="/search">
           <ion-icon name="search-outline"></ion-icon>
-          Recherche
         </a>
     </div>
     {{!-- <div class="connexion-admin-redacteur">
