@@ -868,7 +868,8 @@ app.get('/', (request, response) => {
         description: 'Découvrez les dernières actualités nationales et internationales sur INFORMEZ-VOUS.CD.',
         image: "logo.jpeg",
         url: 'https://informez-vous-cd.onrender.com/',
-        currentPage: '/'
+        currentPage: '/',
+        styles: ['global.css'],
 
     });
 });
