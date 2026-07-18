@@ -19,7 +19,9 @@ import { engine } from 'express-handlebars';
 // Importation des routes
 import { createUser, getusers, updateUser, deleteUser, getUserById } from './model/user.model.js';
 import { createPub, getPubByPosition, updatePub, deletePub, getPubById, getPub } from './model/pub.model.js';
-import { createArticle, getArticles, getArticleById, updateArticle, deleteArticle, getArticleStatusCounts, getArticleCountByCategory, getArticleByStatus, getArticleByStatusBrouillons, getArticlesForRedacteur, incrementArticleViews, getAticleViewsByIdArticle } from './model/article.model.js';
+import { createArticle, getArticles, getArticleById, updateArticle, deleteArticle, getArticleStatusCounts, 
+    getArticleCountByCategory, getArticleByStatus, getArticleByStatusBrouillons, getArticlesForRedacteur, 
+    incrementArticleViews, getAticleViewsByIdArticle, getArticleViewCount } from './model/article.model.js';
 import { createCategorie, getCategories, getCategorieById, updateCategorie, deleteCategorie } from './model/categorie.model.js';
 import { createSubCategorie, getSubCategories, getSubCategorieById, updateSubCategorie, getSubCategoriesByCategoryId } from './model/sub.categorie.model.js';
 import {
@@ -104,23 +106,23 @@ app.set('views', './views');
 
 // Middlewares pour la sécurité, la compression et le CORS
 app.use(express.urlencoded({ extended: true }));
-app.use(helmet({
-    contentSecurityPolicy:
-    {
-        directives: {
-            defaultSrc: ["'self'"],
-            scriptSrc: ["'self'", "'unsafe-inline'", "https:",
-                "http:",
-                "https://unpkg.com", "https://cdn.jsdelivr.net", "https://cdn.ckeditor.com"],
-            styleSrc: ["'self'", "'unsafe-inline'", "https://unpkg.com", "https://cdn.jsdelivr.net", "https://cdn.ckeditor.com"],
-            imgSrc: ["'self'", "data:", "https:", "http:"],
-            connectSrc: ["'self'", "https:",
-                "http:",
-                "https://unpkg.com", "https://cdn.jsdelivr.net", "https://cdn.ckeditor.com"],
-            // faviconSrc: ["'self'", "data:"]
-        }
-    }
-}));
+// app.use(helmet({
+//     contentSecurityPolicy:
+//     {
+//         directives: {
+//             defaultSrc: ["'self'"],
+//             scriptSrc: ["'self'", "'unsafe-inline'", "https:",
+//                 "http:",
+//                 "https://unpkg.com", "https://cdn.jsdelivr.net", "https://cdn.ckeditor.com"],
+//             styleSrc: ["'self'", "'unsafe-inline'", "https://unpkg.com", "https://cdn.jsdelivr.net", "https://cdn.ckeditor.com"],
+//             imgSrc: ["'self'", "data:", "https:", "http:"],
+//             connectSrc: ["'self'", "https:",
+//                 "http:",
+//                 "https://unpkg.com", "https://cdn.jsdelivr.net", "https://cdn.ckeditor.com"],
+//             // faviconSrc: ["'self'", "data:"]
+//         }
+//     }
+// }));
 
 app.use(compression());
 app.use(cors({
@@ -917,6 +919,8 @@ app.get('/admin/dashboard', isAuthenticated, isAdmin, async (request, response) 
     const pubs = await getPub()
 
     const nombrePubActif = pubs.filter(pub => pub.actif === true).length
+    let nombreVueArticle = await getArticleViewCount()
+    nombreVueArticle -=5
 
     response.render('admin/dashboard', {
         layout: 'admin',
@@ -924,6 +928,7 @@ app.get('/admin/dashboard', isAuthenticated, isAdmin, async (request, response) 
         menuTitles: 'Tableau de bord',
         currentPage: 'dashboard',
         nombrePubActif,
+        nombreVueArticle,
         firstName,
         lastName,
         roles,

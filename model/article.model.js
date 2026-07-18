@@ -10,6 +10,14 @@ export const createArticle = async (articleData) => {
     )
     return result.rows[0];
 }
+export const getArticleViewCount = async () => {
+    const result = await pool.query(
+        `
+        SELECT SUM(views) AS total_views FROM articles
+        `
+    );
+    return result.rows[0].total_views || 0;
+}
 
 export const getArticles = async () => {
     const result = await pool.query(

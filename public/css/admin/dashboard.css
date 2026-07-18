@@ -67,34 +67,53 @@
 
 
 .checkmark-done-outline {
+    display: flex;
+    align-items: center;
     padding: 0.5rem;
     background-color: rgba(0, 128, 0, 0.108);
     border-radius: 4rem;
 }
 .checkmark-outline {
+    display: flex;
+    align-items: center;
     padding: 0.5rem;
     background-color: rgba(210, 180, 140, 0.228);
     border-radius: 4rem;
 }
 .calendar-number-outline {
+    display: flex;
+    align-items: center;
     padding: 0.5rem;
     background-color: rgba(95, 158, 160, 0.15);
     border-radius: 4rem;
 }
 .hourglass-outline {
+    display: flex;
+    align-items: center;
     padding: 0.5rem;
     background-color: rgba(255, 166, 0, 0.109);
     border-radius: 4rem;
 }
 
 .person-add-outline {
+    display: flex;
+    align-items: center;
     padding: 0.5rem;
     background-color: rgba(137, 43, 226, 0.096);
     border-radius: 4rem;
 }
 .tv-outline {
+    display: flex;
+    align-items: center;
     padding: 0.5rem;
     background-color: rgba(184, 135, 11, 0.297);
+    border-radius: 50rem;
+}
+.eye-outline {
+    display: flex;
+    align-items: center;
+    padding: 0.5rem;
+    background-color: rgba(255, 0, 0, 0.208);
     border-radius: 50rem;
 }
 
@@ -118,6 +137,9 @@
 }
 .publicite-stats {
     color: darkgoldenrod;
+}
+.vues-stats {
+    color: red;
 }
 
  .dashboard {

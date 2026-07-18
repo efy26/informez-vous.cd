@@ -83,13 +83,14 @@ aside {
     justify-content: space-between;
     width: 80%;
     min-height: 100vh ;
-    padding: 2rem 1rem;
+    padding: 2rem;
     background-color: white;
     box-shadow: 6px 0 10px rgba(0, 0, 0, 0.1);
     border-radius: 0 10px 10px;
     z-index: 1000;
     transform: translateX(-100%);
     transition: 0.7s ease-in-out;
+    overflow-y: auto;
 }
 .aside-container-logo-close-menu{
     display:flex;
@@ -129,7 +130,7 @@ aside {
 
 .aside-menu {
     display: flex;
-    flex-wrap: wrap;
+    flex-direction: column;
     gap: 1rem;
 }
 
