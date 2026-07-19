@@ -2,11 +2,14 @@ import { pool } from '../db.js';
 
 
 export const slugs = (text) => {
-    return text.toString().toLowerCase()
-        .replace(/\s+/g, '-') // Remplace les espaces par des tirets
-        .replace(/[^\w-]+/g, '') // Supprime les caractères non valides
-        .replace(/--+/g, '-') // Remplace les multiples tirets par un seul
-        .replace(/^-+|-+$/g, ''); // Supprime les tirets en début et fin
+    return text.toString()
+        .normalize("NFD")
+        .replace(/[\u0300-\u036f]/g, "") // enlève les accents
+        .toLowerCase()
+        .replace(/\s+/g, "-")
+        .replace(/[^\w-]+/g, "")
+        .replace(/--+/g, "-")
+        .replace(/^-+|-+$/g, "");
 }
 
 /**
