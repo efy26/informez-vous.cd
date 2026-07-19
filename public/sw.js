@@ -1,4 +1,4 @@
-const CACHE = "informez-v1";
+const CACHE = "informez-v2";
 
 const urls = [
     "/",
@@ -18,7 +18,17 @@ self.addEventListener("install", event => {
 });
 
 self.addEventListener("activate", event => {
-    event.waitUntil(clients.claim());
+    event.waitUntil(
+        caches.keys().then(keys =>
+            Promise.all(
+                keys
+                    .filter(key => key !== CACHE)
+                    .map(key => caches.delete(key))
+            )
+        )
+    );
+
+    self.clients.claim();
 });
 
 self.addEventListener("fetch", event => {

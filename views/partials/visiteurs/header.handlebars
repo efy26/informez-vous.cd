@@ -9,11 +9,11 @@
     
   </div>
   <div class="header-link">
-    <a class="{{#if (eq currentPage '/' )}}active{{/if}}" href="/" aria-label="Aller à la page d'accueil">
+    <a class="{{#if (eq currentPage '/' )}}active{{/if}}" aria-label="Aller à la page d'accueil" href="/">
       <i><ion-icon name="home-outline"></ion-icon></i>Accueil
     </a>
     <a class="{{#if (or (eq currentPage 'actualite') (eq currentPage 'lire-article'))}}active{{/if}}" aria-label="Aller à la page actualité" href="/actualite">
-      <i><ion-icon n-icon name="folder-outline"></ion-icon></i>Actualités
+      <i><ion-icon  name="folder-outline"></ion-icon></i>Actualités
     </a>
     <a class="{{#if (eq currentPage 'categories')}}active{{/if}}" aria-label="Aller à la page catégories" href="/categories">
       <i><ion-icon
@@ -30,11 +30,5 @@
           <ion-icon name="search-outline"></ion-icon>
         </a>
     </div>
-    {{!-- <div class="connexion-admin-redacteur">
-        <a aria-label="Aller à la page login" class="{{#if (eq currentPage 'login')}}active{{/if}}" href="/login">
-          <ion-icon name="person-outline"></ion-icon>
-          Connexion
-        </a>
-    </div> --}}
   </div>
 </header>

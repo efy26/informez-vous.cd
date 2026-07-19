@@ -106,23 +106,23 @@ app.set('views', './views');
 
 // Middlewares pour la sécurité, la compression et le CORS
 app.use(express.urlencoded({ extended: true }));
-// app.use(helmet({
-//     contentSecurityPolicy:
-//     {
-//         directives: {
-//             defaultSrc: ["'self'"],
-//             scriptSrc: ["'self'", "'unsafe-inline'", "https:",
-//                 "http:",
-//                 "https://unpkg.com", "https://cdn.jsdelivr.net", "https://cdn.ckeditor.com"],
-//             styleSrc: ["'self'", "'unsafe-inline'", "https://unpkg.com", "https://cdn.jsdelivr.net", "https://cdn.ckeditor.com"],
-//             imgSrc: ["'self'", "data:", "https:", "http:"],
-//             connectSrc: ["'self'", "https:",
-//                 "http:",
-//                 "https://unpkg.com", "https://cdn.jsdelivr.net", "https://cdn.ckeditor.com"],
-//             // faviconSrc: ["'self'", "data:"]
-//         }
-//     }
-// }));
+app.use(helmet({
+    contentSecurityPolicy:
+    {
+        directives: {
+            defaultSrc: ["'self'"],
+            scriptSrc: ["'self'", "'unsafe-inline'", "https:",
+                "http:",
+                "https://unpkg.com", "https://cdn.jsdelivr.net", "https://cdn.ckeditor.com"],
+            styleSrc: ["'self'", "'unsafe-inline'", "https://unpkg.com", "https://cdn.jsdelivr.net", "https://cdn.ckeditor.com"],
+            imgSrc: ["'self'", "data:", "https:", "http:"],
+            connectSrc: ["'self'", "https:",
+                "http:",
+                "https://unpkg.com", "https://cdn.jsdelivr.net", "https://cdn.ckeditor.com"],
+            // faviconSrc: ["'self'", "data:"]
+        }
+    }
+}));
 
 app.use(compression());
 app.use(cors({
@@ -868,8 +868,7 @@ app.get('/', (request, response) => {
         description: 'Découvrez les dernières actualités nationales et internationales sur INFORMEZ-VOUS.CD.',
         image: "logo.jpeg",
         url: 'https://informez-vous-cd.onrender.com/',
-        currentPage: '/',
-        styles: ['global.css'],
+        currentPage: '/'
 
     });
 });
