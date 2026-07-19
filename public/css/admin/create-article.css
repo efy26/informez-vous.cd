@@ -47,6 +47,10 @@ select {
 .sommaire, .status, .planifier, .btn-article-envoyer-admin {
     padding-top: 1rem;
 }
+.planifier {
+    display: flex;
+    flex-direction: column;
+}
 .sommaire textarea, .status select, .planifier input{
     margin-top: 1rem;
 }
@@ -59,6 +63,9 @@ input[type="text"], input[type="datetime-local"], input[type="file"], input[type
     border: 1px solid rgba(0, 0, 0, 0.2);
     background-color: transparent;
     outline: none;
+}
+input[type="datetime-local"] {
+    width: 70% !important;
 }
 input[type="file"] {
     margin-bottom: 1rem;

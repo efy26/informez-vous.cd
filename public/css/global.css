@@ -440,7 +440,7 @@ header {
 .search-connexion {
     display: flex;
     flex-direction: column;
-    gap: 0.5rem;
+    /* gap: 0.5rem; */
 }
 .connexion-admin-redacteur {
     display: none;
@@ -448,7 +448,7 @@ header {
 
 .search-connexion a {
     display: flex;
-    gap: 0.5rem;
+    gap: 0.4rem;
     align-items: center;
     align-content: center;
     padding: 0.5rem;
@@ -460,7 +460,7 @@ header {
 } */
 
 .search-connexion a ion-icon {
-    font-size: 1.3rem;
+    font-size: 1rem;
 }
 
 .search-connexion a:hover {

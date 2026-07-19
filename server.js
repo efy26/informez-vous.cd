@@ -885,6 +885,8 @@ app.get('/admin/dashboard', isAuthenticated, isAdmin, async (request, response) 
     const nombreUser = redacteur.length
     const articles = await getArticles()
     const nombreArticle = articles.filter(article => article.status === 'publié').length
+    console.log(nombreArticle);
+    
     const nombreMesArticle = articles.filter(article => article.status === 'publié' && article.author_id === request.user.id).length
     const nombreArticleBrouillon = articles.filter(article =>
 

@@ -58,6 +58,14 @@ textarea,
     border: none;
     border-radius: 7px;
 }
+input[type="file"] {
+    width: 100%;
+}
+.file {
+    display: flex;
+    flex-wrap: nowrap;
+    /* flex-direction: row; */
+}
 
 #publicite-form input,
 .publicite-form input,
@@ -104,7 +112,7 @@ textarea {
 
 .container-bloc {
     display: flex;
-    flex-wrap: wrap;
+    flex-wrap: nowrap;
     align-items: center;
     gap: 1rem;
 }

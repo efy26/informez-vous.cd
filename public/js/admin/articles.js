@@ -280,6 +280,32 @@ const afficherArticlesInArticle = async () => {
 
     if (response.ok) {
 
+        const responseAllCategories = await fetch('/api/categories', {
+                method: 'GET'
+            });
+
+            const resultAllCategories = await responseAllCategories.json();
+
+            if (responseAllCategories.ok) {
+
+
+                for (const categorie of resultAllCategories.categories) {
+
+                    let option = document.createElement("option");
+
+                    option.value = categorie.name;
+                    option.textContent = categorie.name;
+
+                    filtreCategorie.appendChild(option);
+                    console.log(categorie.name);
+
+
+                }
+
+            } else {
+                console.log(resultAllCategories.error);
+            }
+
         document.querySelector('.article-content-admin h2').textContent = `${result.articles.length} article(s)`
 
         for (const article of result.articles.sort((a, b) => new Date(b.created_at) - new Date(a.created_at))) {
@@ -290,17 +316,15 @@ const afficherArticlesInArticle = async () => {
             if (article.categorie_id) {
                 const responseCat = await fetch(`/api/categories/${article.categorie_id}`);
 
+
+
                 if (responseCat.ok) {
                     resultCat = await responseCat.json();
-                    if (resultCat.categories) {
-                        let option = document.createElement('option')
-                        option.value = resultCat.categorie.name
-                        option.innerHTML = resultCat.categorie.name
 
-                        filtreCategorie.appendChild(option)
-                    }
                 }
             }
+            
+
 
 
             let resultSubCat = null
@@ -336,9 +360,9 @@ const afficherArticlesInArticle = async () => {
                 datePlanification > maintenant;
 
 
-            tr.innerHTML = 
-            
-            `
+            tr.innerHTML =
+
+                `
 
                     <td>${article.title}</td>
                     <td>${resultAuteur.users.first_name}</td>
