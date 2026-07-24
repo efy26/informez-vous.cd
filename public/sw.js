@@ -1,4 +1,4 @@
-const CACHE = "informez-v3";
+const CACHE = "informez-v4";
 
 const urls = [
     "/",
